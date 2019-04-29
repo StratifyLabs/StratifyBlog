@@ -1,11 +1,16 @@
 ---
+categories:
+- Device Tips
+date: "2013-10-24"
 layout: post
-title: Using LEDs in Embedded Designs
-categories: [Device Tips]
-tagline: Embedded Design
 page_source: PcbBlog
-tags : [microcontroller, circuit, c/c++, programming]
-date: 2013-10-24
+tagline: Embedded Design
+tags:
+- microcontroller
+- circuit
+- c/c++
+- programming
+title: Using LEDs in Embedded Designs
 ---
 
 ![LED Circuit](/images/LED-circuit.svg)

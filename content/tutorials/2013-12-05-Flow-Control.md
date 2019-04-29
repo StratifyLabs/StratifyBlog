@@ -1,12 +1,14 @@
 ---
+categories:
+- Embedded C Tutorial
+date: "2013-12-05"
 layout: post
-title: Flow Control
-categories: [Embedded C Tutorial]
-tagline: Embedded C Tutorial
+number: 5
 page_source: EmbeddedC
-tags : [C tutorial]
-number: 05
-date: 2013-12-05
+tagline: Embedded C Tutorial
+tags:
+- C tutorial
+title: Flow Control
 ---
 
 The typical C program executes one statement after the next. Various mechanisms exist to vary the flow of the program in order to conditionally execute some statements while executing others over and over within a looThe C flow control keywords include:

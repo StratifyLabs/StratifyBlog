@@ -1,10 +1,12 @@
 ---
+categories:
+- Device Tips
+date: "2017-12-13"
 layout: post
-title: Choosing the Right Solder
 page_source: PcbBlog
-categories: [Device Tips]
-tags : [circuit]
-date: 2017-12-13
+tags:
+- circuit
+title: Choosing the Right Solder
 ---
 
 

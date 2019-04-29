@@ -1,11 +1,16 @@
 ---
+categories:
+- Device Tips
+date: "2013-10-02"
 layout: post
-title: A FIFO Buffer Implementation
-categories: [Device Tips]
-tagline: Embedded Design
 page_source: MicrocontrollerBlog
-tags : [microcontroller, programming, c/c++, popular]
-date: 2013-10-02
+tagline: Embedded Design
+tags:
+- microcontroller
+- programming
+- c/c++
+- popular
+title: A FIFO Buffer Implementation
 ---
 
 ![FIFO](/images/fifo.svg)

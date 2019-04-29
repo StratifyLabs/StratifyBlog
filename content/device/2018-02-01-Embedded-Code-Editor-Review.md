@@ -1,10 +1,13 @@
 ---
+categories:
+- Device Tips
+date: "2018-02-01"
 layout: post
-title: Embedded Code Editor Review
 page_source: EmbeddedCodeEditorReview
-categories: [Device Tips]
-tags : [c/c++, programming]
-date: 2018-02-01
+tags:
+- c/c++
+- programming
+title: Embedded Code Editor Review
 ---
 
 ![Qt Creator](/images/qt-creator-screen-shot.png)

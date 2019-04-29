@@ -1,11 +1,14 @@
 ---
+categories:
+- Device Tips
+date: "2013-10-14"
 layout: post
-title: How Microcontrollers Work
-categories: [Device Tips]
-tagline: Embedded Design
 page_source: MicrocontrollerBlog
-tags : [microcontroller, circuit]
-date: 2013-10-14
+tagline: Embedded Design
+tags:
+- microcontroller
+- circuit
+title: How Microcontrollers Work
 ---
 
 ![Silicon Atom](/images/sili-atom.svg)

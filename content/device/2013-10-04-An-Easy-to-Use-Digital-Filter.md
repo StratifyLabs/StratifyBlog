@@ -1,11 +1,15 @@
 ---
+categories:
+- Device Tips
+date: "2013-10-04"
 layout: post
-title: An Easy-to-Use Digital Filter
-categories: [Device Tips]
-tagline: Embedded Design
 page_source: MicrocontrollerBlog
-tags : [c/c++, programming, popular]
-date: 2013-10-04
+tagline: Embedded Design
+tags:
+- c/c++
+- programming
+- popular
+title: An Easy-to-Use Digital Filter
 ---
 
 ![Fourier Series](/images/316px-Fourier_Series.svg)

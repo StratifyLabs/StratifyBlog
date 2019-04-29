@@ -1,11 +1,13 @@
 ---
+categories:
+- Product Management
+date: "2016-12-17"
 layout: post
-title: 5 Questions to Ask before Building a New Product
-categories: [Product Management]
 page_source: ProductDevBlog
 tagline: And Hints to Finding Answers
-tags : [product development]
-date: 2016-12-17
+tags:
+- product development
+title: 5 Questions to Ask before Building a New Product
 ---
 
 ![Ideas](/images/5-questions-ideas.jpg)

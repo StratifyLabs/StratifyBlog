@@ -1,11 +1,13 @@
 ---
+categories:
+- Device Tips
+date: "2013-10-27"
 layout: post
-title: Using Op Amps in Embedded Design
-tagline: Embedded Design Tips
-categories: [Device Tips]
 page_source: PcbBlog
-tags : [circuit]
-date: 2013-10-27
+tagline: Embedded Design Tips
+tags:
+- circuit
+title: Using Op Amps in Embedded Design
 ---
 ![Inverting Op Amp Circuit](/images/inverting-opamp.svg)
 

@@ -1,10 +1,13 @@
 ---
+categories:
+- Device Tips
+date: "2018-05-22"
 layout: post
-title: Controlling MOSFETs using MCU Pins
 page_source: ControllingMosfetsUsingMCUPins
-categories: [Device Tips]
-tags : [microcontroller, circuit]
-date: 2018-05-22
+tags:
+- microcontroller
+- circuit
+title: Controlling MOSFETs using MCU Pins
 ---
 
 ![N Channel MOSFET](/images/n-channel.png)

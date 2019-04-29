@@ -1,11 +1,16 @@
 ---
+categories:
+- Device Tips
+date: "2013-10-18"
 layout: post
-title: RAM/Flash Usage in Embedded C Programs
-categories: [Device Tips]
-tagline: Embedded Design
-tags : [microcontroller, c/c++, programming, popular]
 page_source: MicrocontrollerBlog
-date: 2013-10-18
+tagline: Embedded Design
+tags:
+- microcontroller
+- c/c++
+- programming
+- popular
+title: RAM/Flash Usage in Embedded C Programs
 ---
 
 ![Flash Map](/images/flash-map.svg)

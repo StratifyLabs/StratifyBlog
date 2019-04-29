@@ -1,11 +1,14 @@
 ---
+categories:
+- Device Tips
+date: "2017-09-15"
 layout: post
-title: Understanding Memory using Embedded C++
-categories: [Device Tips]
 page_source: MicrocontrollerBlog
-tagline:
-tags : [c/c++, microcontroller]
-date: 2017-09-15
+tagline: null
+tags:
+- c/c++
+- microcontroller
+title: Understanding Memory using Embedded C++
 ---
 
 C++ is quickly becoming a powerful tool for microcontroller programming.  A space previously occupied solely by C and assembly languages. However, many firmware engineers fear using C++ because they worry it uses up too much memory (both RAM and flash).  Let's look at how C++ generates code and utilizes RAM.

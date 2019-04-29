@@ -1,10 +1,13 @@
 ---
+categories:
+- Product Management
+date: "2017-12-29"
 layout: post
-title: Our Engineering Process
 page_source: EngineeringProcessBlog
-categories: [Product Management]
-tags : [business, product development]
-date: 2017-12-29
+tags:
+- business
+- product development
+title: Our Engineering Process
 ---
 
 ![Engineering Process Overview](/images/engineering-process.svg)

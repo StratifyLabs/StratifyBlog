@@ -1,12 +1,14 @@
 ---
+categories:
+- Embedded C Tutorial
+date: "2013-12-08"
 layout: post
-title: Preprocessor Directives
-categories: [Embedded C Tutorial]
-tagline: Embedded C Tutorial
+number: 7
 page_source: EmbeddedC
-tags : [C tutorial]
-number: 07
-date: 2013-12-08
+tagline: Embedded C Tutorial
+tags:
+- C tutorial
+title: Preprocessor Directives
 ---
 
 The C language preprocesses all code before compilation. Within the program, preprocessor directives give special instructions to the preprocessor. Preprocessor directives in C start with the hash symbol (#). This tutorial describes the basic function of preprocessor directives in C. The following directives are available:

@@ -1,12 +1,14 @@
 ---
+categories:
+- Embedded C Tutorial
+date: "2013-12-02"
 layout: post
-title: Functions
-categories: [Embedded C Tutorial]
-tagline: Embedded C Tutorial
+number: 2
 page_source: EmbeddedC
-tags : [C tutorial]
-number: 02
-date: 2013-12-02
+tagline: Embedded C Tutorial
+tags:
+- C tutorial
+title: Functions
 ---
 
 A function is a collection of C statements that can be utilized many times throughout a program or packaged into a module and re-used throughout many programs. The anatomy of a C function includes the prototype, the return type, the parameters, the name, and the body. Here is an example:

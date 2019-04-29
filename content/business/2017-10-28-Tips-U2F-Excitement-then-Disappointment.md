@@ -1,11 +1,13 @@
 ---
+categories:
+- Product Management
+date: "2017-10-28"
 layout: post
-title: U2F Excitement then Disappointment
-categories: [Product Management]
 page_source: ProductDevBlog
-tagline:
-tags : [business]
-date: 2017-10-28
+tagline: null
+tags:
+- business
+title: U2F Excitement then Disappointment
 ---
 
 ![Yubico Key](/images/Security-Key-by-Yubico-1000-2016.png)

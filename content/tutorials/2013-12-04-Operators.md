@@ -1,12 +1,14 @@
 ---
+categories:
+- Embedded C Tutorial
+date: "2013-12-04"
 layout: post
-title: Operators
-categories: [Embedded C Tutorial]
-tagline: Embedded C Tutorial
+number: 4
 page_source: EmbeddedC
-tags : [C tutorial]
-number: 04
-date: 2013-12-04
+tagline: Embedded C Tutorial
+tags:
+- C tutorial
+title: Operators
 ---
 
  Now that we have a basic understanding of the raw data types, let's look at the operators. You are likely already familiar with many of the C operators (unless you are still in kindergarten). The most basic are:

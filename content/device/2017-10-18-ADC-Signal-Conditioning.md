@@ -1,11 +1,14 @@
 ---
+categories:
+- Device Tips
+date: "2017-10-18"
 layout: post
-title: ADC Signal Conditioning
-categories: [Device Tips]
 page_source: PcbBlog
-tagline:
-tags : [microcontroller, circuit]
-date: 2017-10-18
+tagline: null
+tags:
+- microcontroller
+- circuit
+title: ADC Signal Conditioning
 ---
 
 ![Low Pass Filter](/images/adc-signal-conditioning-low-pass-filter.png)

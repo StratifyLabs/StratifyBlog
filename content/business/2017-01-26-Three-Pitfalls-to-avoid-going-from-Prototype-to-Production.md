@@ -1,11 +1,13 @@
 ---
+categories:
+- Product Management
+date: "2017-01-26"
 layout: post
-title: Three Pitfalls to avoid going from Prototype to Production
-categories: [Product Management]
 page_source: ProductDevBlog
-tagline:
-tags : [product development]
-date: 2017-01-26
+tagline: null
+tags:
+- product development
+title: Three Pitfalls to avoid going from Prototype to Production
 ---
 
 ![PCB Mechanical Assembly](/images/pcb-mechanical-assembly.jpg)

@@ -1,11 +1,13 @@
 ---
+categories:
+- PCB Design for Manufacturing
+date: "2017-12-09"
 layout: post
-title: Introduction to IPC-A-610
-page_source: DFM
-categories: [PCB Design for Manufacturing]
-tags : [circuit]
 number: 1
-date: 2017-12-09
+page_source: DFM
+tags:
+- circuit
+title: Introduction to IPC-A-610
 ---
 
 ![IPC Intro](/images/ipc-intro.png)

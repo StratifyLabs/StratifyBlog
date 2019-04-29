@@ -1,11 +1,14 @@
 ---
+categories:
+- Device Tips
+date: "2016-03-13"
 layout: post
-title: Building and Installing a Cortex-M Compiler on Mac, Windows or Linux
-categories: [Device Tips]
 page_source: OpenSourceBlog
 tagline: Embedded Design
-tags : [gcc, c/c++]
-date: 2016-03-13
+tags:
+- gcc
+- c/c++
+title: Building and Installing a Cortex-M Compiler on Mac, Windows or Linux
 ---
 
 GCC is a open source C compiler which can be downloaded, compiled, and installed on Mac OS X.  It is

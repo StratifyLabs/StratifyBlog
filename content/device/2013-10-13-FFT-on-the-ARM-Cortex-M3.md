@@ -1,11 +1,15 @@
 ---
+categories:
+- Device Tips
+date: "2013-10-13"
 layout: post
-title: FFT on the ARM Cortex M3
-categories: [Device Tips]
-tagline: Embedded Design
 page_source: MicrocontrollerBlog
-tags : [microcontroller, cortex-m, popular]
-date: 2013-10-13
+tagline: Embedded Design
+tags:
+- microcontroller
+- cortex-m
+- popular
+title: FFT on the ARM Cortex M3
 ---
 
 ![DIT FFT Butterfly](/images/DIT-FFT-butterfly.svg)

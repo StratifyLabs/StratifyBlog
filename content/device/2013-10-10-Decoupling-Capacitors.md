@@ -1,11 +1,14 @@
 ---
+categories:
+- Device Tips
+date: "2013-10-10"
 layout: post
-title: Decoupling Capacitors (and Other Power Rules of Thumb)
-categories: [Device Tips]
-tagline: Embedded Design
-tags : [circuit, popular]
 page_source: PcbBlog
-date: 2013-10-10
+tagline: Embedded Design
+tags:
+- circuit
+- popular
+title: Decoupling Capacitors (and Other Power Rules of Thumb)
 ---
 ![Decoupling Capacitors](/images/decouple-caps.svg)
 It is ubiquitous in the digital electronics industry to use small capacitors

@@ -1,7 +1,7 @@
 ---
-title: About
 description: The Operating System of Things
 menu: main
+title: About
 weight: -210
 ---
 

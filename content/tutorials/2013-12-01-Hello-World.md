@@ -1,12 +1,14 @@
 ---
+categories:
+- Embedded C Tutorial
+date: "2013-12-01"
 layout: post
-title: Hello World
-categories: [Embedded C Tutorial]
-tagline: Embedded C Tutorial
+number: 1
 page_source: EmbeddedC
-tags : [C tutorial]
-number: 01
-date: 2013-12-01
+tagline: Embedded C Tutorial
+tags:
+- C tutorial
+title: Hello World
 ---
 
 Programming tutorials, as you will notice, always begin with the quintessential

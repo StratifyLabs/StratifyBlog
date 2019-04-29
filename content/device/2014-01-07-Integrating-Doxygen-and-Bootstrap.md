@@ -1,11 +1,13 @@
 ---
+categories:
+- Device Tips
+date: "2014-01-07"
 layout: post
-title: Integrating Doxygen and Bootstrap
-categories: [Device Tips]
 page_source: OpenSourceBlog
 tagline: Embedded Design
-tags : [programming]
-date: 2014-01-07
+tags:
+- programming
+title: Integrating Doxygen and Bootstrap
 ---
 
 Doxygen is a great tool for documenting embedded projects.  Twitter Bootstrap is

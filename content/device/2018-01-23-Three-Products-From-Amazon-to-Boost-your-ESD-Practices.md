@@ -1,10 +1,12 @@
 ---
+categories:
+- PCB Design for Manufacturing
+date: "2018-01-23"
 layout: post
-title: Three Products from Amazon to Boost your ESD Practices
 page_source: PcbBlog
-categories: [PCB Design for Manufacturing]
-tags : [circuit]
-date: 2018-01-23
+tags:
+- circuit
+title: Three Products from Amazon to Boost your ESD Practices
 ---
 
 

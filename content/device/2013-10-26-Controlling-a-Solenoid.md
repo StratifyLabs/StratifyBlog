@@ -1,11 +1,14 @@
 ---
+categories:
+- Device Tips
+date: "2013-10-26"
 layout: post
-title: Controlling a Solenoid
-categories: [Device Tips]
-tagline: Embedded Design
 page_source: PcbBlog
-tags : [microcontroller, circuit]
-date: 2013-10-26
+tagline: Embedded Design
+tags:
+- microcontroller
+- circuit
+title: Controlling a Solenoid
 ---
 ![Solenoid Circuit](/images/solenoid-ckt.svg)
 

@@ -1,11 +1,14 @@
 ---
+categories:
+- Device Tips
+date: "2013-10-03"
 layout: post
-title: ADC Thermistor Circuit and Lookup Table
-categories: [Device Tips]
-tagline: Embedded Design
 page_source: MicrocontrollerBlog
-tags : [c/c++, circuit]
-date: 2013-10-03
+tagline: Embedded Design
+tags:
+- c/c++
+- circuit
+title: ADC Thermistor Circuit and Lookup Table
 ---
 
 

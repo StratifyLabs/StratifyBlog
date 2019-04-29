@@ -1,11 +1,16 @@
 ---
+categories:
+- Device Tips
+date: "2013-10-19"
 layout: post
-title: Sensing the Source Current in an Embedded Application
-categories: [Device Tips]
-tagline: Embedded Design
-tags : [microcontroller, circuit, c/c++, programming]
 page_source: PcbBlog
-date: 2013-10-19
+tagline: Embedded Design
+tags:
+- microcontroller
+- circuit
+- c/c++
+- programming
+title: Sensing the Source Current in an Embedded Application
 ---
 
 ![Current Sense Circuit](/images/currentsense.svg)

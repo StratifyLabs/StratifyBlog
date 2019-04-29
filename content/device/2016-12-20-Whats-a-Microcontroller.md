@@ -1,11 +1,13 @@
 ---
+categories:
+- Device Tips
+date: "2016-12-20"
 layout: post
-title: What's a Microcontroller
-categories: [Device Tips]
 page_source: MicrocontrollerBlog
 tagline: Embedded Design
-tags : [microcontroller]
-date: 2016-12-20
+tags:
+- microcontroller
+title: What's a Microcontroller
 ---
 
 ![Microcontroller](/images/microcontroller.svg)

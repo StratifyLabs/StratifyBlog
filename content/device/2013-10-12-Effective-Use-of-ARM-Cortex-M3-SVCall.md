@@ -1,11 +1,14 @@
 ---
+categories:
+- Device Tips
+date: "2013-10-12"
 layout: post
-title: Effective Use of ARM Cortex-M3 SVCall
-categories: [Device Tips]
-tagline: Embedded Design
-tags : [microcontroller, cortex-m]
 page_source: MicrocontrollerBlog
-date: 2013-10-12
+tagline: Embedded Design
+tags:
+- microcontroller
+- cortex-m
+title: Effective Use of ARM Cortex-M3 SVCall
 ---
 
 The ARM Cortex-M3 service call (SVCall) can be a tricky feature to integrate in to your system software. It is useful for two things:

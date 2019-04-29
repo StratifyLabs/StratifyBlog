@@ -1,12 +1,13 @@
 ---
+categories:
+- Embedded C Tutorial
+date: "2013-12-11"
 layout: post
-title: Order of Operations Reference
-categories: [Embedded C Tutorial]
-page_source: EmbeddedC
-categories: [Embedded C Tutorial]
-tags : [C tutorial]
 number: 10
-date: 2013-12-11
+page_source: EmbeddedC
+tags:
+- C tutorial
+title: Order of Operations Reference
 ---
 
 The following is a list of the C order of operations from highest precedence to lowest.  

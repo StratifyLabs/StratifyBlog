@@ -1,11 +1,16 @@
 ---
+categories:
+- Device Tips
+date: "2017-01-10"
 layout: post
-title: Low Pass Filters with Microcontroller ADCs
-categories: [Device Tips]
 page_source: PcbBlog
 tagline: Embedded Design
-tags : [microcontroller, circuit, programming, c/c++]
-date: 2017-01-10
+tags:
+- microcontroller
+- circuit
+- programming
+- c/c++
+title: Low Pass Filters with Microcontroller ADCs
 ---
 ![Low Pass Filter Diagram](/images/lpf-diagram1.svg)
 A filter is a useful tool for removing unwanted signals from a sensor measurement. There is complicated math behind how they work, but you just need to know a simple formula to use them in many embedded designs.

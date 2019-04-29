@@ -1,11 +1,17 @@
 ---
+categories:
+- Device Tips
+date: "2013-10-21"
 layout: post
-title: Understanding Microcontroller Pin Input/Output Modes
-categories: [Device Tips]
-tagline: Embedded Design
-tags : [microcontroller, c/c++, programming, circuit, popular]
 page_source: MicrocontrollerBlog
-date: 2013-10-21
+tagline: Embedded Design
+tags:
+- microcontroller
+- c/c++
+- programming
+- circuit
+- popular
+title: Understanding Microcontroller Pin Input/Output Modes
 ---
 
 ![GPIO Output Types](/images/gpio-output-types.svg)

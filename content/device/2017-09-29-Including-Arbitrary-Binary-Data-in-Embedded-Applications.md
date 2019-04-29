@@ -1,11 +1,14 @@
 ---
+categories:
+- Device Tips
+date: "2017-09-29"
 layout: post
-title: Including Arbitrary Binary Data in Embedded Applications
-categories: [Device Tips]
 page_source: MicrocontrollerBlog
-tagline:
-tags : [c/c++, microcontroller]
-date: 2017-09-29
+tagline: null
+tags:
+- c/c++
+- microcontroller
+title: Including Arbitrary Binary Data in Embedded Applications
 ---
 
 When creating firmware programs for microcontrollers, I regularly need to include to small files such as fonts, bitmaps, or lookup data. The best way I found to do this is to embed the data directly in the binary file.

@@ -1,11 +1,15 @@
 ---
+categories:
+- Device Tips
+date: "2013-10-22"
 layout: post
-title: USB Virtual Serial Port Firmware
-categories: [Device Tips]
-tagline: Embedded Design
 page_source: MicrocontrollerBlog
-tags : [c/c++, programming, microcontroller]
-date: 2013-10-22
+tagline: Embedded Design
+tags:
+- c/c++
+- programming
+- microcontroller
+title: USB Virtual Serial Port Firmware
 ---
 
 ![USB CDC Description](/images/usb-cdc-desc.svg)

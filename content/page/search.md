@@ -1,8 +1,8 @@
 ---
-title: Search
-type: page
 layout: search
 outputs:
-  - html
-  - json
+- html
+- json
+title: Search
+type: page
 ---

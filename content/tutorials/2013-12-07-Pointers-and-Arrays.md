@@ -1,12 +1,14 @@
 ---
+categories:
+- Embedded C Tutorial
+date: "2013-12-07"
 layout: post
-title: Pointers and Arrays
-categories: [Embedded C Tutorial]
-tagline: Embedded C Tutorial
+number: 6
 page_source: EmbeddedC
-tags : [C tutorial]
-number: 06
-date: 2013-12-07
+tagline: Embedded C Tutorial
+tags:
+- C tutorial
+title: Pointers and Arrays
 ---
 
 Pointers and arrays are powerful tools in C programming. While arrays are a straightforward concept, pointers are more difficult for new programmers to grasNonetheless, they are worth learning as they are an essential part of the C language.

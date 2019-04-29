@@ -1,12 +1,14 @@
 ---
+categories:
+- Embedded C Tutorial
+date: "2013-12-09"
 layout: post
-title: Compound Data Types
-categories: [Embedded C Tutorial]
-tagline: Embedded C Tutorial
+number: 8
 page_source: EmbeddedC
-tags : [C tutorial]
-number: 08
-date: 2013-12-09
+tagline: Embedded C Tutorial
+tags:
+- C tutorial
+title: Compound Data Types
 ---
 
 The C languages defines several types of compound data structures. The structures treat the data differently when stored in memory. The following compound data types exist.

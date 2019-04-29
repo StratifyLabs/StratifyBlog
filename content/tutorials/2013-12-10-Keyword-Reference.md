@@ -1,12 +1,14 @@
 ---
+categories:
+- Embedded C Tutorial
+date: "2013-12-10"
 layout: post
-title: Keywords Reference
-categories: [Embedded C Tutorial]
+number: 9
 page_source: EmbeddedC
 tagline: Embedded C Tutorial
-tags : [C tutorial]
-number: 09
-date: 2013-12-10
+tags:
+- C tutorial
+title: Keywords Reference
 ---
 
 This tutorial (part of the embedded C tutorial) is a list of the C keywords for reference.

@@ -1,11 +1,13 @@
 ---
+categories:
+- Device Tips
+date: "2013-10-23"
 layout: post
-title: Using Doxygen with C
-categories: [Device Tips]
-tagline: Embedded Design
 page_source: OpenSourceBlog
-tags : [programming]
-date: 2013-10-23
+tagline: Embedded Design
+tags:
+- programming
+title: Using Doxygen with C
 ---
 
 ![C Doxygen Architecture](/images/cdoxygen-arch.svg)

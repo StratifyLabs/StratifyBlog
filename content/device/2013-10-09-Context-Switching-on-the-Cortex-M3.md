@@ -1,11 +1,16 @@
 ---
+categories:
+- Device Tips
+date: "2013-10-09"
 layout: post
-title: Context Switching on the Cortex-M3
-categories: [Device Tips]
-tagline: Embedded Design
-tags : [microcontroller, cortex-m, programming, popular]
 page_source: MicrocontrollerBlog
-date: 2013-10-09
+tagline: Embedded Design
+tags:
+- microcontroller
+- cortex-m
+- programming
+- popular
+title: Context Switching on the Cortex-M3
 ---
 The ARM Cortex-M3 architecture is designed with special features to
 facilitate implementing a pre-emptive RTOS. The system code takes

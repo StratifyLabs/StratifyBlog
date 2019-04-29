@@ -1,11 +1,14 @@
 ---
+categories:
+- Device Tips
+date: "2013-10-01"
 layout: post
-title: 8 vs 16 vs 32 Bit Microcontrollers--A Case Study
-categories: [Device Tips]
-tagline: Embedded Design
 page_source: MicrocontrollerBlog
-tags : [microcontroller, popular]
-date: 2013-10-01
+tagline: Embedded Design
+tags:
+- microcontroller
+- popular
+title: 8 vs 16 vs 32 Bit Microcontrollers--A Case Study
 ---
 
 <table class="table table-striped table-bordered">

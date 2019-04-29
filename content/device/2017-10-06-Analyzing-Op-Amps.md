@@ -1,11 +1,13 @@
 ---
+categories:
+- Device Tips
+date: "2017-10-06"
 layout: post
-title: Analyzing Op Amps
-categories: [Device Tips]
 page_source: PcbBlog
-tagline:
-tags : [circuit]
-date: 2017-10-06
+tagline: null
+tags:
+- circuit
+title: Analyzing Op Amps
 ---
 
 ![Op Amp analysis circuit](/images/analyzing-op-amps-ohm-circuit.jpg)

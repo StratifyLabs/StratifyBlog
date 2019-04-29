@@ -1,11 +1,13 @@
 ---
+categories:
+- Device Tips
+date: "2013-10-08"
 layout: post
-title: Building and Installing Autotools
-categories: [Device Tips]
-tagline: Embedded Design
-tags : [gcc]
 page_source: OpenSourceBlog
-date: 2013-10-08
+tagline: Embedded Design
+tags:
+- gcc
+title: Building and Installing Autotools
 ---
 
 Autotools is a set of tools used to build and manage software builds on

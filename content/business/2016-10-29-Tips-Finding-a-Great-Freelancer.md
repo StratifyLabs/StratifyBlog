@@ -1,11 +1,13 @@
 ---
+categories:
+- Product Management
+date: "2016-10-29"
 layout: post
-title: Finding a Great Freelancer
-categories: [Product Management]
 page_source: ProductDevBlog
 tagline: Four Tips
-tags : [product development]
-date: 2016-10-29
+tags:
+- product development
+title: Finding a Great Freelancer
 ---
 
 ![Tips](/images/tips.jpg)

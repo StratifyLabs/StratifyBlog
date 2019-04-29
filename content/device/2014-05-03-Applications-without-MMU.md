@@ -1,11 +1,15 @@
 ---
+categories:
+- Device Tips
+date: "2014-05-03"
 layout: post
-title: Applications without an MMU
-categories: [Device Tips]
 page_source: MicrocontrollerBlog
 tagline: Embedded Design
-tags : [microcontroller, cortex-m, programming]
-date: 2014-05-03
+tags:
+- microcontroller
+- cortex-m
+- programming
+title: Applications without an MMU
 ---
 
 One of Stratify OS’s biggest software challenges is providing the ability to install applications separately from the OS--without an MMU.  Overcoming this challenge contributes to both ease-of-use and portability.  By installing just the application, you save the programmer the work of integrating and compiling the OS with the application.  The programmer can also distribute the binary file to other devices running Stratify OS.  In the MMU-free world, these features are only available on uCLinux and now Stratify OS.

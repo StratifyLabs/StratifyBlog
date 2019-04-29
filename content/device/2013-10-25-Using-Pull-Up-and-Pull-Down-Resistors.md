@@ -1,11 +1,15 @@
 ---
+categories:
+- Device Tips
+date: "2013-10-25"
 layout: post
-title: Using Pull-Up and Pull-Down Resistors
-categories: [Device Tips]
-tagline: Embedded Design
 page_source: PcbBlog
-tags : [circuit, microcontroller, popular]
-date: 2013-10-25
+tagline: Embedded Design
+tags:
+- circuit
+- microcontroller
+- popular
+title: Using Pull-Up and Pull-Down Resistors
 ---
 
 ![Pullup Resistor](/images/pullup.svg)

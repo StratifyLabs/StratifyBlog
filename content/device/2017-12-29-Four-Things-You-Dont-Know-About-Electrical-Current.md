@@ -1,10 +1,12 @@
 ---
+categories:
+- Product Management
+date: "2017-12-29"
 layout: post
-title: Four Things You (Probably) Don't Know About Electrical Current
 page_source: PcbBlog
-categories: [Product Management]
-tags : [circuit]
-date: 2017-12-29
+tags:
+- circuit
+title: Four Things You (Probably) Don't Know About Electrical Current
 ---
 
 

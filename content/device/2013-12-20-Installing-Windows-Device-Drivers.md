@@ -1,11 +1,13 @@
 ---
+categories:
+- Device Tips
+date: "2013-12-20"
 layout: post
-title: Installing Windows Device Drivers
-categories: [Device Tips]
-tagline: Stratify OS User Guide
 page_source: StratifyOSBlog
-tags : [programming]
-date: 2013-12-20
+tagline: Stratify OS User Guide
+tags:
+- programming
+title: Installing Windows Device Drivers
 ---
 
 ## Windows XP/Vista/7

@@ -1,11 +1,13 @@
 ---
+categories:
+- Product Management
+date: "2016-12-30"
 layout: post
-title: Three Mistakes Companies Make When Developing Products
-categories: [Product Management]
 page_source: ProductDevBlog
 tagline: And What to Learn from Them
-tags : [product development]
-date: 2016-12-30
+tags:
+- product development
+title: Three Mistakes Companies Make When Developing Products
 ---
 
 ![Big Mistake](/images/big-mistake.jpg)

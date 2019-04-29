@@ -1,11 +1,14 @@
 ---
+categories:
+- Device Tips
+date: "2016-12-14"
 layout: post
-title: Ohms Law and Microcontroller GPIO
-categories: [Device Tips]
 page_source: PcbBlog
 tagline: Understanding Current and Voltage
-tags : [microcontroller, circuit]
-date: 2016-12-14
+tags:
+- microcontroller
+- circuit
+title: Ohms Law and Microcontroller GPIO
 ---
 
 ![Ohms Law Circuit](/images/ohms-law-VIR-circuit.svg)
