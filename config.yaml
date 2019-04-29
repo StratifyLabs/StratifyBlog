@@ -5,6 +5,7 @@ theme: minimo
 disqusShortname: ''
 googleAnalytics: ''
 Paginate: 50
+disablePathToLower: true
 preserveTaxonomyNames: true
 enableRobotsTXT: true
 pygmentsCodefences: true
