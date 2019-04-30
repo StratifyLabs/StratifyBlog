@@ -29,7 +29,7 @@ First, you create an assembler file (.S) that defines the symbols and references
 
 Then to access the data in C (or C++), you define a header file like the following.
 
-```
+```c++
 #ifndef ASSETS_H_
 #define ASSETS_H_
 
@@ -52,7 +52,7 @@ extern int sysfont_20_font;
 
 Finally, you can access the data in a source file as shown in the following example.
 
-```
+```c++
 #include "assets.h"
 
 int main(int argc, char * argv[]){

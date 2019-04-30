@@ -41,7 +41,7 @@ Water soluble flux is also not recommended but is better than rosin. It is condu
 
 ### No Clean
 
-![No Clean Solder Paste](/images/no-clean-chip-quik.webp" />
+![No Clean Solder Paste](/images/no-clean-chip-quik.webp)
 
 No clean solder is definitely the way to go for prototyping. It is non-conductive, non-corrosive, and does not require cleaning. This doesn't mean that the board actually looks clean when you are done using it. If you want to make the board look clean, it requires the use of chemicals akin to cleaning a board soldered with rosin flux. But if you wipe the area down with a dry Q-tip immediately after soldering, you can usually remove the vast majority of any visible residue.
 

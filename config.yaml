@@ -84,6 +84,7 @@ params:
         repository: StratifyBlog
   search:
     client: fuse
+    title: Search
     algolia:
       appId: ''
       indexName: ''

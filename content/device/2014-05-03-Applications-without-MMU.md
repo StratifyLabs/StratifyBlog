@@ -45,7 +45,7 @@ For the ARMv7-M instruction set, the instruction 0xDExx is permanently undefined
 
 The code below shows an excerpt from the Stratify OS Hello World program.  
 
-~~~~~
+```
 de00004c <main>:
 de00004c:	b508      	push	{r3, lr}
 de00004e:	4802      	ldr	r0, [pc, #8]	; (de000058 <main+0xc>)
@@ -55,7 +55,7 @@ de000054:	2000      	movs	r0, #0
 de000056:	bd08      	pop	{r3, pc}
 de000058:	de00003c 	.word	0xde00003c
 de00005c:	deff826d 	.word	0xdeff826d
-~~~~~~
+```
 
 When this program is installed, the value 0xdeff826d (penultimate line) is changed to the location of the printf() function (a system call) and 0xde00003c (last line) is changed to the location of the “Hello World\n” string.  The instructions (0xb500, 0x4b02, etc) are not changed.
 
