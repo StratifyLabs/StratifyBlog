@@ -7,6 +7,7 @@ page_source: ProductDevBlog
 tagline: And What to Learn from Them
 tags:
 - product development
+- business
 title: Three Mistakes Companies Make When Developing Products
 ---
 

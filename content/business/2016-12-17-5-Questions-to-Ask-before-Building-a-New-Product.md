@@ -7,6 +7,7 @@ page_source: ProductDevBlog
 tagline: And Hints to Finding Answers
 tags:
 - product development
+- business
 title: 5 Questions to Ask before Building a New Product
 ---
 

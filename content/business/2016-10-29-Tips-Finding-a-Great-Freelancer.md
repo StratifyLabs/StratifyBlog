@@ -7,6 +7,7 @@ page_source: ProductDevBlog
 tagline: Four Tips
 tags:
 - product development
+- business
 title: Finding a Great Freelancer
 ---
 
