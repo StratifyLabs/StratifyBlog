@@ -7,6 +7,7 @@ page_source: ControllingMosfetsUsingMCUPins
 tags:
 - microcontroller
 - programming
+- cortex-m
 title: Dhrystone Benchmarking on MCUs
 ---
 
