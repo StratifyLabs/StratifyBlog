@@ -8,6 +8,7 @@ tags:
 - microcontroller
 - programming
 - cortex-m
+- benchmark
 title: Dhrystone Benchmarking on MCUs
 ---
 
