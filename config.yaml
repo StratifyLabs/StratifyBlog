@@ -106,14 +106,22 @@ menu:
       weight: -500
       identifier: '1'
       url: 'https://stratifylabs.co'
+      button: false
     - name: Dashboard
       weight: -400
       identifier: '2'
       url: 'https://app.stratifylabs.co'
+      button: false
     - name: Docs
       weight: -300
       identifier: '3'
       url: 'https://docs.stratifylabs.co'
+      button: false
+    - name: Signup
+      weight: -200
+      identifier: '4'
+      url: 'http://eepurl.com/bVOzY5'
+      button: true
 blackfriday:
   hrefTargetBlank: true
 languages:
