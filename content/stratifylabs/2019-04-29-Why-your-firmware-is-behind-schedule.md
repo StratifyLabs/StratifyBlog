@@ -16,7 +16,7 @@ Firmware development has always been a challenging endeavor, but recent industry
 - Hardware is becoming more capable and more complex
 - Software requirements are expanding due to IoT requirements
 
-Historically, firmware has been developed as a monolithic program that runs in a single address space. This was great for [microcontrollers]({{< ref "device/2013-10-14-how-microcontrollers-work.md" >}}) that featured tens of kilobytes of storage and were designed for simple applications (like an old-school alarm clock). Now that microcontroller memory measure in the 100's of kilobytes or even megabytes and powers "smart" devices that are self-updating and internet connected, the traditional approach is not scaling to this increasing complexity. 
+Historically, firmware has been developed as a monolithic program that runs on microcontrollers with 10's of kilobytes of program memory running at low megahertz speeds. This was great for [microcontrollers]({{< ref "device/2013-10-14-how-microcontrollers-work.md" >}}) used in old-school alarm clocks and other simple devices. Now that microcontroller memory measures in the 100's of kilobytes or even megabytes and run at 10's or hundreds of megahertz, it is more difficult to use the historical approach. These microcontrollers are powering a whole new generation of connected devices from smart alarm clocks to smart watches and much more. But before we talk about how to handle this problem, let's dive deeper into what makes this such a challenging problem.
 
 ## Why is firmware so hard in the first place?
 
@@ -30,34 +30,36 @@ That ends up being a lot of variables to manage. The more engineers can isolate 
 
 **Hardware Design Errors**
 
-The best firmware engineers to deal with these are the ones that have a solid harware background and can understand the schematic and its implications on the firmware. If possible, your firmware engineers should be included in the hardware design process and given the chance to review the proposed design.
+The best firmware engineers to deal with these are the ones that have a solid harware background and can understand the schematic and its implications on the firmware. Firmware engineers should be included in the hardware design process and given the chance to review the proposed design to ensure debugging hardware will be as simple as possible.
 
-Another good way to mitigate these errors is to develop the firmware on known good hardware (as in off-the-shelf development boards) then port the firmware over to experimental hardware. So you have:
+Another good way to mitigate these errors is to develop the firmware on known, working hardware (as in off-the-shelf development boards) then port the firmware over to experimental hardware. So you have:
 
 - Experimental firmware on known-working hardware (isolate firmware issues)
 - Known-working firmware on experimental hardware (isolate hardware issues)
 
 **Manufacturing Errors**
 
-Even if the design is correct, manufacturing prototypes is prone to error. The manufacturer can misunderstand the documents. The distributor can put the wrong parts in the bag. The PCB fabrication process itself can be erroneous.
+Even if the design is correct, manufacturing errors can and do occur. The manufacturer can misunderstand the documents. The distributor can put the wrong parts in the bag. The PCB fabrication process itself can be erroneous.
 
-It is usually left to the firmware engineers to come across these errors and figure out exactly what went wrong. Again, having firmware engineers that understand hardware is critical. 
+> I mention the above issues because I have personally seen them happen. Some errors are avoidable and some are not. So you need to be prepared to deal with them.
 
-Also, building more than one board in a batch of prototypes can be helpful. If only one board is having problems, that usually points to a PCB assembly/fabrication error. If all the boards have an identical problem, that usually means a design error or a manufacturer misunderstood the design.
+It is usually left to the firmware engineers to come across these errors and figure out exactly what went wrong. Again, having firmware engineers that understand hardware helps a lot. 
+
+Also, building more than one board in a batch of prototypes can be helpful. If only one board is having problems, that usually points to a PCB assembly/fabrication error. If all the boards have an identical problem, that is usually a design error.
 
 **Firmware Errors**
 
 When programming a microcontroller, the chip doesn't do anything at all until it is programmed. Sometimes it is a challenge just to get the board to accept firmware (due to the above error types). Once the firmware is loaded, how the firmware interacts with the hardware can cause the firmware to stall or crash or behave in unexpected (and baffling) ways.
 
-The best approach is a layered, methodical approach. Firmware engineers start by getting low-level drivers working. Many times these drivers are provided by the microcontroller manufacturer (many times these provided drivers have bugs). Each driver should be unit-tested and working robustly before developing the next layer of firmware.
+The best way to minimize tricky-to-solve firmware errors is to take a layered approach. Start by getting low-level drivers working. Many times these drivers are provided by the microcontroller manufacturer (many times these drivers have bugs). Each driver should be unit-tested and working robustly before developing the next layer of firmware.
 
-After the drivers are done, middleware and helper libraries are integrated. If these are not known to be stable and reliable, unit testing should be done on these as well (preferably on known-working hardware).
+After the drivers are done, you can develop middleware and helper libraries. If these are not known to be stable and reliable, unit testing should be done on these as well (preferably on known-working hardware). They should also be integration tested with the low-level drivers as applicable.
 
 Lastly, the application is developed. If everything below the application is well tested, the development goes much more smoothly because experimental code is limited to the application layer.
 
-Even with this approach, firmware engineers need to constantly be thinking about how resources are being utilized in order to avoid tricky memory bugs and achieve real-time performance.
+Even with this approach, firmware engineers need to constantly be thinking about how resources are being utilized in order to avoid tricky memory bugs and achieve the desired real-time performance.
 
-> **Compared to Software** Software is so much easier to develop because it is always running on known-working hardware. Also, the operating system provides robust and comprehensive tools for running threads, interacting with devices, storing and retrieving data from the filesystem, managing memory, and debugging. So out of the box, software starts with the application where firmware starts with third party code and libraries and require source-code integration.
+> **Compared to Software** Software is so much easier to develop because it is always running on known-working hardware. Also, the operating system provides robust and comprehensive tools for running threads, interacting with devices, storing and retrieving data from the filesystem, managing memory, and debugging. So out of the box, software starts with the application on top of a well-tested operating system while firmware starts with debugging the hardware design then building the code from source.
 
 **Putting it Together**
 
@@ -65,17 +67,11 @@ If the application is simple (like they were twenty-plus years ago), the same ha
 
 - A hardware-focused firmware engineer to tackle hardware design and manufacturing problems
 - A microarchitecture-focused firmware engineer to ensure the processor meets the real-time requirements of the application
-- An object-oriented-software-focused firmware engineer to design scalable, reusable architectures that can meet the complex software requirements driven by internet connectivity
+- An software-focused firmware engineer to design scalable, reusable software that can meet the complex requirements driven by internet connectivity
 
-A very small percentage of firmware developers have a proficiency in the above three categories. Some can do two well. This means your firmware team needs either one very talented engineer or two to three (or more) that can cover the array of skills needed and work well together as a team.
+A very small percentage of firmware developers have a proficiency in the above three categories. Some can do two well. This means your firmware team needs either one very talented engineer or two to three (or more) that can cover the array of skills needed and work well together as a team. If you are missing a hardware-focused engineer, you will have a hard time getting your firmware to interact with the hardware and may end up with finger pointing between hardware and firmware engineers. If you are missing the software-focused engineer, you will end up with code that is extremely difficult to maintain and manage long term. If you are missing the microarchtecure-focused engineer, you will have a hard time getting the real-time performance you need.
 
-If you are missing a hardware-focused engineer, you will have a hard time getting your firmware to interact with the hardware and may end up with finger pointing between hardware and firmware engineers.
-
-If you are missing the software-focused engineer, you will end up with code that is extremely difficult to maintain and manage long term.
-
-If you are missing the microarchtecure-focused engineer, you will have a hard time getting the microcontroller to do exactly what you want when you want.
-
-When putting it all together is a very difficult and challenging endeavor indeed. I have witnessed projects that are taking many months or even years longer than expected due to these skills not coalescing in the right way.
+When putting it all together, it is a very difficult and challenging endeavor indeed. I have witnessed projects that are taking many months or even years longer than expected due to these skills not coalescing in the right way and causing needless (and time-consuming) hardware revisions.
 
 ## How Stratify Labs can Help
 
@@ -85,7 +81,7 @@ Stratify Labs licenses and supports a high level operating system for microcontr
 - Memory Management
 - Filesystems
 - Debugging Tools
-- Automatic over-the-internet updates
+- Over-the-internet updates
 - Networking Stacks
 
 Using Stratify OS greatly reduces the firmware skills required to build sophisticated internet connected devices on microcontrollers. 
