@@ -5,6 +5,7 @@ date: "2013-10-19"
 layout: post
 page_source: PcbBlog
 tagline: Embedded Design
+katex: true
 tags:
 - microcontroller
 - circuit
@@ -19,14 +20,14 @@ source of an embedded system using a microcontroller's ADC input.
 
 The above sensor circuit measures the current at the power source of an embedded system.  The power source shown is a battery but can be any DC supply source.  The above schematic shows VCC as both the battery voltage and the op-amp voltage.  However, the battery voltage can be any value, and the circuit will still work.  The key components of the circuit are the sensor resistor (RSENSE) and the amplifier (U1).  The voltage input to U1 (the negative terminal of the battery) will always be a negative voltage with respect to ground.  For this reason, U1 is configured as an inverting amplifier where:
 
-![Current Sense Formula 1](/images/current-sense-formula1.svg)
+$$ V_O = -V_I \cdot \frac{R_1}{R_2} $$
 
 ## Analog and Digital Filtering
 
 The output of the amplifier is then passed through a low pass filter (LPF) consisting
 of R3 and C1.  The filter has a cutoff frequency of:
 
-![Current Sense Formula 2](/images/current-sense-formula2.svg)
+$$ \omega_c = \frac{1}{2 \pi R_3C_1} $$
 
 The purpose of the filter is to decrease the amount of noise that is measured at
 the ADC input.  For best results, the microcontroller should sample the ADC input
@@ -39,7 +40,7 @@ infinite impulse response, or IIR, LPF).  The "x" value is read from the
 microcontroller ADC, the "y" value is the average, and alpha is a constant
 between zero (infinite averaging) and one (no averaging).
 
-![Filter Formula 2](/images/filter-formula2.svg)
+$$ y[n] = x[n] \alpha + y[n-1] \cdot (1 - \alpha) $$
 
 The following code implements the above equation using 32-bit fixed point math.
 
@@ -72,19 +73,23 @@ input of the ADC (ie the output of the digital filter) to voltage as shown in
 the following equation where X is the input value, VREF is the voltage reference
 for the ADC, and XMAX is the maximum ADC value:
 
-![Filter Formula 3](/images/current-sense-formula3.svg)
+$$ Vadc = Vref \cdot \frac{X}{ X_{max} } $$
 
 The next step is to find the value of the voltage at the negative battery
 terminal.  To do this, solve the amplifier voltage output equation for the
 input voltage, where the output voltage is the same value as VADC.
 
-![Filter Formula 4](/images/current-sense-formula4.svg)
+$$ V_{adc} = V_I \cdot \frac{R_1}{R_2} $$
+
+$$ -V_{adc} \cdot \frac{R_2}{R_1} = V_I $$
 
 Ohm's law describes the current flow between GND and the negative terminal
 of the battery where VIN (input to the op-amp) is the voltage at the negative
 terminal of the battery:
 
-![Filter Formula 5](/images/current-sense-formula5.svg)
+$$ 0V - V_I = I \cdot Rsense $$
+
+$$ I = \frac{-V_I}{Rsense} $$
 
 Because the value of VIN is always less than zero, the final equation will
 give the positive number of amps flowing out of the positive terminal of the

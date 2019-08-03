@@ -1,7 +1,7 @@
 baseURL: 'https://blog.stratifylabs.co'
 title: Stratify Labs
 copyright: ''
-theme: minimo
+theme: engimo
 disqusShortname: ''
 googleAnalytics: 'UA-75152879-4'
 Paginate: 50

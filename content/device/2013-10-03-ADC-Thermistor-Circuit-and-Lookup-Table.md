@@ -5,13 +5,12 @@ date: "2013-10-03"
 layout: post
 page_source: MicrocontrollerBlog
 tagline: Embedded Design
+katex: true
 tags:
 - c/c++
 - circuit
 title: ADC Thermistor Circuit and Lookup Table
 ---
-
-
 
 ![Thermistor Circuit](/images/thermistor-circuit.svg)
 Thermistors are simple to integrate in embedded designs but their temperature
@@ -31,11 +30,10 @@ but decreases non-linearly as temperature increases.
 The complete datasheet for the part referenced is available [here](http://www.vishay.com/docs/29078/ntcle413.pdf).  The
 voltage at the ADC input is calculated using a voltage divider:
 
-![ADC Thermistor Formula](/images/adc-thermistor-formula1.svg)
+$$ V_{ADC} = V_1 \frac{R_1}{R_1+T_1} $$
 
-
-When the T1 resistance is large, the voltage at the ADC input is close to
-zero.  As the thermistor gets warmer, the voltage gets closer to V1.  The
+When the \\(T_1\\) resistance is large, the voltage at the ADC input is close to
+zero.  As the thermistor gets warmer, the voltage gets closer to \\(V_1\\).  The
 transition, however, is non-linear.  This means for embedded firmware to
 interpret the ADC reading as a temperature, it needs to either calculate
 a complicated transfer function or approximate the temperature using a lookup
@@ -70,7 +68,9 @@ data points.  It must scan the values in the x-column and find the two values
 directly above and below the input.  The firmware then uses the point slope
 formula to extrapolate the temperature value.
 
-![ADC Thermistor Formula 2](/images/adc-thermistor-formula2.svg)
+$$ m = \frac{y_0-y_1}{x_0-x_1} $$
+
+$$ y = m \cdot (x_0 - x_1) + y_1 $$
 
 The values x0, x1, y0, and y1 are taken from the lookup table.  The x value is
 the input from the ADC, and the y value is the temperature.  The code below

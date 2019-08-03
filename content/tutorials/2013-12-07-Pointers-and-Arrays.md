@@ -38,7 +38,7 @@ int main(int argc, char * argv[]){
 
 The above program has the following output:
 
-```bash
+```
 xlist[0] = 0
 xlist[1] = 2
 xlist[2] = 4
@@ -71,7 +71,7 @@ int main(int argc, char * argv[]){
 
 The above program has the following output.
 
-```bash
+```
 a[0][0] = 1
 a[0][1] = 2
 a[0][2] = 3

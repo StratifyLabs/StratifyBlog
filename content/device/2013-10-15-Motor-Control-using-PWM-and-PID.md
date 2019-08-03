@@ -5,6 +5,7 @@ date: "2013-10-15"
 layout: post
 page_source: MicrocontrollerBlog
 tagline: Embedded Design
+katex: true
 tags:
 - microcontroller
 - c/c++
@@ -19,8 +20,6 @@ with pulse-width modulation (PWM) from a microcontroller to vary
 the speed. Several design challenges include preventing shoot-through, implementing
 a snubber circuit, as well as open and closed loop (such as PID) control
 mechanisms.
-
-
 
 ## PWM Control of an H-Bridge
 
@@ -45,7 +44,7 @@ The easiest way to implement a shoot-through prevention circuit is to use an int
 
 A snubber circuit is used to suppress the voltage transients caused by PWM switching (as well as by the inherent switching in brushed motors).  A DC motor is an inductive load; the voltage across it is proportional to the change in current, given by:
 
-![Inductor Voltage Formula](/images/inductor-voltage-formula.svg)
+$$ V_L = L \frac{di}{dt} $$
 
 When the PWM signal switches the motor from on to off, there is a rapid change
 in current (ie di/dt is large) which causes a voltage spike.  Without a snubber

@@ -6,6 +6,7 @@ layout: post
 number: 4
 page_source: EmbeddedC
 tagline: Embedded C Tutorial
+flowchart: true
 tags:
 - C tutorial
 title: Operators
@@ -50,7 +51,7 @@ int main(int argc, char * argv[]){
 
 The output of the above program is:
 
-```bash
+```
 1.  5*10+10 is 60
 2.  5+10*10 is 105
 3.  5/10 is 0
@@ -92,7 +93,24 @@ If we recall learning to count, we learned the first column is known as the one'
 0, 1, 10 (add a column and restart), 11, 100 (add a column and start over), 101, 110, 111, 1000 (add a column and restart)
 Instead of the one's, ten's and hundred's column, each new column is just two times greater yieding the one's, two's, four's, eight's, and sixteen's column. The table below shows binary numbers from 0 to 15.
 
-![Binary Count](/images/binary-count.svg)
+Decimal | Binary
+---------------|------------
+0              |        0000 
+1              |        0001 
+2              |        0010 
+3              |        0011 
+4              |        0100 
+5              |        0101 
+6              |        0110 
+7              |        0111 
+8              |        1000 
+9              |        1001 
+10             |        1010 
+11             |        1011 
+12             |        1100 
+13             |        1101 
+14             |        1110 
+15             |        1111 
 
 When looking at binary numbers, you can convert to decimal by adding the value of the column for the columns with a one. Take 12 for example. It is written 1100 in binary. The column values are 8-4-2-1. There are ones in the 8 column and the 4 column and 8+4 is equal to 12. For the binary number 7 (111), we add 4+2+1 to get 7.
 
@@ -134,7 +152,33 @@ If a bit is shifted out of the data type, it is dropped. 128 (10000000) shifted 
 
 The next operators are the bit-wise and logical "or", "and", "xor", and "not". The bit-wise "or" operator is represented by | (it is the one on the same key as \). If any of the inputs are one, the output is one. The bit-wise "and" operator is represented by the & symbol. For each bit, if both input are one, then the output is one. If any of the input is zero, the output is zero. For "xor", represented by ^, the output is one if exactly one input is one. A truth table is typically used to document the output of binary bit-wise operators. The following is the truth table for & where x and y are inputs and z is the output.
 
-![Binary Truth Table](/images/binary-truth.svg)
+**OR (|)**
+
+| x | y | z |
+|---|---|---|
+| 0 | 0 | 0 |
+| 0 | 1 | 1 |
+| 1 | 0 | 1 |
+| 1 | 1 | 1 |
+
+**AND (&)**
+
+| x | y | z |
+|---|---|---|
+| 0 | 0 | 0 |
+| 0 | 1 | 0 |
+| 1 | 0 | 0 |
+| 1 | 1 | 1 |
+
+**XOR (^)**
+
+| x | y | z |
+|---|---|---|
+| 0 | 0 | 0 |
+| 0 | 1 | 1 |
+| 1 | 0 | 1 |
+| 1 | 1 | 0 |
+
 
 The bit-wise "not" operator is denoted in C using the ~. It only has one argument. The output changes all the zeros to ones and vice-versa.
 
@@ -168,7 +212,7 @@ int main(int argc, char * argv[]){
 
 The output of the above program is:
 
-```bash
+```
 1.  5&7 is 5
 2.  5|7 is 7
 3.  0&&10 is 0
@@ -197,8 +241,7 @@ doing math. Here are the operators:
 - <span>&lt;</span> is one if the left argument is less than the right
 - <span>&lt;=</span> is one if the left argument is less than or equal to the right
 
-<div class="alert alert-info"><span class="label label-danger">Note</span> A single equal sign
-(=) is an assignment operator and a double equal sign (==) is a comparison operator.</div>
+> **Note** A single equal sign (=) is an assignment operator and a double equal sign (==) is a comparison operator.
 
 The following program demonstrates how these work.
 
@@ -228,7 +271,7 @@ int main(int argc, char * argv[]){
 ```
 
 The output of the program is:
-```bash
+```
 1.  5==10 is 0
 2.  5==5 is 1
 3.  5>10 is 0
@@ -245,10 +288,7 @@ the range using something like
 ((x > 2.0) && (x < 4.0))
 ```
 
-Notice how the logical
-"and" is used in conjuction with the other operators. Combining operators is
-really where these become powerful tools to programmers.
-
+Notice how the logical "and" is used in conjuction with the other operators. Combining operators is really where these become powerful tools to programmers.
 
 ## Combining Operators
 
@@ -301,8 +341,10 @@ int main(int argc; char * argv[]){
 ```
 The code above demonstrates both post-increment and pre-increment short cuts. It outputs:
 
-1. x is 0
-1. x is now 2
+```
+x is 0
+x is now 2
+```
 
 The x++ statement increments x after its value is passed to the printf() function while ++x increments the variable before it is passed to printf().
 
@@ -326,10 +368,6 @@ x>>=y; //equivalent to x = x >> y
 x<<=y; //equivalent to x = x << y
 ```
 
-
 ## Take Away
 
-The C language includes many mathematical operators for doing basic arithmetic, comparisons,
-and binary operations. The order of operations is critical in C for correctly evaluating
-expressions. Sometimes understanding this order can be difficult when skimming through code,
-but adding parentheses can help to make code easier to read and avoid unintended evaluation orders.
+The C language includes many mathematical operators for doing basic arithmetic, comparisons, and binary operations. The order of operations is critical in C for correctly evaluating expressions. Sometimes understanding this order can be difficult when skimming through code, but adding parentheses can help to make code easier to read and avoid unintended evaluation orders.

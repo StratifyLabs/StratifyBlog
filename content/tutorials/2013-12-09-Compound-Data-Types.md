@@ -13,9 +13,9 @@ title: Compound Data Types
 
 The C languages defines several types of compound data structures. The structures treat the data differently when stored in memory. The following compound data types exist.
 
-* struct: data in a struct is allocated contiguously in memory
-* union: data in a union occupy the same memory location
-* enum: this is a list of valid values for the specified type
+* `struct`: data in a struct is allocated contiguously in memory
+* `union`: data in a union occupy the same memory location
+* `enum`: this is a list of valid values for the specified type
 
 C also provides two important tools for programmers that allow them to define new data types (using typedef) and check the size of existing types (using sizeof).
 
@@ -55,10 +55,10 @@ int main(int argc, char * argv[]){
 
 This program ouputs:
 
-<pre>
+```
 time is 10:5:30
 union
-</pre>
+```
 
 The syntax for union is similar to that of struct. However, the memory allocation for a union is very different. For a struct, each member is assigned a unique location in memory, but all members of a union share the same memory location. The size of the union in memory is at least large enough to hold the largest member.
 
@@ -150,4 +150,4 @@ The sizeof keyword can operate both on types and variables. The example above us
 
 ## Take Away
 
-Compound data types in C give the programmer a powerful set of tools for organizing data. The C struct is the most common compound data type and organizes data contiguously in memory. A union allows the same place in memory to be treated as different types. An enum defines a list of values but acts more like a macro (see #define) than a compound data type. Users can also create customized types using the typedef keyword. Finally, the sizeof keyword determines the amount of memory used by a variable or type.
+Compound data types in C give the programmer a powerful set of tools for organizing data. The C struct is the most common compound data type and organizes data contiguously in memory. A union allows the same place in memory to be treated as different types. An enum defines a list of values but acts more like a macro (see `#define`) than a compound data type. Users can also create customized types using the typedef keyword. Finally, the sizeof keyword determines the amount of memory used by a variable or type.

@@ -166,7 +166,7 @@ The initial statement is execute before the loop is entered. The increment state
 
 The output of the above program is shown below
 
-```c++ 		
+```		
 i is 0
 i is 1
 i is 2
@@ -205,7 +205,7 @@ The main difference between while and do/while is that the do/while loop will al
 
 Here is the output of the above program.
 
-```c++ 		
+```		
 while loop:
 i is 0
 i is 1

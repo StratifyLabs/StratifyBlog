@@ -5,6 +5,7 @@ date: "2013-10-04"
 layout: post
 page_source: MicrocontrollerBlog
 tagline: Embedded Design
+katex: true
 tags:
 - c/c++
 - programming
@@ -29,7 +30,7 @@ frequencies are attenuated (magnitude response) and shifted (phase response).  T
 frequency response can be analyzed using a Laplace transform which defines a transfer
 function in the S-domain.  For the above circuit, the transfer function is given by:
 
-![Filter Formula 1](/images/filter-formula1.svg)
+$$ H(s) = \frac{1}{sRC + 1} $$
 
 For R equals one kilo-ohm and C equals one microfarad, the magnitude response is
 shown below.
@@ -76,12 +77,14 @@ equation--known in digital filtering parlance as the difference equation--to
 compute the output is simple.  In the equation below, y is the output; x is
 the input; and alpha is a constant that sets the cutoff frequency.
 
-![Filter Formula 2](/images/filter-formula2.svg)
+$$ y[n] = y[n-1] \cdot (1- \alpha) + x[n] \cdot \alpha $$
 
 To analyze how this filter impacts the frequency of the output, the Z-domain transfer
 function is used.
 
-![Filter Formula 3](/images/filter-formula3.svg)
+$$ \beta = 1 - \alpha $$
+
+$$ H[z] = \frac{\alpha}{1-\beta \cdot z^{-1}} $$
 
 The magnitude response is shown below for alpha equal 0.5.
 

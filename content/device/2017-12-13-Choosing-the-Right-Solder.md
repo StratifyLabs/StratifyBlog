@@ -10,7 +10,8 @@ title: Choosing the Right Solder
 ---
 
 
-![Rosin Core Solder](/images/rosin-core-solder.webp" />
+![Rosin Core Solder](/images/rosin-core-solder.webp)
+
 The choice of the right type of solder for electronics projects and PCB prototyping is actually an easy one despite there being hundreds of options. There are three things you need to look at:
 
 1. Leaded vs Lead-free

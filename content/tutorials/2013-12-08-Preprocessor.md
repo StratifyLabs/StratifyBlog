@@ -13,14 +13,13 @@ title: Preprocessor Directives
 
 The C language preprocesses all code before compilation. Within the program, preprocessor directives give special instructions to the preprocessor. Preprocessor directives in C start with the hash symbol (#). This tutorial describes the basic function of preprocessor directives in C. The following directives are available:
 
-* \#include: include another file in the source
-* \#define: define a symbol to be replaced during preprocessing
-* \#undef: un-define a previously defined symbol
-* \#if, #ifdef, #ifndef, #else, #endif: tell the preprocessor to conditionally compile parts of the code
-* \#pragma: give a special instruction to the compiler
-* \#error: specify a user-defined error
-* \#warning: specifiy a user-define warning
-* \#include
+* `#include`: include another file in the source
+* `#define`: define a symbol to be replaced during preprocessing
+* `#undef`: un-define a previously defined symbol
+* `#if`, `#ifdef`, `#ifndef`, `#else`, `#endif`: tell the preprocessor to conditionally compile parts of the code
+* `#pragma`: give a special instruction to the compiler
+* `#error`: specify a user-defined error
+* `#warning`: specifiy a user-define warning
 
 When the preprocessor encounters the #include directive, it replaces the #include line with the contents of the included file. Local files are included using quotation marks while system files are included using less/greater than symbols.
 
@@ -107,4 +106,13 @@ The GNU GCC compiler, which is a popular compiler for various embedded architect
 
 ### Take Away
 
-C language compilers always preprocess the code and execute any preprocessor directives during that stage. The most commonly used preprocessor directives (especially among beginners) are #include and #define. #include is simple to use; you just need to remember quotes for local files and less/greater than symbols for system files. #define is handy for code maintenance. If a value is fixed, it should be defined as a macro so that if it needs to be changed, it only needs to be changed in one location. Lastly, if you create your own header file, it is imperative that you use a header guard of the form: #ifndef NAME_H_, #define NAME_H_, ... #endif.
+C language compilers always preprocess the code and execute any preprocessor directives during that stage. The most commonly used preprocessor directives (especially among beginners) are `#include` and `#define`. `#include` is simple to use; you just need to remember quotes for local files and less/greater than symbols for system files. `#define` is handy for code maintenance. If a value is fixed, it should be defined as a macro so that if it needs to be changed, it only needs to be changed in one location. Lastly, if you create your own header file, it is imperative that you use a header guard of the form:
+
+```cpp
+#ifndef NAME_H_
+#define NAME_H_`
+
+//your header declarations here
+
+#endif
+```

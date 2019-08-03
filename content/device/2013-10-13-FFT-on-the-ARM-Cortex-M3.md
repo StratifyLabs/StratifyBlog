@@ -5,6 +5,7 @@ date: "2013-10-13"
 layout: post
 page_source: MicrocontrollerBlog
 tagline: Embedded Design
+katex: true
 tags:
 - microcontroller
 - cortex-m
@@ -48,7 +49,7 @@ and bottom).
 
 The above graphs use the following equation for the time-domain representation:
 
-![FFT Formula 1](/images/fft-formula1.svg)
+$$ y_n = cos(2 \pi 770n) + cos(2 \pi 1366n) $$
 
 This signal represents the number five using dual-tone multi-frequency
 encoding (DTMF)--that is, the sound you hear when you are on a phone call and
