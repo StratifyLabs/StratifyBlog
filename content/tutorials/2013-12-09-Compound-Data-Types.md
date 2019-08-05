@@ -17,11 +17,11 @@ The C languages defines several types of compound data structures. The structure
 * `union`: data in a union occupy the same memory location
 * `enum`: this is a list of valid values for the specified type
 
-C also provides two important tools for programmers that allow them to define new data types (using typedef) and check the size of existing types (using sizeof).
+C also provides two important tools for programmers that allow them to define new data types (using `typedef`) and check the size of existing types (using `sizeof`).
 
 ### struct
 
-Of these types the struct is the most commonly used. In programming design, related data is combined in a struct. The C language, per se, does not define any struct's. However, the C standard library defines a number of them. A good example of this is struct tm which is the data structure for storing calendar time. The following code segment shows how the structure is defined (part of the time.h header).
+Of these types the struct is the most commonly used. In programming design, related data is combined in a struct. The C language, per se, does not define any struct's. However, the C standard library defines a number of them. A good example of this is `struct tm` which is the data structure for storing calendar time. The following code segment shows how the structure is defined (part of the time.h header).
 
 ```c++
 struct tm {
@@ -37,7 +37,7 @@ struct tm {
 }
 ```
 
-The program below shows how to access (read and write) members of a struct using the period (.) syntax to access members.
+The program below shows how to access (read and write) members of a struct using the period `.` syntax to access members.
 
 ```c++
 #include <stdio.h>
@@ -60,11 +60,11 @@ time is 10:5:30
 union
 ```
 
-The syntax for union is similar to that of struct. However, the memory allocation for a union is very different. For a struct, each member is assigned a unique location in memory, but all members of a union share the same memory location. The size of the union in memory is at least large enough to hold the largest member.
+The syntax for `union` is similar to that of `struct`. However, the memory allocation for a union is very different. For a `struct`, each member is assigned a unique location in memory, but all members of a union share the same memory location. The size of the `union` in memory is at least large enough to hold the largest member.
 
 ### enum
 
-An enum is a list of values that should be assigned to a variable. An enum variable occupies enough memory to hold the largest value of the enum and has values rather than members (unlike union and struct). Using enum is equivalent to using an integer type large enough to hold all enum values. The compiler does not ensure that values assigned to enum types are in the list.
+An `enum` is a list of values that should be assigned to a variable. An `enum` variable occupies enough memory to hold the largest value of the `enum` and has values rather than members (unlike `union` and `struct`). Using `enum` is equivalent to using an integer type large enough to hold all `enum` values. The C compiler does not ensure that values assigned to `enum` types are in the list.
 
 ## Combining Compound Data Types
 
@@ -102,13 +102,13 @@ int main(int argc, char * argv[]){
 }
 ```
 
-In this example, there is a struct within a union within a struct. When p0 is assigned memory, it has the following layout assuming int is four bytes:
+In this example, there is a `struct` within a `union` within a `struct`. When `p0` is assigned memory, it has the following layout assuming `int` is four bytes:
 
 ![Memory Layout](/images/memory-layout.svg)
 
 ### Type Definitions
 
-Users (C Programmers) can define types using any raw or compound data type as well as previously defined user types. The stdint.h header is a good example of user-defined types using purely raw data types. The code snippet below shows a partial, simplied implemenation of stdint.h on a 32-bit processor.
+Users (C Programmers) can define types using any raw or compound data type as well as previously defined user types. The `stdint.h` header is a good example of user-defined types using purely raw data types. The code snippet below shows a partial, simplied implemenation of `stdint.h` on a 32-bit processor.
 
 ```c++
 #ifndef _STDINT_H  //this is the header guard
@@ -122,7 +122,7 @@ typedef signed short int16_t;
 #endif
 ```
 
-Since this is a header file, the first thing is the header guard as mentioned in the preprocessor directives lesson. Next, the typedef keyword is introduced which defines a new data type than can be declared just like any other data type. The example then uses raw types to define the C99 integers in stdint.h. The code below illustrates the use of these types alongside raw types; it also introduces a new C keyword: sizeof.
+Since this is a header file, the first thing is the header guard as mentioned in the [preprocessor directives lesson]({{< relref "2013-12-08-Preprocessor.md" >}}). Next, the `typedef` keyword is introduced which defines a new data type than can be declared just like any other data type. The example then uses raw types to define the C99 integers in `stdint.h`. The code below illustrates the use of these types alongside raw types; it also introduces a new C keyword: sizeof.
 
 ```c++
 #include <stdlib.h>
@@ -139,15 +139,15 @@ int main(int argc, char * argv[]){
 }
 ```
 
-As shown, uint8_t can be used just like unsigned char after the typedef unsigned char uint8_t line which is located in stdint.h. The program has the following output showing that the uint8_t/unsigned char types use one byte in memory while the int32_t/int types use four bytes in memory.
+As shown, `uint8_t` can be used just like `unsigned char` after the typedef `unsigned char uint8_t` line which is located in `stdint.h`. The program has the following output showing that the `uint8_t`/`unsigned char` types use one byte in memory while the `int32_t`/`int` types use four bytes in memory.
 
-<pre>
+```
 sizeof(x) is 1, sizeof(y) is 1
 sizeof(w) is 4, sizeof(z) is 4
-</pre>
+```
 
-The sizeof keyword can operate both on types and variables. The example above uses the variable, for example sizeof(x). But it is also OK to use sizeof(unsigned char). The sizeof keyword is especially useful with structs. For the calendar time struct mentioned above, we use sizeof(struct tm). This notation is used when the struct has not been defined as a type using typedef.
+The `sizeof` keyword can operate both on types and variables. The example above uses the variable, for example `sizeof(x)`. But it is also OK to use `sizeof(unsigned char)`. The `sizeof` keyword is especially useful with `struct`s. For the calendar time `struct` mentioned above, we use `sizeof(struct tm)`. This notation is used when the `struct` has not been defined as a type using `typedef`.
 
 ## Take Away
 
-Compound data types in C give the programmer a powerful set of tools for organizing data. The C struct is the most common compound data type and organizes data contiguously in memory. A union allows the same place in memory to be treated as different types. An enum defines a list of values but acts more like a macro (see `#define`) than a compound data type. Users can also create customized types using the typedef keyword. Finally, the sizeof keyword determines the amount of memory used by a variable or type.
+Compound data types in C give the programmer a powerful set of tools for organizing data. The C `struct` is the most common compound data type and organizes data contiguously in memory. A `union` allows the same place in memory to be treated as different types. An `enum` defines a list of values but acts more like a macro (see `#define`) than a compound data type. Users can also create customized types using the `typedef` keyword. Finally, the `sizeof` keyword determines the amount of memory used by a variable or type.

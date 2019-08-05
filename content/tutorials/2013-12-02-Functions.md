@@ -41,9 +41,9 @@ The code above demonstrates my_first_function(). The prototype is always the ret
 
 The name of the function must be a valid C identifier. By convention, user-defined identifiers should not start with an underscore. It is good practice to use descriptive identifiers. Actually, my_first_function() is a poor name because it does not inform the programmer what the function does. A better name is add_xy() because the function returns the sum of the two parameters.
 
-<div class="alert alert-info"><span class="label label-danger">Note</span> Valid C identifiers must start with a letter or
+> **Note.** Valid C identifiers must start with a letter or
 underscore and be composed of case-sensitive letters, numbers, and underscores as
-well as not be a <a href="{% post_url 2013-12-10-Embedded-C-Tutorial-Keyword-Reference %}">C keyword</a>.</div>
+well as not be a [C keyword]({{< relref "2013-12-10-Keyword-Reference.md" >}})</a>.</div>
 
 ## Parameters
 

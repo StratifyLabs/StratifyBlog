@@ -13,12 +13,12 @@ title: Flow Control
 
 The typical C program executes one statement after the next. Various mechanisms exist to vary the flow of the program in order to conditionally execute some statements while executing others over and over within a looThe C flow control keywords include:
 
-* if, else
-* switch, case
-* default
-* goto, label
-* do, while, or for
-* break, continue
+* `if`, `else`
+* `switch`, `case`
+* `default`
+* `goto`, `label`
+* `do`, `while`, or `for`
+* `break`, `continue`
 
 The first three groups are associated with conditional execution while the last group is used to execute the same group of statements within a loop.
 
@@ -38,7 +38,7 @@ if ( x == 5 ){
 }
 ```
 
-The first if clause will print "x is equal to 5" if the variable x is equal to five. Otherwise, it will not output anything. The second if clause appends a statement to execute if x is not equal to five. The else portion of an if clause is always optional. If you are only executing one statement within an if clause, the curly brackets ({}) are also optional. Though, many programmers always include them to make the code more readable and to avoid ambiguous situations. Here are a few more examples.
+The first if clause will print `x is equal to 5` if the variable `x` is equal to five. Otherwise, it will not output anything. The second if clause appends a statement to execute if `x` is not equal to five. The else portion of an if clause is always optional. If you are only executing one statement within an if clause, the curly brackets `{}` are also optional. Though, many programmers always include them to make the code more readable and to avoid ambiguous situations. Here are a few more examples.
 
 ```c++ 		
 if(x>5) printf("x is greater than 5\n");
@@ -55,12 +55,12 @@ In the snippet above, it is not clear whether the else statement is attached to 
 The above examples are simple, but if statements can be rather complex. Any combination of symbols and operators can be used.
 
 ```c++ 		
-if ( (x + 5) / (y + 10) &amp;&amp; ((x  100) ){
+if ( (x + 5) / (y + 10) && ((x  100) ){
      //statement
 }
 //sometimes logical and/or are separated on a newline for clarity
-if( (x > 5) &amp;&amp;
-     (x < 10) &amp;&amp;
+if( (x > 5) &&
+     (x < 10) &&
      ((y  200)) ){
      //statement
 }
@@ -130,7 +130,7 @@ default:
 
 ## Goto, Label
 
-The goto keyword is used to jump to another location in a program. The concept of the goto keyword has its root in assembly language which uses branches and jumps to move around the order of execution.  However, the use of goto in C is somewhat taboo because it makes a program difficult to maintain and understand.  Nonetheless, here is an example of using it.
+The `goto` keyword is used to jump to another location in a program. The concept of the `goto` keyword has its root in assembly language which uses branches and jumps to move around the order of execution.  However, the use of `goto` in C is somewhat taboo because it makes a program difficult to maintain and understand.  Nonetheless, here is an example of using it. A label in C is a identifier followed by a colon (`the_end:` in the code below).
 
 ```c++ 		
 #include <stdio.h&amp;gt.h
@@ -148,7 +148,7 @@ int main(int argc, char * argv[]){
 
 ## For Loop
 
-While if/else and switch/case allow conditional execution of codes, loops allows the same code to be executed many times. C has two types of loops: for loops and while loops. The for loop includes an initial statement, a test statement, and an increment statement. The following is an example of using a for loop in a program.
+While `if`/`else` and `switch`/`case` allow conditional execution of codes, loops allows the same code to be executed many times. C has two types of loops: `for` loops and `while` loops. The `for` loop includes an initial statement, a test statement, and an increment statement. The following is an example of using a `for` loop in a program.
 
 ```c++ 		
 #include <stdio.h&amp;gt.h
@@ -201,7 +201,7 @@ int main(int argc, char * argv[]){
 }
 ```
 
-The main difference between while and do/while is that the do/while loop will always execute at least once because the condition statement is not checked until the body statements have already been executed. Conversely, the while loop executes the condition statement before the body statements and can execute zero times if the condition statement is initially false.
+The main difference between `while` and `do`/`while` is that the `do`/`while` loop will always execute at least once because the condition statement is not checked until the body statements have already been executed. Conversely, the while loop executes the condition statement before the body statements and can execute zero times if the condition statement is initially false.
 
 Here is the output of the above program.
 
@@ -220,8 +220,8 @@ i is 3
 i is 4
 ```
 
-Note the output of the while and do/while loops is identical to the output of the for loop in the previous example.
+Note the output of the `while` and `do`/`while` loops is identical to the output of the for loop in the previous example.
 
 ## Take Away
 
-Flow control in C programs is broken down to conditions and loops. C's if/else clauses and switch/case clauses are the main tools for conditionally executing statements in C. Two mechanisms are available for loops: the for loop and the while loop.
+Flow control in C programs is broken down to conditions and loops. C's `if`/`else` clauses and `switch`/`case` clauses are the main tools for conditionally executing statements in C. Two mechanisms are available for loops: the `for` loop and the `while` loop.

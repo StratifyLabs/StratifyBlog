@@ -14,8 +14,7 @@ title: Hello World
 
 Programming tutorials, as you will notice, always begin with the quintessential
 "Hello World" program which demonstrates: how to use compilers, the basic usage
-of the language, and how to use output--essential for seeing if your program is
-working correctly. The code below is the standard C Hello World program.
+of the language, and how to use output which is essential for seeing if your program is working correctly. The code below is the standard C Hello World program.
 
 ```cpp
 //include is a compiler directive and .h refers to a header file
@@ -31,13 +30,15 @@ int main(int argc, char * argv[]){
 
 
 
-<div class="alert alert-info"><span class="label label-danger">Note</span> The program above also exposes preprocessor directives,
+> **Note.** The program above also exposes preprocessor directives,
 raw data types, as well as pointers and arrays. These principles are discussed
-in later lessons. </div>
+in later lessons.
 
 The program has the following output.
 
-<pre>Hello World</pre>
+```
+Hello World
+```
 
 ### Compiling Hello World
 

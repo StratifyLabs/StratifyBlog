@@ -1,7 +1,7 @@
 ---
 categories:
 - Device Tips
-date: "2019-08-02"
+date: "2020-08-12"
 layout: post
 tags:
 - microcontroller
@@ -63,13 +63,5 @@ In this circuit electrons will be pushed by the potential energy in the voltage 
 the net positive flow of charge goes from positive to negative. Another thing to notice is that while the potential force travels around the circuit at the speed of light, the actually electrons only flow a few centimeters per second. 
 This is similar to how a pipe become pressurized very quickly despite the fact that the water flows very slowly.
 
-```msc
-Caller->System: Sends 128-bit Random Number
-Note right of System: Appends 128-bits to the number
-System->Caller: 256-bit Random Number
-Caller->System: SHA256(Secret Key, Random Number)
-Note right of System: Validates token
-Caller->System: SHA256(Random Number, Secret Key)
-```
 
 

@@ -11,7 +11,7 @@ tags:
 title: Pointers and Arrays
 ---
 
-Pointers and arrays are powerful tools in C programming. While arrays are a straightforward concept, pointers are more difficult for new programmers to grasNonetheless, they are worth learning as they are an essential part of the C language.
+Pointers and arrays are powerful tools in C programming. While arrays are a straightforward concept, pointers are more difficult for new programmers to grasp. Nonetheless, they are worth learning as they are an essential part of the C language.
 
 Conceptually arrays are lists of data, but more specifically they are an abstration of pointers. The namesake of pointers offer a clue as to what they are. Rather than be variables with a meaningful value, they "point" to variables that have a meaningful value. The value of a pointer is actually the memory address of the pointed to variable.
 
@@ -19,7 +19,7 @@ Conceptually arrays are lists of data, but more specifically they are an abstrat
 
 An array in C is declared using brackets after the variable. In the declaration, the number inside the brackets represents how many elements are in the array. When assigning or reading values in the array, brackets are used again, but in this case, the number inside the brackets refers to which element (from zero to the total number of elements minus one) to assign or read. The example below helps to clarify how to use arrays.
 
-```c++
+```cpp
 #include <stdio.h>
 #include <stdlib.h>
 int main(int argc, char * argv[]){
@@ -94,11 +94,9 @@ a[1][4] = 10
 0x10002FB4=10
 ```
 
-
-Notice that when the 2x5 array is declared, it is a[rows][columns].  
+Notice that when the 2x5 array is declared, it is `a[<rows>][<columns>]`.  
 We use a pointer (explained below) to show where in memory each element
-is stored.  The first row is stored in the first 20 bytes (four bytes per integer),
-and the second row occupies the next 20 bytes which is defined as row-major order.
+is stored.  The first row is stored in the first 20 bytes (four bytes per integer), and the second row occupies the next 20 bytes which is defined as row-major order.
 
 ### Pointers
 
@@ -114,9 +112,7 @@ int * ptr; //ptr is a pointer to an integer type
 When using pointers, the asterisk is prepended to the pointer to operate
 on the pointed-to variable. This is referred to as "de-referencing"
 in pointer jargon. In order to assign a pointer to an existing non-pointer
-variable, the ampersand (&) is placed in front of the to-be-pointed-to variable.
-Ampersand in this context is read "address of". It is known as the "referencing"
-operator. The program below shows examples of these operators.
+variable, the ampersand `&` is placed in front of the to-be-pointed-to variable. Ampersand in this context is read "address of". It is known as the "referencing" operator. The program below shows examples of these operators.
 
 ```c++
 #include <stdio.h>
@@ -137,12 +133,10 @@ int main(int argc, char * argv[]){
 
 The output of the above program is:
 
-```bash
+```
 x = 500, *ptr = 500
 ```
-
-
-The address of x is 0x10002FBC which is the same as ptr (0x10002FBC)
+The address of `x` is `0x10002FBC` which is the same as ptr (`0x10002FBC`)
 In the program output, you will notice the actual value of the pointer makes no sense. This is because the value of the pointer is just a memory address that is managed by the OS and compiler. When the pointer is de-referenced, the value matches that of x.
 
 ### Pointers and Arrays
@@ -172,7 +166,7 @@ int main(int argc, char * argv[]){
 
 The program above has the following output.
 
-<pre>
+```
 xlist[0] = 0 and 0
 xlist[1] = 5 and 5
 xlist[2] = 3 and 3
@@ -183,13 +177,13 @@ xlist[4] = 8 and 8
 *xptr = 3 (value of xptr:0x10002FB0)
 *xptr = 7 (value of xptr:0x10002FB4)
 *xptr = 8 (value of xptr:0x10002FB8)
-</pre>
+```
 
-There are a few important concepts to get from this program. The value of an array variable is actually the memory location of the first element. The bracket ([]) operators dereference from the beginning of the array based on the value in the brackets and the size of the element type, such as four for an int on a 32-bit processor. Likewise when a pointer is incremented, it increments by the size of the pointed-to-variable. Since xptr above points to type int, it is incremented by four bytes each time it is incremented. To make this point extra clear, assume xptr points to an int and sizeof(int) is equal to four, the statement xptr = xptr + 1 will increase the value of xptr by four which is the size of one int.
+There are a few important concepts to get from this program. The value of an array variable is actually the memory location of the first element. The bracket `[]` operators dereference from the beginning of the array based on the value in the brackets and the size of the element type, such as four for an int on a 32-bit processor. Likewise when a pointer is incremented, it increments by the size of the pointed-to-variable. Since xptr above points to type int, it is incremented by four bytes each time it is incremented. To make this point extra clear, assume xptr points to an int and sizeof(int) is equal to four, the statement xptr = xptr + 1 will increase the value of xptr by four which is the size of one int.
 
 ### Pointers and Strings
 
-Strings are one of the most common usages of pointers (espcially for beginning programmers) in C. Strings can either be declared as an array of characters or a pointer to a character type. You can read or modify strings using either the pointer or array notation. A C string is always terminated with zero. This means an array of 16 bytes can hold a string that is 15 bytes long followed by a zero.
+Strings are one of the most common usages of pointers (especially for beginning programmers) in C. Strings can either be declared as an array of characters or a pointer to a character type. You can read or modify strings using either the pointer or array notation. A C string is always terminated with zero. This means an array of 16 bytes can hold a string that is 15 bytes long followed by a zero.
 
 ```c++
 #include <stdio.h>
@@ -211,7 +205,7 @@ int main(int argc, char * argv[]){
 }
 ```
 
-In the program above, an array of char's is declared. Any array of char's that ends with a zero is a valid string in C. We also introduce the %s escape sequence, which is used to insert a string when using printf(). Additionally, the C standard library contains a string module with many commonly used string manipulation functions.
+In the program above, an array of char's is declared. Any array of char's that ends with a zero is a valid string in C. We also introduce the %s escape sequence, which is used to insert a string when using `printf()`. Additionally, the C standard library contains a string module with many commonly used string manipulation functions.
 
 ## Pointers and Struct's
 
