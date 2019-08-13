@@ -6,7 +6,7 @@ layout: post
 tags:
 - microcontroller
 - programming
-title: Callbacks in C++
+title: A Simple Approach to C++ Callbacks
 katex: true
 wave: true
 msc: true
@@ -64,8 +64,14 @@ int main(int argc, char * argv[]){
     offset.m_offset = 10;
 
     //the compiler won't allow passing MyClass::add() directly because it is non-static
-    do_math(&no_offset, 5, 5, MyClass::add_callback); //returns 5+5 + 0
-    do_math(&offset, 5, 5, MyClass::subtract_callback); //return 5-5 + 10
+    do_math(&no_offset, 
+      5, 
+      5, 
+      MyClass::add_callback); //returns 5+5 + 0
+    do_math(&offset, 
+      5, 
+      5, 
+      MyClass::subtract_callback); //return 5-5 + 10
 
     return 0;
 }
@@ -99,8 +105,12 @@ class MyClass {
 
 int main(int argc, char * argv[]){
     MyClass working_class;
+    pthread_t thread;
     working_class.do_some_work(); //execute in current thread
-    pthread_create(&thread, 0, MyClass::do_some_work_in_a_thread, &working_class);
+    pthread_create(&thread, 
+      0, 
+      MyClass::do_some_work_in_a_thread, 
+      &working_class);
     //working_class.do_some_work() will be executing in a new thread
 
     //... wait for thread to complete
@@ -109,5 +119,5 @@ int main(int argc, char * argv[]){
 
 ```
 
-Using an arbitrary `context` is a great way to allow C++ classes to execute non-static methods as callbacks (especially in creating threads). I also use this technique a lot in C so that the callback knows what data to operate on.
+I hope this technique is as useful for you as it has been for me!
 

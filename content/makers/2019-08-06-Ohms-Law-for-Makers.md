@@ -14,7 +14,7 @@ msc: true
 
 > This is the first article in a [series](/tags/EE-for-Makers/) to teach you all the EE you need to know for working with and designing microcontroller based circuits.
 
-Ohm's law is a simple and handy formula when building electronic circuits. Voltage equals current times resistance.
+George Ohm was a German physicist, mathematician and one of the first "makers". He built some equipment that allowed him to show the proportional relationship between voltage and current, known today as Ohm's law. Ohm's law is a simple and handy formula when building electronic circuits. It is: voltage equals current times resistance.
 
 $$ V=I \cdot R $$
  
@@ -42,22 +42,8 @@ the system pressurized until there is a closed path for the flow to return to th
 ## Our first Circuit
 
 <center>
-<svg version="1.1" width="260" height="200" xmlns="http://www.w3.org/2000/svg">
-	<line x1="240" y1="40" x2="240" y2="50" style="stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2" />
-	<line x1="240" y1="50" x2="240" y2="60" style="stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2" />
-	<line x1="240" y1="30" x2="240" y2="40" style="stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2" />
-	<line x1="240" y1="50" x2="240" y2="80" style="stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2" />
-	<line x1="240" y1="120" x2="240" y2="150" style="stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2" />
-	<path d="M 240,80 L 240,82 L 233,85 L 247,91 L 233,97 L 247,103 L 233,109 L 247,115 L 240,118 L 240,120" style="fill-opacity:0;fill:rgb(0, 0, 0);stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2" />
-	<text x="226" y="100" style="font-family:Arial;font-size:11px;text-anchor:end" dy=".3em">1 kΩ</text>
-	<line x1="240" y1="130" x2="240" y2="180" style="stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2" />
-	<line x1="40" y1="30" x2="40" y2="89" style="stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2" />
-	<ellipse cx="40" cy="105" rx="16" ry="16" style="fill-opacity:0;fill:rgb(0, 0, 0);stroke:rgb(0, 0, 0);stroke-width:2" />
-	<line x1="40" y1="121" x2="40" y2="180" style="stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2" />
-	<path d="M 40,105 M 40,95 L 40,103 M 36,99 L 44,99 M 36,113 L 44,113" style="fill-opacity:0;fill:rgb(0, 0, 0);stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2" />
-	<line x1="40" y1="30" x2="240" y2="30" style="stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2" />
-	<line x1="40" y1="180" x2="240" y2="180" style="stroke:rgb(0, 0, 0);stroke-linecap:square;stroke-width:2" />
-</svg></center>
+<svg xmlns="http://www.w3.org/2000/svg" width="202" height="172" x="0" y="0"><text x="41" y="67" font-size="10" font-family="sans-serif" text-anchor="start" alignment-baseline="hanging">5V</text><text x="191" y="101" font-size="10" font-family="sans-serif" text-anchor="start" alignment-baseline="alphabetic" transform="rotate(270 191 101)">5k</text><text x="192" y="81" font-size="10" font-family="sans-serif" text-anchor="start" alignment-baseline="alphabetic" transform="rotate(270 192 81)">R1</text><text x="41" y="77" font-size="10" font-family="sans-serif" text-anchor="start" alignment-baseline="hanging"></text><line x1="31" y1="71" x2="11" y2="71" stroke-width="2" stroke="black"></line><line x1="26" y1="77" x2="16" y2="77" stroke-width="2" stroke="black"></line><line x1="31" y1="84" x2="11" y2="84" stroke-width="2" stroke="black"></line><line x1="26" y1="91" x2="16" y2="91" stroke-width="2" stroke="black"></line><line x1="21" y1="61" x2="21" y2="71" stroke-width="2" stroke="black"></line><line x1="21" y1="91" x2="21" y2="101" stroke-width="2" stroke="black"></line><text x="31" y="63" font-size="10" font-family="sans-serif" text-anchor="start" alignment-baseline="alphabetic" transform="rotate(90 31 63)">+</text><text x="36" y="101" font-size="10" font-family="sans-serif" text-anchor="end" alignment-baseline="hanging">-</text><line x1="171" y1="101" x2="166" y2="98" stroke-width="2" stroke="black"></line><line x1="166" y1="98" x2="176" y2="93" stroke-width="2" stroke="black"></line><line x1="176" y1="93" x2="166" y2="88" stroke-width="2" stroke="black"></line><line x1="166" y1="88" x2="176" y2="83" stroke-width="2" stroke="black"></line><line x1="176" y1="83" x2="166" y2="78" stroke-width="2" stroke="black"></line><line x1="166" y1="78" x2="176" y2="73" stroke-width="2" stroke="black"></line><line x1="176" y1="73" x2="171" y2="71" stroke-width="2" stroke="black"></line><line x1="171" y1="111" x2="171" y2="101" stroke-width="2" stroke="black"></line><line x1="171" y1="71" x2="171" y2="61" stroke-width="2" stroke="black"></line><line x1="171" y1="161" x2="21" y2="161" stroke-width="2" stroke="black"></line><line x1="21" y1="11" x2="21" y2="61" stroke-width="2" stroke="black"></line><line x1="21" y1="101" x2="21" y2="161" stroke-width="2" stroke="black"></line><line x1="171" y1="111" x2="171" y2="161" stroke-width="2" stroke="black"></line><line x1="171" y1="11" x2="21" y2="11" stroke-width="2" stroke="black"></line><line x1="171" y1="11" x2="171" y2="61" stroke-width="2" stroke="black"></line></svg>
+</center>
 
 In this circuit, electrons will be pushed by the potential energy in the voltage source from the negative terminal to the postive terminal. Because electrons have a negative charge and physically flow from minus to plus, the net positive flow of charge goes from positive to negative. Another thing to notice is that while the potential force travels around the circuit at the speed of light, the actual electrons only flow a few centimeters per second. This is similar to how a pipe become pressurized very quickly, but the water flows very slowly.
 
