@@ -104,7 +104,30 @@ int main(int argc, char * argv[]){
 
 In this example, there is a `struct` within a `union` within a `struct`. When `p0` is assigned memory, it has the following layout assuming `int` is four bytes:
 
-![Memory Layout](/images/memory-layout.svg)
+```
+    +------------------+-----------------+---------------+
+15  |                  |      alpha      |               |
+14  |                  |      b          |               |
+13  |                  |      g          |               |
+12  |       color      |      r          |    rgba       |
+    +------------------------------------+---------------+
+    |                  |
+    |                  |
+    |                  |
+ 8  |       z          |
+    +------------------+
+    |                  |
+    |                  |
+    |                  |
+ 4  |       y          |
+    +------------------+
+    |                  |
+    |                  |
+    |                  |
+ 0  |       x          |
+    +------------------+
+
+```
 
 ### Type Definitions
 

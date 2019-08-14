@@ -13,7 +13,32 @@ tags:
 title: RAM/Flash Usage in Embedded C Programs
 ---
 
-![Flash Map](/images/flash-map.svg)
+```
++-------------------------------+
+|                               |
+|                               |
+|                               |
++-------------------------------+ <----+ Flash Image End
+|                               |
+|    Copy of Data               |
+|    Section                    |
+|                               |
++-------------------------------+   ^
+|                               |   |
+|    Read Only                  |   |
+|    Data                       |   |
+|                               |   |  Address
++-------------------------------+   |  Values
+|                               |   |
+|    Text                       |   |
+|    Executable Code            |   |
+|    including                  |   |
+|    Literal Values             |   |
+|                               |   +
+|                               |
++-------------------------------+ <----+ Flash Image Start
+```
+
 In embedded designs, memory, especially RAM, is a precious
 resource.  Understanding how C allocates variables in memory
 is crucial to getting the best use of memory in embedded systems.
@@ -57,7 +82,36 @@ In the above code, read_only_variable is stored in the read-only data section be
 
 The following diagram shows the map of the RAM in a C program.
 
-![RAM MAP](/images/ram-map.svg)
+```
++--------------------------+ <-------+  Top of Stack
+|                          |
+|         Stack            |
+|                          |
+|                          |
++--------------------------+
+|         +                |   ^
+|         |  local         |   |
+|         |  function      |   |
+|         |  variables     |   |
+|         v                |   |
+|                          |   |  Increasing
+|                          |   |  Memory
+|                          |   |  Addresses
+|                          |   |
+|         ^                |   |
+|         |                |   |
+|         |  malloc()      |   |
+|         |                |   |
+|         +                |   |
++--------------------------+   +
+|                          |
+|       Heap               |
+|       BSS and Data       |
+|                          |
+|                          |
++--------------------------+ <--------+ Base RAM Address
+```
+
 
 The read-write data that is stored in RAM is further categorized as statically or dynamically allocated.
 
