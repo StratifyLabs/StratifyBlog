@@ -6,7 +6,7 @@ layout: post
 tags:
 - circuit
 - EE for Makers
-title: Kirchoff's Laws for Makers
+title: Kirchhoff's Laws for Makers
 katex: true
 ---
 
