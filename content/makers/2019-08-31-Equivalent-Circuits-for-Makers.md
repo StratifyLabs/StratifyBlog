@@ -1,7 +1,7 @@
 ---
 categories:
 - EE for Makers
-date: "2019-08-24"
+date: "2019-08-31"
 layout: post
 draft: true
 tags:
@@ -15,14 +15,10 @@ katex: true
 
 Equivalent circuits are a tool for analyzing circuits. You have probably used this tool, possibly without thinking about it. We can use [Kirchhoff's laws]({{< relref "2019-08-24-Kirchhoffs-Laws-for-Makers.md" >}}) to analyze any circuit, but we can sometimes make those equations much more simple by using equivalent circuits.
 
-To create an equivalent circuit we use the equivalent resistance equations.
+To create an equivalent circuit we use the equivalent resistance equations. We can combine resistors in two ways:
 
-## Equivalent Resistance
-
-We can combine resistors in two ways:
-
-- Parallel
 - Series
+- Parallel
 
 ### Equivalent Series Resistance
 

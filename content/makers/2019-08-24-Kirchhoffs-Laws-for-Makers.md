@@ -86,11 +86,62 @@ $$ A: 5V - 3.3V = V_1 = 1.7V $$
 $$ V_1 = V_2 = 1.7V $$
 $$ V_3 = 3.3V $$
 
+## Voltage Divider Circuit
+
+The voltage divider is a very common circuit. Analyzing a voltage divider is a great way to apply KCL and KVL. The following circuit needs to take a 4.2V battery voltage and scale it down to be read by a 3.3V ADC converter.
+
+<center>
+<svg xmlns="http://www.w3.org/2000/svg" style="background-color: rgb(255, 255, 255);" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="322px" height="277px" viewBox="-0.5 -0.5 322 277"><defs/><g><path d="M 220 255.24 L 220 275.24 L 60 275.24 L 60 190" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 170 205 L 188 205 L 192 195 L 200 215 L 208 195 L 216 215 L 224 195 L 232 215 L 240 195 L 248 215 L 252 205 L 270 205" fill="none" stroke="#000000" stroke-miterlimit="10" transform="rotate(90,220,205)" pointer-events="none"/><g transform="translate(190.5,198.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="16" height="12" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Verdana; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap; text-align: right;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;">R2</div></div></foreignObject><text x="8" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Verdana">R2</text></switch></g><path d="M 60 90 L 60 0 L 220 0 L 220 20" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 10 140 L 55 140 M 65 110 L 65 170 M 65 140 L 110 140" fill="none" stroke="#000000" stroke-miterlimit="10" transform="translate(0,140)scale(1,-1)translate(0,-140)rotate(-270,60,140)" pointer-events="none"/><rect x="51" y="125" width="4" height="30" fill="#000000" stroke="#000000" transform="translate(0,140)scale(1,-1)translate(0,-140)rotate(-270,60,140)" pointer-events="none"/><g transform="translate(-1.5,133.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="28" height="12" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Verdana; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap; text-align: right;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;">4.2V</div></div></foreignObject><text x="14" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Verdana">4.2V</text></switch></g><path d="M 220 120 L 220 140 L 220 135.24 L 220 160" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 220 120 L 220 139.05 L 255.24 139.05 L 280 138.57" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 170 70 L 188 70 L 192 60 L 200 80 L 208 60 L 216 80 L 224 60 L 232 80 L 240 60 L 248 80 L 252 70 L 270 70" fill="none" stroke="#000000" stroke-miterlimit="10" transform="rotate(90,220,70)" pointer-events="none"/><g transform="translate(190.5,63.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="16" height="12" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Verdana; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap; text-align: right;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;">R1</div></div></foreignObject><text x="8" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Verdana">R1</text></switch></g><g transform="translate(281.5,132.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="29" height="14" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap; text-align: left;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;">V<sub>ADC</sub></div></div></foreignObject><text x="15" y="13" fill="#000000" text-anchor="middle" font-size="12px" font-family="Helvetica">[Not supported by viewer]</text></switch></g></g></svg>
+</center>
+
+We use KVL and Ohm's law to calculate the values for R1 and R2 in order for \\(V_{ADC}\\) to be a maximum of 3.3V.
+
+$$ V_{ADC} = V_2 $$
+
+$$ 4.2V - V_1 - V_2 = 0V $$
+
+Now some algebra.
+
+$$ 4.2V - 3.3V = V_1 $$
+$$ 0.9V = V_1 $$
+
+Now we know the voltage split from KVL we can use KCL to analyze the current.
+
+$$ I_1 - I_2 = 0 $$
+$$ I_1 = I_2 $$
+
+And now Ohm's law.
+
+$$ \frac{0.9V}{R_1} = \frac{3.3V}{R_2} $$
+$$ \frac{R_2}{R_1} = \frac{3.3V}{0.9V} $$
+
+For our case, let's say \\(R_2\\) is \\(3.3k \Omega\\). So then \\(R_1\\) would be \\(900 \Omega\\).
+
+The voltage divider distills this analysis into a single equation using the input voltage (4.2V) and the output voltage (3.3V).
+
+$$ \frac{R_2}{R_1} = \frac{V_O}{V_I - V_O} $$
+
+Then solve for \\(V_O\\).
+
+$$ \frac{R_2}{R_1} \cdot (V_I - V_O) = V_O $$
+$$ V_I \frac{R_2}{R_1} - V_O \frac{R_2}{R_1} = V_O $$
+$$ V_I \frac{R_2}{R_1} = V_O + V_O \frac{R_2}{R_1}$$
+$$ V_I \frac{R_2}{R_1} = V_O (1 + \frac{R_2}{R_1})$$
+$$ V_I \frac{\frac{R_2}{R_1}}{1 + \frac{R_2}{R_1}} = V_O$$
+Finally, we get the voltage divider equation.
+$$ V_I \frac{R_2}{R_1 + R_2} = V_O$$
+
+If we plug in the values we found above, we get:
+
+$$ 4.2V \frac{3.3k \Omega}{0.9k \Omega + 3.3k \Omega} = 3.3V $$
+
+This is a good equation to become very familiar with. I use it all the time when developing and debugging firmware.
+
 ## What Now?
 
 While studying engineering in college, we had to use KCL and KVL to solve for some complex (and arbitrary) resistive circuits. It wasn't very fun, but I got a good grasp. Today, I use KCL and KVL intuitively without thinking about the equations. And I never use them to analyze complex circuits (there is software for that).
 
-A good exercise is to look at some circuits you have dealt with before and think about how KCL and KVL can be applied. These equations will pop up again and again when analyzing microcontroller based circuits.
+A good exercise is to look at some circuits you have dealt with before and think about how KCL and KVL can be applied. These equations will pop up again and again when analyzing microcontroller based circuits. Especially keep an eye out for voltage divider circuits.
 
 
 
