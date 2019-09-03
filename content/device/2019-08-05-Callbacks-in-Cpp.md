@@ -6,6 +6,7 @@ layout: post
 tags:
 - microcontroller
 - programming
+- c/c++
 title: A Simple Approach to C++ Callbacks
 katex: true
 wave: true
