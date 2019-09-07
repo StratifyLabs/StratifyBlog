@@ -7,11 +7,11 @@ tags: [business, product development, stratifylabs]
 title: Stratify Toolbox Prototype Update
 ---
 
+![Stratify Toolbox Prototype](/images/toolbox-proto-web.png)
+
 > This is an updating post for Stratify Toolbox prototype development updates. Come back soon to see how the progress is going.
 
 ## Update 2019-09-03
-
-![Stratify Toolbox Prototype](/images/toolbox-proto-web.png)
 
 
 The Stratify Toolbox prototype is really starting to come together. The firmware development is ongoing but the following highlights parts that are up and running.
