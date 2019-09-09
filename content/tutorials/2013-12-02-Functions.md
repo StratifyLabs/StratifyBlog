@@ -35,19 +35,19 @@ int my_first_function(int x, int y){
 }
 ```
 
-The code above demonstrates my_first_function(). The prototype is always the return type, name, and parameters followed by a semi-colon. In most cases, the prototype is part of a header file so that the function can be used in many different source files. This is the case for printf() whose prototype is part of the stdio.h header file. The compiler gives a warning if a function is used, but a prototype is not found. It is important for the compiler to know function prototypes so that it can verify the number and types of the parameters passed to a function are compatible. It also checks that the return type is used correctly.
+The code above demonstrates `my_first_function()`. The prototype is always the return type, name, and parameters followed by a semi-colon. In most cases, the prototype is part of a header file so that the function can be used in many different source files. This is the case for `printf()` whose prototype is part of the `stdio.h` header file. The compiler gives a warning if a function is used, but a prototype is not found. It is important for the compiler to know function prototypes so that it can verify the number and types of the parameters passed to a function are compatible. It also checks that the return type is used correctly.
 
 ## Name
 
-The name of the function must be a valid C identifier. By convention, user-defined identifiers should not start with an underscore. It is good practice to use descriptive identifiers. Actually, my_first_function() is a poor name because it does not inform the programmer what the function does. A better name is add_xy() because the function returns the sum of the two parameters.
+The name of the function must be a valid C identifier. By convention, user-defined identifiers should not start with an underscore. It is good practice to use descriptive identifiers. Actually, `my_first_function()` is a poor name because it does not inform the programmer what the function does. A better name is `add_xy()` because the function returns the sum of the two parameters.
 
 > **Note.** Valid C identifiers must start with a letter or
 underscore and be composed of case-sensitive letters, numbers, and underscores as
-well as not be a [C keyword]({{< relref "2013-12-10-Keyword-Reference.md" >}})</a>.</div>
+well as not be a [C keyword]({{< relref "2013-12-10-Keyword-Reference.md" >}}).
 
 ## Parameters
 
-The naming rules for parameters are the same for functions in that they must be C identifiers. A function can have any number of parameters passed to it of any type. The example above has two parameters of type int. Within the body of a function, a parameter acts as a local variable. It can be both read and written. However, any changes to the parameters are lost when the function returns. In the example above, the variable w within main() is not affected by the x = 0 statement within my_first_function() because a copy of w is passed to the function rather than w itself.
+The naming rules for parameters are the same for functions in that they must be C identifiers. A function can have any number of parameters passed to it of any type. The example above has two parameters of type int. Within the body of a function, a parameter acts as a local variable. It can be both read and written. However, any changes to the parameters are lost when the function returns. In the example above, the variable w within main() is not affected by the `x = 0` statement within `my_first_function()` because a copy of `w` is passed to the function rather than w itself.
 
 ## Body
 
@@ -58,6 +58,7 @@ void print_output(int value){
      printf("Output is %d\n", value);
      //because the return type is void, return is optional here
 }
+
 int sum_abc(int a, int b, int c){
      if ( a < 0 ){
           return -1; //conditionally return early if a is less than 0
