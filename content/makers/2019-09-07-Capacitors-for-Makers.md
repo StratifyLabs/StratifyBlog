@@ -27,37 +27,28 @@ When you apply a voltage to a capacitor, a charge builds up between the two plat
 
 Capacitance is measured in Farads which is a ratio of charge (coulombs) per unit voltage (volts).
 
-$$ farad = \frac{coulombs}{volt} $$
-$$ F = \frac{C}{V} $$
+$$ farad = \frac{coulombs}{volt} \space \to \space C = \frac{Q}{V} $$
 
-Also remember current is flow of charge (coulombs) per second. And a volt is the amount of energy (joules) per unit of charge.
+Ohm's law doesn't directly apply to capacitors because they are not a purely resistive device. Because capacitors don't simple burn off energy as heat but store and release energy, they actively "react" to energy flow in the circuit rather than passively absord energy. When a device actively reacts it has impedance rather than just resistance. Impedance is a combined measure of resistance and reactance.
 
-$$ amp = \frac{coulombs}{s} $$
-$$ A = \frac{C}{s} $$
-$$ volt = \frac{joules}{coulomb} $$
+For AC circuits, capacacitors have complex effects, but in DC circuits you can understand capacitors by just learning a few simple rules.
 
-## Capacitors and Ohm's Law
+## Capacitors in DC Circuits
 
-Ohm's law doesn't directly apply to capacitors because they are not a purely resistive device. When a device is not purely resistive, it is said to have impedance rather than resistance. There are many really complicated ways to model capacitors in circuits but for most microcontroller circuits they are not needed.
-
-Ohm's law defines the voltage drop as a function of current and resistance. 
-
-$$ V = I \cdot R $$
-
-For capacitors, the simplest similar equation defines the current through a capacitor.
+The current through a capacitor is described by this equation.
 
 $$ I = C \cdot \frac{dV}{dt} $$
 
+\\(\frac{dV}{dt}\\) is a calculus term meaning the change in voltage divided by the change in time. If you were to plot voltage over time, \\(\frac{dV}{dt}\\) would be the instantaneous slope at any point. If the voltage is constant over time (as in with DC circuits), the current through the capacitor is zero.
 
+When voltage is first applied to a capacitor, the capacitor charge up. But after it is charged it can be modeled by infinite resistance (no current flow).
 
-If we remember back to Ohm's law, we know
+EQUIVALENT CIRCUIT
 
+## Decoupling Capacitors
 
-## Energy Storage
+## Filtering Capacitors
 
-
-The amount of energy a capacitor can store is defined by:
-
-$$ E = \frac{1}{2} \cdot C \cdot V^2 (C is in farads) $$
+## DC Blocking Capacitors
 
 
