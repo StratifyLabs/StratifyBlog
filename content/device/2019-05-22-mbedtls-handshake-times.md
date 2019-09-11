@@ -9,6 +9,7 @@ tags:
 - cortex-m
 - benchmark
 title: Handshake Times by Cipher using mbedTLS
+chart: true
 ---
 
 I ran some mbedTLS handshakes with various ciphers to see relative performance on an STM32F746 (Nucleo 144 board) running [Stratify OS](https://docs.stratifyos.co) at 216MHz. These are the results I got.
@@ -21,6 +22,60 @@ I ran some mbedTLS handshakes with various ciphers to see relative performance o
 - The tests were run with debugging on. So the values don't represent optimal times but they can be compared for relative performance.
 
 ## The Results
+
+```chart
+    {
+    "type": "bar",
+        "data": {
+            "labels": ["RSA/AES128CBC/SHA", 
+                "RSA/AES256CBC/SHA", 
+                "RSA/AES128CBC/SHA256", 
+                "RSA/AES256CBC/SHA256",
+                "RSA/AES128GCM/SHA256",
+                "RSA/AES256GCM/SHA384",
+                "EDCHE/RSA/AES128CBC/SHA", 
+                "EDCHE/RSA/AES256CBC/SHA", 
+                "EDCHE/RSA/AES128CBC/SHA256", 
+                "EDCHE/RSA/AES256CBC/SHA256",
+                "EDCHE/RSA/AES128GCM/SHA256",
+                "EDCHE/RSA/AES256GCM/SHA384"
+                ],
+            "datasets": [
+            {
+                "label": "Handshake in milliseconds",
+                "data": [
+                    1251,
+                    1217,
+                    1328,
+                    1226,
+                    1249,
+                    1334,
+                    4921,
+                    4986,
+                    4891,
+                    4856,
+                    5006,
+                    4974
+                ]
+            }
+
+            ]
+        },
+        "options": {
+            "legend": {
+                "show": "false"
+            },
+            "scales": {
+                "xAxes" : [{
+                    "ticks": {
+                        "autoSkip": false
+                    }
+                }]
+
+            }
+        }
+    }
+```
 
 Cipher | Execution Time
 -------|--------------------

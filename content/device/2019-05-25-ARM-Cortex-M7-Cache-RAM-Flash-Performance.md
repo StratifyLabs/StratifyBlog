@@ -9,6 +9,7 @@ tags:
 - cortex-m
 - benchmark
 title: ARM Cortex M7 Cache, RAM, and Flash Performance
+chart: true
 ---
 
 I recently ran som Dhyrstone benchmarking tests on an ARM Cortex M7 core to see how the tests performed from various memory locations. The ARM Cortex M7 is a microcontroller core contained in microcontrollers from various manufacturers. In my case, I used an STM32F723E from STMicroelectronics. The ARM Cortex M7 includes a data and instruction cache that can be used to improve performance. In the case of the STM32F723E, there are 8KB of each type.
@@ -50,6 +51,53 @@ sl bench.test:id=QpXcn3w2P1YUcatvAZZd,ram,external
 ```
 
 ## The Results
+
+```chart
+    {
+    "type": "bar",
+        "data": {
+            "labels": ["DMIPS Cache On", "DMIPS Cache Off"],
+            "datasets": [
+            {
+                "label": "Flash",
+                "data": [
+                    245,
+                    49
+                    ],
+                "backgroundColor":"orange",
+                "borderColor":"orange"
+            },
+            {
+                "label": "RAM",
+                "data": [
+                    245,
+                    69
+                    ],
+                "backgroundColor":"blue",
+                "borderColor":"blue"
+            },
+            {
+                "label": "External RAM",
+                "data": [
+                    245,
+                    69
+                    ],
+                "backgroundColor":"red",
+                "borderColor":"red"
+            },
+            {
+                "label": "Tightly Coupled RAM",
+                "data": [
+                    239,
+                    217
+                    ],
+                "backgroundColor":"green",
+                "borderColor":"green"
+            }
+            ]
+        }
+    }
+```
 
 Memory | Cache On | Cache Off | Cache Speed Up
 -------|----------------|-----------------|---------------
