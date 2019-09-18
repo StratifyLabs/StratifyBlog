@@ -11,7 +11,16 @@ tags:
 - programming
 - popular
 title: Context Switching on the Cortex-M3
+msc: true
 ---
+
+```msc
+Thread0->Thread1: Switch
+Thread1->Thread2: Switch
+Thread2->Thread3: Switch
+Thread3->Thread0: Switch
+```
+
 The ARM Cortex-M3 architecture is designed with special features to
 facilitate implementing a pre-emptive RTOS. The system code takes
 advantage of these features when implementing context switching code.
