@@ -1,0 +1,13 @@
+<header class='header entry-header'>
+  <div class='container sep-after'>
+    <div class='header-info'>
+      <h1 class='title'>
+        {{- .Title -}}
+      </h1>
+      {{ partial "header/description" . }}
+    </div>
+    {{- if not .Site.Params.ebook }}
+    {{ partial "entry/meta" . }}
+    {{ end }}
+  </div>
+</header>

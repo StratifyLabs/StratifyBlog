@@ -1,0 +1,20 @@
+{{ partial "header" . }}
+
+<article lang='{{ .Params.lang | default .Lang }}' class='entry'>
+  {{ partial "entry/header" . }}
+  {{ partial "entry/cover" . }}
+  {{ partial "entry/toc" . }}
+  {{ partial "entry/content" . }}
+  {{- if not .Site.Params.ebook }}
+    {{ partial "entry/footer" . }}
+  {{ end }}
+</article>
+
+{{- if not .Site.Params.ebook }}
+{{ partial "nav/entry_nav" . }}
+{{ partial "entry/comments" . }}
+{{ end }}
+{{ partial "footer" . }}
+
+{{ partial "extras/engineering" . }}
+

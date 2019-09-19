@@ -12,6 +12,7 @@ pygmentsCodefences: true
 enableEmoji: true
 defaultContentLanguage: en
 params:
+  ebook: false
   info:
     description: IoT Building Tips
     title404: Nothing's here!
