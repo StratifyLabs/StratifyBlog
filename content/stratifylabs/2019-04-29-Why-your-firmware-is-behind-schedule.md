@@ -4,7 +4,7 @@ categories:
 date: "2019-04-29"
 layout: post
 tags: [business, product development, stratifylabs]
-title: Why Your Firmware is Behind Schedule?
+title: Why Your Firmware is Behind Schedule
 ---
 
 Firmware development has always been a challenging endeavor, but recent industry trends have made it much more difficult to get firmware out the door on time. I want to explore a few of these trends and how Stratify Labs can help.

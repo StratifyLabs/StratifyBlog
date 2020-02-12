@@ -1,45 +1,47 @@
 ---
 categories:
 - EE for Makers
-date: "2019-09-17"
+date: "2019-09-25"
 layout: post
+draft: false
 tags:
 - circuit
 - EE for Makers
-title: Capacitors for Makers
+title: Inductors for Makers
 katex: true
 chart: true
 ---
 
-> This is the fourth article in a [series](/tags/EE-for-Makers/) to teach you all the EE you need to know for working with and designing microcontroller based circuits.
+> This is the fifth article in a [series](/tags/EE-for-Makers/) to teach you all the EE you need to know for working with and designing microcontroller based circuits.
 
-Capacitors are very common in designs with microcontrollers. Though the math is more complex than with just using resistors, understanding the basics plus a few rules of thumb will let you understand what most capacitors are doing in microcontroller based circuits.
 
 ## Understanding the Basics
 
-Physically a capacitor contains two parallel plates that are separated by an insulator. The geometry of the plates and the type of insulator material determine the capacitance.
+An inductor is basically a bizarro world [capacitor]({{< relref "2019-09-17-Capacitors-for-Makers.md" >}}). Where a capacitor uses electrical energy, an inductor uses magnetic energy. And while a capacitor charges-up with voltage, an inductor charges-up using current. The equations governing capacitor voltage apply to inductor current.
 
-When you apply a voltage to a capacitor, a charge builds up between the two plates--somewhat similar to how charge builds up between the ground and clouds during a storm and sometimes discharges as lightning. The energy is stored in an electric field (later we will talk about how inductors store energy in a magnetic field). That energy can then be used in the circuit.
+Physically an inductor is simply a coil of wire. The coil can be wrapped around a magnetic material in order to increase its inductance (kind of like the electromagnets used in electric motors). When current flows in the coils, magnetic energy builds up. The stored energy can be used to supply current to the circuit which is why one of the most common places you will see inductors used is in DC switching power supply circuits.
 
-> If you like the pressurized water system analogy, you can think of a capacitor as a tank that holds pressurized water and is controlled by a special valve that only accepts or releases pressure when the external pressure changes.
+> If you like the pressurized water system analogy, you can think of an inductor as ...
 
 ### Math and Units
 
-Capacitance is measured in Farads which is a ratio of charge (coulombs) per unit voltage (volts).
+Inductance is measured in henrys which is a ratio how much voltage can be created per ampere over time.
 
-$$ farad = \frac{coulombs}{volt} \space \to \space C = \frac{Q}{V} $$
+$$ henry = \frac{volt \cdot second }{amp} \space \to \space L = \frac{Q}{V} $$
 
-Ohm's law doesn't directly apply to capacitors because they are not a purely resistive device. Because capacitors don't simple burn off energy as heat but store and release energy, they actively "react" to energy flow in the circuit rather than passively absording energy. When a device actively reacts it has impedance rather than just resistance. Impedance is a combined measure of resistance and reactance. Other than the basic lingo, you don't need to know much more about impedance. Let's rather focus on a few use cases that are seen all-the-time in microcontroller circuits.
+> We honor various super nerds from the past with inductor notation. The *L* used to represent inductance comes from Heinrich Lenz who discovered the relationship between current and magnetic energy in an inductor. The *henry* is from Joseph Henry who discovered inductance (independent of Michael Faraday).
 
-### Capacitor Behavior in Microcontroller Circuits
+Like capacitors, Ohm's law doesn't directly apply to inductors because they react rather than simply resist. When a device actively reacts, it has impedance rather than just resistance. Impedance is a combined measure of resistance and reactance. Other than the basic lingo, you don't need to know much more about impedance. Let's rather focus on a few use cases that are seen all-the-time in microcontroller circuits.
 
-Capacitors have much simpler behavoir in DC circuits than in AC ones. Thankfully that makes them easy to analyze.
+### Inductor Behavior in Microcontroller Circuits
 
-When a DC voltage is applied to a capacitor, it has a transient response and a steady-state response. The transient response describes how the capacitor charges up (or discharges if the voltage is removed) and the steady state describes the behavior after the capacitor is charged.
+Inductors have much simpler behavoir in DC circuits than in AC ones. Thankfully that makes them easy to analyze.
+
+When a DC current is applied to an inductor, it has a transient response and a steady-state response. The transient response describes how the inductor charges up (or discharges if the current is removed) and the steady state describes the behavior after the inductor is charged.
 
 #### Transient Response
 
-In the circuit below, we will look at what happens when \\(5V\\) is first applied and when the capacitor reaches steady state.
+In the circuit below, we will look at what happens when \\(5A\\) is first applied and when the inductor reaches steady state.
 
 <center>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="210px" height="219px" viewBox="-0.5 -0.5 210 219"><defs/><g><path d="M 48.14 96.86 L 48.14 36.86 L 57.86 36.86" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M -2 147 L 43 147 M 53 117 L 53 177 M 53 147 L 98 147" fill="none" stroke="#000000" stroke-miterlimit="10" transform="translate(0,147)scale(1,-1)translate(0,-147)rotate(-270,48,147)" pointer-events="none"/><rect x="39" y="132" width="4" height="30" fill="#000000" stroke="#000000" transform="translate(0,147)scale(1,-1)translate(0,-147)rotate(-270,48,147)" pointer-events="none"/><g transform="translate(-1.5,140.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="16" height="12" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Verdana; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap; text-align: right;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;">5V</div></div></foreignObject><text x="8" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Verdana">5V</text></switch></g><path d="M 177.86 187.14 L 177.86 216.86 L 48.14 216.86 L 48.14 196.86" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 128 137 L 173 137 M 173 107 L 173 167 M 183 137 L 228 137 M 193 107 C 179.67 124.78 179.67 149.22 193 167" fill="none" stroke="#000000" stroke-miterlimit="10" transform="rotate(90,178,137)" pointer-events="none"/><g transform="translate(129.5,136.5)rotate(90,10.5,0)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="21" height="12" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;">1uF</div></div></foreignObject><text x="11" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Helvetica">1uF</text></switch></g><path d="M 157.86 36.86 L 177.86 36.86 L 177.86 67.14 L 177.86 87.14" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 58 37 L 76 37 L 80 27 L 88 47 L 96 27 L 104 47 L 112 27 L 120 47 L 128 27 L 136 47 L 140 37 L 158 37" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><g transform="translate(107.5,17.5)rotate(-90,0,6)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="25" height="12" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Verdana; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap; text-align: left;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;">1k<b>Ω</b></div></div></foreignObject><text x="13" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Verdana">1k&lt;b&gt;Ω&lt;/b&gt;</text></switch></g></g></svg>
@@ -91,22 +93,23 @@ The plot below shows our circuit with the resistor at \\(1k \Omega \\) and \\(2k
 
 ### Steady State Reponse
 
-The equivalent circuit of a capacitor in steady state can be modelled by infinite resistance. When the capacitor is fully charged, the circuit behaves as though it isn't even there (at least for our considerations).
+The equivalent circuit of an inductor in steady state can be modelled by zero resistance. When the inductor is fully charged, the circuit behaves as though it is a short (at least for our considerations).
 
 <center>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="545px" height="219px" viewBox="-0.5 -0.5 545 219"><defs/><g><path d="M 48.14 96.86 L 48.14 36.86 L 57.86 36.86" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M -2 147 L 43 147 M 53 117 L 53 177 M 53 147 L 98 147" fill="none" stroke="#000000" stroke-miterlimit="10" transform="translate(0,147)scale(1,-1)translate(0,-147)rotate(-270,48,147)" pointer-events="none"/><rect x="39" y="132" width="4" height="30" fill="#000000" stroke="#000000" transform="translate(0,147)scale(1,-1)translate(0,-147)rotate(-270,48,147)" pointer-events="none"/><g transform="translate(-1.5,140.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="16" height="12" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Verdana; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap; text-align: right;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;">5V</div></div></foreignObject><text x="8" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Verdana">5V</text></switch></g><path d="M 238 107 L 305.65 107" fill="none" stroke="#00ff00" stroke-width="3" stroke-miterlimit="10" pointer-events="none"/><path d="M 314.65 107 L 305.65 111.5 L 305.65 102.5 Z" fill="#00ff00" stroke="#00ff00" stroke-width="3" stroke-miterlimit="10" pointer-events="none"/><path d="M 177.86 187.14 L 177.86 216.86 L 48.14 216.86 L 48.14 196.86" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 128 137 L 173 137 M 173 107 L 173 167 M 183 137 L 228 137 M 193 107 C 179.67 124.78 179.67 149.22 193 167" fill="none" stroke="#000000" stroke-miterlimit="10" transform="rotate(90,178,137)" pointer-events="none"/><g transform="translate(129.5,136.5)rotate(90,10.5,0)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="21" height="12" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;">1uF</div></div></foreignObject><text x="11" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Helvetica">1uF</text></switch></g><path d="M 157.86 36.86 L 177.86 36.86 L 177.86 67.14 L 177.86 87.14" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 58 37 L 76 37 L 80 27 L 88 47 L 96 27 L 104 47 L 112 27 L 120 47 L 128 27 L 136 47 L 140 37 L 158 37" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><g transform="translate(107.5,17.5)rotate(-90,0,6)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="25" height="12" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Verdana; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap; text-align: left;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;">1k<b>Ω</b></div></div></foreignObject><text x="13" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Verdana">1k&lt;b&gt;Ω&lt;/b&gt;</text></switch></g><path d="M 377.86 96.86 L 377.86 36.86 L 388.14 36.86" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 328 147 L 373 147 M 383 117 L 383 177 M 383 147 L 428 147" fill="none" stroke="#000000" stroke-miterlimit="10" transform="translate(0,147)scale(1,-1)translate(0,-147)rotate(-270,378,147)" pointer-events="none"/><rect x="369" y="132" width="4" height="30" fill="#000000" stroke="#000000" transform="translate(0,147)scale(1,-1)translate(0,-147)rotate(-270,378,147)" pointer-events="none"/><g transform="translate(328.5,140.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="16" height="12" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Verdana; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap; text-align: right;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;">5V</div></div></foreignObject><text x="8" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Verdana">5V</text></switch></g><path d="M 508.14 176.86 L 508.14 216.86 L 377.86 216.86 L 377.86 196.86" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 488.14 36.86 L 508.14 36.86 L 508.14 87.14" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 388 37 L 406 37 L 410 27 L 418 47 L 426 27 L 434 47 L 442 27 L 450 47 L 458 27 L 466 47 L 470 37 L 488 37" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><g transform="translate(437.5,17.5)rotate(-90,0,6)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="25" height="12" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Verdana; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap; text-align: left;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;">1k<b>Ω</b></div></div></foreignObject><text x="13" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Verdana">1k&lt;b&gt;Ω&lt;/b&gt;</text></switch></g><path d="M 458 127 L 476 127 L 480 117 L 488 137 L 496 117 L 504 137 L 512 117 L 520 137 L 528 117 L 536 137 L 540 127 L 558 127" fill="none" stroke="#000000" stroke-miterlimit="10" transform="rotate(90,508,127)" pointer-events="none"/><g transform="translate(520.5,120.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="23" height="12" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Verdana; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; white-space: nowrap; text-align: left;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;"><b>∞Ω</b></div></div></foreignObject><text x="12" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Verdana">&lt;b&gt;∞Ω&lt;/b&gt;</text></switch></g></g></svg>
 </center>
 
-The good news is that this is how we treat most capacitors. We just pretend they aren't there.
 
-## Capacitors in Microcontroller Circuits
+## Inductors in Microcontroller Circuits
 
-Now that you have a basic grasp of what a capacitor is and how it behaves, if you learn a few rules of thumb you can understand what a lot of capacitors are doing. We will start by looking at decoupling capacitors.
+Now that you have a basic grasp of what an inductor is and how it behaves, if you learn a few rules of thumb you can understand what most inductors are doing. We will start by looking at inductors in switching power supplies.
 
 
-### Decoupling Capacitors
+### Power Inductors in Switching Supplies
 
 Decoupling capacitors are placed next to the power pins of chips in order to both provide energy to the chip and prevent the chip from injecting noise onto the power supply. Digital chips run on a clock. Every clock cycle there is a brief moment when the internal circuitry changes state. In this moment, there is a tiny current spike.
+
+$$ V_L = L \frac{di}{dt} $$
 
 ```chart
     {
