@@ -7,12 +7,38 @@ tags: [business, product development, stratifylabs]
 title: Stratify Toolbox Prototype Update
 ---
 
-![Stratify Toolbox Prototype](/images/toolbox-proto-web.png)
+![Stratify Toolbox Prototype](/images/stratify-toolbox-black.jpg)
+
+# Signup on Crowd Supply
+
+The [Toolbox Preview Page](https://www.crowdsupply.com/stratify/toolbox) is up on Crowd Supply.
 
 > This is an updating post for Stratify Toolbox prototype development updates. Come back soon to see how the progress is going.
 
+## Update 2020-20-13
+
+### New Prototype Built
+
+The top image on this page has been updated with the latest prototype. The logo on the top right is a touch sensor that is used to power on the device.
+
+![Stratify Toolbox Prototype](/images/stratify-toolbox-side.png)
+
+Here are the side ports on the Toolbox from left to right
+
+- 10 pin JTAG/SWD master connector
+- SD Card supporting High capacity cards (4GB to 64GB)
+- USB Device Connector (for development and USB to JTAG/SWD/Serial port access)
+- Reset Pin Hole (just in case)
+
+### Developing the GpioTool
+
+![GpioTool Programming](/images/run-gpio-tool.gif)
+
+The GpioTool is an application that is simply used to manipulate the GPIO pins. This application sets the graphical framework for all other applications (hence its taking awhile to develop).
+
 ## Update 2019-09-03
 
+![Stratify Toolbox Prototype](/images/toolbox-proto-web.png)
 
 The Stratify Toolbox prototype is really starting to come together. The firmware development is ongoing but the following highlights parts that are up and running.
 
