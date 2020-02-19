@@ -25,7 +25,7 @@ From a code generation viewpoint, embedded C++ has a few differences from C, nam
 
 ### Namespaces and Classes
 
-In C, when you create a function with a global scope called "read_spi", the C compiler creates a function called "read_spi".  However, when you create a static function called "read_spi", the C compiler does some mangling and will rename the function to be something like "read_spi_local_234". Similar to how C uses the 'static' keyword to limit the scope of a function, C++ namespaces and classes limit the scope of functions and methods. C++ then mangles all methods and functions so that they are unique within a global scope (such as an object or binary file). When C++ links to C code that is designated as 'extern "C"', the C function is not mangled. Mangling only affects intermediate files (e.g., object files). When the final code is converted to a machine readable binary, the names of functions are completely removed. The machine uses addresses rather than function names. Ultimately, namespaces and classes don't affect the size of the generated code.
+In C, when you create a function with a global scope called `read_spi`, the C compiler creates a function called `read_spi`.  However, when you create a static function called `read_spi`, the C compiler does some mangling and will rename the function to be something like `read_spi_local_234`. Similar to how C uses the `static` keyword to limit the scope of a function, C++ namespaces and classes limit the scope of functions and methods. C++ then mangles all methods and functions so that they are unique within a global scope (such as an object or binary file). When C++ links to C code that is designated as `extern "C"`, the C function is not mangled. Mangling only affects intermediate files (e.g., object files). When the final code is converted to a machine readable binary, the names of functions are completely removed. The machine uses addresses rather than function names. Ultimately, namespaces and classes don't affect the size of the generated code.
 
 Here is a code snippet of some compiler generated code that illustrates mangling (comments added):
 
@@ -52,13 +52,15 @@ de0001f2:	460a      	mov	r2, r1
 
 ```
 
+> You can try demanling the code above using this [tool](https://demangler.com/).
+
 ### Constructors and Destructors
 
-Constructors and destructors don't typically have a big impact on flash memory but that can raise some questions for RAM usage which will be discussed later.
+Constructors and destructors don't typically have a big impact on flash memory but can raise some questions for RAM usage which will be discussed later.
 
 ### Inheritance
 
-Inheritance is a powerful mechanism in C++ that makes re-using code from similar objects seamless; however, it can cause flash to be peppered with useless code especially if *virtual* methods are used.
+Inheritance is a powerful mechanism in C++ that makes re-using code from similar objects seamless; however, it can cause flash to be peppered with additional code especially if `virtual` methods are used.
 
 Here is an example:
 
@@ -67,7 +69,9 @@ class A { public: virtual int do_something(); }
 class B : public A { public: int do_something(); }
 ```
 
-The method *do_something()* in class B will override the method *do_something()* in class A for objects of type B.  However, even if no objects of class A are ever created, the compiler will likely generate code for *do_something()* from class A. The reason is that the compiler isn't quite sophisticated enough to remove the code because it assumes *do_something()* from class A may be called through dynamic typing (which is usually disabled when using embedded C++).
+The method `do_something()` in class B will override the method `do_something()` in class A for objects of type B.  However, even if no objects of class A are ever created, the compiler will likely generate code for `do_something()` from class A. The reason is that the compiler isn't quite sophisticated enough to remove the code because it assumes `do_something()` from class A may be called through dynamic typing (which is usually disabled when using embedded C++).
+
+When using `virtual` methods, the compiler also generates tables of pointers that allow the code to resolve the correct method to call based on the class. These tables are called `vtables`. As a result, you will want to always consider the implementation and decide if a particular method is worth virtualizing. Some `virtual` methods provide big code-quality advantages and are definitely worth the minor penalty.
 
 The power that inheritance brings certainly outweighs the minor increases in code size which are easily minimized by writing good *embedded* C++ code.
 
@@ -85,17 +89,17 @@ C++:
 
 `MyClass object;`
 
-In the C example, declaring *num* will use sizeof(uint32_t) bytes of RAM either on the stack or heap depending on the scope. However, in C++ when a class object is declared it takes up sizeof(MyClass) plus it executes the MyClass constructor.
+In the C example, declaring `num` will use `sizeof(uint32_t)` bytes of RAM either on the stack or heap depending on the scope. However, in C++ when a class object is declared it takes up `sizeof(MyClass)` plus it executes the `MyClass` constructor.
 
-While sizeof(Myclass) is known to the compiler, the size isn't readily apparent to the programmer. This isn't a problem if MyClass was designed for memory constrained systems. But there is another challenge.
+While `sizeof(Myclass)` is known to the compiler, the size isn't readily apparent to the programmer. This isn't a problem if `MyClass` was designed for memory constrained systems. But there is another challenge.
 
-The constructor has the opportunity to execute any code including using dynamic memory allocation. If MyClass dynamically allocates memory in a way that you are not expecting, it could cause problems. Again, this can be managed by using well-written embedded C++ code.
+The constructor has the opportunity to execute any code including using dynamic memory allocation. If `MyClass` dynamically allocates memory in a way that you are not expecting, it could cause problems. Again, this can be managed by using well-written *embedded* C++ code.
 
-Deconstructors will typically be used to free memory that is dynamically allocated by constructors. Embedded systems will quickly run out of memory if deconstructors fail to free dynamically allocated memory. This typically presents as buggy behavior that is difficult to debug. So you will want to watch these closely. My default approach is to avoid using dynamic memory allocation in constructors when writing *embedded* C++ applications.
+Deconstructors will typically be used to free memory that is dynamically allocated by constructors. Embedded systems will quickly run out of memory if there are leaks. This typically presents as buggy behavior that is difficult to debug.
 
 ### Keywords *new* and *delete*
 
-The *new* and *delete* keywords can cause some angst among memory concious C programmers. They shouldn't. They are simply an easy way for C++ programs to invoke malloc() and free(). My default approach is to avoid using *new* and *delete* in embedded C++ frameworks. This allows the application developer to decide whether or not to use dynamic memory allocation.
+The *new* and *delete* keywords can cause some angst among memory concious C programmers. They shouldn't. They are simply an easy way for C++ programs to invoke `malloc()` and `free()`. My default approach is to avoid using `new` and `delete` in *embedded* C++ frameworks. This allows the application developer to decide whether or not to use dynamic memory allocation.
 
 ## Final Thoughts
 

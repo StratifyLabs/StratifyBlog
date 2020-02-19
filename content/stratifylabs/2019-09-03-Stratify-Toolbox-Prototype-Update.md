@@ -15,7 +15,19 @@ The [Toolbox Preview Page](https://www.crowdsupply.com/stratify/toolbox) is up o
 
 > This is an updating post for Stratify Toolbox prototype development updates. Come back soon to see how the progress is going.
 
-## Update 2020-20-13
+## Update 2020-02-18
+
+![GpioTool Coming Alive](/images/GpioToolDemo.gif)
+
+The Gpio Tool allow you to directly manipulate pins, quickly and graphically. This is a simple tool that can be great for:
+
+- monitoring a pin during development
+- testing LEDs and power supplies
+- injecting a reset signal on a board
+
+You can see the original video [here](https://youtu.be/cnhLFq1Z-UI).
+
+## Update 2020-02-13
 
 ### New Prototype Built
 
