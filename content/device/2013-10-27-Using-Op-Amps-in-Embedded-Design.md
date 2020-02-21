@@ -8,6 +8,7 @@ tagline: Embedded Design Tips
 tags:
 - circuit
 title: Using Op Amps in Embedded Design
+katex: true
 ---
 ![Inverting Op Amp Circuit](/images/inverting-opamp.svg)
 
@@ -29,7 +30,7 @@ Ideal op-amps are a good first order approximation of op-amp behavior and are us
 
 To apply these two rules to op-amp circuit analysis, it is important to be familiar with two electrical laws: Ohm's Law and Kirchhoff's Current Law. Ohm's law is defined by the equation:
 
-![Ohms Law](/images/ohms-law.svg)
+{{< katex  >}}V=IR{{< /katex >}}
 
 That is, voltage is equal to current times resistance. Ohm's law can be used to calculate the current through the resistor in the diagram below.
 
@@ -37,23 +38,28 @@ That is, voltage is equal to current times resistance. Ohm's law can be used to 
 
 Kirchhoff's current law states that the sum of all currents entering a node is zero. The law implies that all currents entering the node are equal to the currents leaving the node. This law can be applied to the op-amp circuit above (first in the article).
 
-![Opamp Current Analysis](/images/opamp-kirchhoff-0.svg)
+{{< katex >}}
+i_1 + i_2 + i_3 = 0
+{{< /katex >}}
 
 
 If Ohm's law is combined with Kirchhoff's current law, the equation then becomes the following.
 
-![Opamp Current Analysis](/images/opamp-kirchhoff-1.svg)
+{{< katex >}}
+\frac{V_i - V_n}{R_i} + \frac{V_o - V_n}{R_f} + i_3 = 0
+{{< /katex >}}
 
-The equation is simplified further by applying the rules of an ideal op-am.  First,
-infinite input impedance means that current i3 is zero. Second, the
-voltage difference on the inputs is zero means V<sub>n</sub> = V<sub>p</sub> = 0V.
-The resulting equation is as follows.
+The equation is simplified further by applying the rules of an ideal op-am.  First, infinite input impedance means that current {{< katex inline >}}i_3{{< /katex >}} is zero. Second, the voltage difference on the inputs is zero means {{< katex inline >}}V_n = V_p = 0V{{< /katex >}}. The resulting equation is as follows.
 
-![Opamp Current Analysis](/images/opamp-kirchhoff-2.svg)
+{{< katex >}}
+\frac{V_i}{R_i} + \frac{V_o}{R_f} = 0
+{{< /katex >}}
 
 To calculate the gain of the circuit, the above equation is solved for the output divided by the input.
 
-![Opamp Current Analysis](/images/opamp-kirchhoff-3.svg)
+{{< katex >}}
+\frac{V_o}{V_i} = \frac{-R_f}{R_i}
+{{< /katex >}}
 
 The op-amp circuit shown above is called an inverting amplifier (the output is the input times a negative number). As drawn, the inverting amplifier is not well adapted to single supply embedded systems because the output is centered at 0V. However, there are plenty of great ways to use op-amps in single supply, embedded designs.
 
@@ -69,7 +75,9 @@ A pressure sensor typically has an output in the millivolt range. To measure thi
 
 The analysis technique described above shows that the output of the op-amp is:
 
-![Opamp Current Analysis](/images/opamp-kirchhoff-4.svg)
+{{< katex >}}
+V_o = V_i \cdot ( \frac{R_f}{R_i}+1)
+{{< /katex >}}
 
 If the feedback resistor is 9KOhms and the input resistor is 1KOhms, the gain will be 10 such that the output of the pressure sensor will be scaled to take advantage of the full range of the ADC.
 
@@ -79,7 +87,9 @@ Another useful application of the op-amp is a sine-wave to square-wave converter
 
 ![Frequency Counter Circuit](/images/freq-counter-circuit.svg)
 
-The first stage of the circuit adjusts the sine wave to be centered around Vcc/2. Rf and Ri can be adjusted so that the output swing of the first amplifier is between 0V and Vcc. The second op-amp acts as a voltage comparator. If the input (on the inverting terminal) is greater than Vcc/2 (the non-inverting terminal), the output is zero volts. If the inverting input is less than Vcc/2, the output is Vcc assuming the op-amp is of the rail-to-rail variety.
+{{< katex inline >}}V_{CC}{{< /katex >}}
+
+The first stage of the circuit adjusts the sine wave to be centered around {{< katex inline >}}\frac{V_{CC}}{2}{{< /katex >}}. {{< katex inline >}}R_f{{< /katex >}} and {{< katex inline >}}R_i{{< /katex >}} can be adjusted so that the output swing of the first amplifier is between 0V and {{< katex inline >}}V_{CC}{{< /katex >}}. The second op-amp acts as a voltage comparator. If the input (on the inverting terminal) is greater than {{< katex inline >}}\frac{V_{CC}}{2}{{< /katex >}} (the non-inverting terminal), the output is zero volts. If the inverting input is less than {{< katex inline >}}\frac{V_{CC}}{2}{{< /katex >}}, the output is {{< katex inline >}}V_{CC}{{< /katex >}} assuming the op-amp is of the rail-to-rail variety.
 
 ## Conclusion
 

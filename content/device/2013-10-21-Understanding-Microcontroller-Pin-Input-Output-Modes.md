@@ -51,7 +51,7 @@ Virtually all GPIO inputs use a principle called hysteresis to prevent spurious 
 
 ![Hysteresis Graph](/images/smitt_hysteresis_graph.svg)
 
-The low threshold can be found in the datasheet in the "Electrical Characteristics" section as V<sub>IL</sub> and the high threshold is V<sub>IH</sub>.
+The low threshold can be found in the datasheet in the "Electrical Characteristics" section as {{< katex inline >}}V_{IL}{{< /katex >}} and the high threshold is {{< katex inline >}}V_{IH}{{< /katex >}}.
 
 ### Output Modes
 

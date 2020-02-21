@@ -11,38 +11,38 @@ tags:
 - c/c++
 - programming
 title: Using LEDs in Embedded Designs
+katex: true
 ---
 
 ![LED Circuit](/images/LED-circuit.svg)
-LEDs are a common element of many embedded designs.  Though the devices are
-simple; their implementation is not always simplistic.  Optimizing LED cost
-and performance includes ensuring the driving circuitry is providing the
-correct voltage and current.
+LEDs are a common element of many embedded designs.  Though the devices are simple; their implementation is not always simplistic.  Optimizing LED cost and performance includes ensuring the driving circuitry is providing the correct voltage and current.
 
-The brightness of an LED is determined by the current that runs through it.  Typical
-applications use a current limiting resistor in series with an LED to set the
-brightness at a fixed level.  The following diagram shows a circuit that powers
-an LED using such a resistor.
+The brightness of an LED is determined by the current that runs through it.  Typical applications use a current limiting resistor in series with an LED to set the brightness at a fixed level.  The following diagram shows a circuit that powers an LED using such a resistor.
 
 To optimize the performance of the LED, the resistor must be sized correctly (note the resistor can be either above or below the LED without affecting the operation or performance of the circuit).  The LED manufacturer provides the rated current and forward voltage values that are essential to calculating the resistor size.  The rated current is the optimal current value for the LED, and the forward voltage is the drop in voltage across the LED when the rated current is applied.  The following diagram shows fictitious but typical values for VCC, the forward voltage, and the rated current.
 
 ![LED Circuit Annotated](/images/LED-circuit-annotated.svg)
 
-The value of the resistor is calculated using the given constraints and Ohm's law.  The voltage drop across R1 is 2.1V, which is VCC (3.3V) minus the forward voltage across the diode (1.2V).  The current through R1--the same as the rated current of D1--is 20mA.  From Ohm's law, R1 is 105 Ohms.
+The value of the resistor is calculated using the given constraints and Ohm's law.  The voltage drop across {{< katex inline >}}R_1{{< /katex >}} is 2.1V, which is VCC (3.3V) minus the forward voltage across the diode (1.2V).  The current through {{< katex inline >}}R_1{{< /katex >}}--the same as the rated current of {{< katex inline >}}R_1{{< /katex >}}--is 20mA.  From Ohm's law, {{< katex inline >}}R_1{{< /katex >}} is {{< katex inline >}}105 \Omega{{< /katex >}}.
 
-<p style="text-align: center">
-V=IR<br/>
-2.1V=20mA*R<sub>1</sub><br/>
-R<sub>1</sub>=2.1V / 20mA=105Ohms<br/>
-</p>
+{{< katex >}}
+V = I \cdot R
+{{< /katex >}}
+{{< katex >}}
+2.1V = 20mA \cdot R_1
+{{< /katex >}}
+{{< katex >}}
+R_1 = \frac{2.1V}{20mA}=105 \Omega
+{{< /katex >}}
 
-The rated current, 20mA, is the maximum that can be safely, continuously applied.  Therefore, 105 Ohms is the minimum value for R1.  Decreasing the value of R1 allows more current to flow through D1; increasing R1 decreases the current through D1 as well as the brightness.
 
-In this circuit D1 is always on.  The ground or power connection can be replaced with driving circuitry that is dynamically controlled with an MCU to make the LED blink or dim.
+The rated current, {{< katex inline >}}20mA{{< /katex >}}, is the maximum that can be safely, continuously applied.  Therefore, {{< katex inline >}}105 \Omega {{< /katex >}} is the minimum value for {{< katex inline >}}R_1{{< /katex >}}.  Decreasing the value of {{< katex inline >}}R_1{{< /katex >}} allows more current to flow through D1; increasing {{< katex inline >}}R_1{{< /katex >}} decreases the current through {{< katex inline >}}D_1{{< /katex >}} as well as the brightness.
+
+In this circuit {{< katex inline >}}D_1{{< /katex >}} is always on.  The ground or power connection can be replaced with driving circuitry that is dynamically controlled with an MCU to make the LED blink or dim.
 
 ## Driving Circuitry
 
-p.LED's can be driven using a GPIO pin or--if more current is needed--a transistor.  Depending on the current capabilities of the GPIO pin, it may act as either a sink or a source for the current through the LED.  The datasheet for the MCU will specifiy how much current each pin can sink or source.  The following picture shows an example of the GPIO acting as a current sink.
+LED's can be driven using a GPIO pin or--if more current is needed--a transistor.  Depending on the current capabilities of the GPIO pin, it may act as either a sink or a source for the current through the LED.  The datasheet for the MCU will specifiy how much current each pin can sink or source.  The following picture shows an example of the GPIO acting as a current sink.
 
 ![LED GPio Sink](/images/LED-GPIO-sink.svg)
 
