@@ -32,7 +32,7 @@ I performed the tests using an off-the-shelf 32F723E-DISCO development board fro
 - 176KB Internal RAM
 - 512KB External RAM on a 16-bit data bus
 
-If you have a 32F723E-DISCO board, you can install Stratify OS using the following commands after you have [installed the sl command line tool]().
+If you have a 32F723E-DISCO board, you can install Stratify OS using the following commands after you have [installed the sl command line tool](https://docs.stratifylabs.co/guides/Documentation/).
 
 ```
 sl os.bootstrap:bootloader
@@ -108,4 +108,4 @@ Tightly Coupled RAM | 239 DMIPS | 217 DMIPS | **1.1x**
 
 ## The Conclusion
 
-The big take away is that applications running in external RAM run just as fast as applications running in any other memory as long as the cache is on. Not surprisinly, execution from tightly coupled memory was the least affected by the cache.
+The big take away is that applications running in external RAM run just as fast as applications running in any other memory as long as the cache is on. Not surprisingly, execution from tightly coupled memory was the least affected by the cache.
