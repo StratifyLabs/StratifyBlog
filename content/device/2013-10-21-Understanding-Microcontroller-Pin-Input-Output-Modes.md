@@ -21,7 +21,7 @@ GPIO (aka General Purpose input/output) is the simplest of microcontroller IO. E
 
 GPIO input modes include
 
-- high impedance, 
+- high impedance
 - pull-up
 - pull-down
 - repeater
@@ -31,23 +31,23 @@ GPIO input modes include
 
 Floating, high impedance and tri-stated are three terms that mean the same thing: the pin is just flopping in the breeze. Its state is indeterminate unless it is driven high or low externally. You only want to congfigure a pin as floating if you know it will be driven externally. Otherwise, configure the input using pulling resistors.
 
-> **A Word on Impedance**. Impedance is very similar to resistance but considers how a circuit reacts when a changing voltage is applied. A resistor only has resistance. But inductors and capacitors have impedance (resistance + reactance). Now you know!
+> **A Word on Impedance**. Impedance is very similar to resistance but considers how a circuit reacts when a changing voltage is applied. A resistor only has resistance. But [inductors]({{< relref "2019-09-25-Inductors-for-Makers.md" >}}) and [capacitors]({{< relref "2019-09-17-Capacitors-for-Makers.md" >}}) have impedance (resistance + reactance). Now you know!
 
 ####  Pull Up/Down
 
-If an input is configured with an internal pull-up, it will be high unless it is externally driven low. Pull-down inputs do the opposite (<small> they're low unless driven high</small>). Some GPIO pins also support changing the pull-up and pull-down settings dynamically using repeater mode (but truth be told, I have never configured a pin that way but we will take a look anyway).
+If an input is configured with an internal pull-up, it will be high unless it is externally driven low. Pull-down inputs do the opposite (<small> they're low unless driven high</small>). Some GPIO pins also support changing the pull-up and pull-down settings dynamically using repeater mode (but truth be told, I have never configured a pin that way).
 
-> [Read more about pull-up and pull-down resistors]({{< ref "2013-10-25-Using-Pull-Up-and-Pull-Down-Resistors.md" >}})
+> [Read more about pull-up and pull-down resistors.]({{< ref "2013-10-25-Using-Pull-Up-and-Pull-Down-Resistors.md" >}})
 
 #### Repeater
 
-When a GPIO is configured in repeater mode, the pull-up is enabled when the pin is driven high, and the pull-down is enabled when the pin is driven low.  If nothing is driving the pin, the pin will retain its last known state (so I guess "repeater" isn't just a clever name). In some cases, this can prevent a pin from floating which is good.
+When a GPIO is configured in repeater mode, the pull-up is enabled when the pin is driven high, and the pull-down is enabled when the pin is driven low.  If nothing is driving the pin, the pin will retain its last known state (so I guess "repeater" isn't just a clever name). In some cases, this can prevent a pin from floating.
 
 > You might be wondering why pins shouldn't be floating. When pins are floating, current can leak in and out of the pin. \\( leaky+current = bad \\). So, don't leave pins floating.
 
 #### Hysteresis
 
-Virtually all GPIO inputs use a principle called hysteresis to prevent spurious changes in state when an input value changes. I think of hysteresis of having a low threshold to go low and a high threshold to go high. So if you are somewhere in the middle, nothing changes. You can see this in the graph below on where `A` (with no hysteresis) has some state changes on that `B` (with hysteresis) filters out.
+Virtually all GPIO inputs use a principle called hysteresis to prevent spurious changes in state when an input changes. I think of hysteresis of having a low threshold to go low and a high threshold to go high. So if you are somewhere in the middle, nothing changes. You can see this in the graph below on where `A` (with no hysteresis) has some state changes on that `B` (with hysteresis) filters out.
 
 ![Hysteresis Graph](/images/smitt_hysteresis_graph.svg)
 
@@ -57,12 +57,12 @@ The low threshold can be found in the datasheet in the "Electrical Characteristi
 
 #### Push-Pull
 
-A push-pull output is another aptly-name GPIO mode. The pin as the ability to "push" the signal high or "pull" it low. It does this using a pair of complementary transistors. You have probably heard of "CMOS" technology. The C stands for "complementary". A CMOS device has a pushing transistor (PMOS) and a pulling transistor (NMOS).
+A push-pull output is another aptly-name GPIO mode. The pin as the ability to "push" the signal high or "pull" it low. It does this using a pair of complementary transistors. You have probably heard of "CMOS" technology. The C stands for "complementary". A [CMOS]({{< relref "2013-10-14-How-Microcontrollers-Work.md#cmos" >}}) device has a pushing transistor [(PMOS) and a pulling transistor (NMOS)]({{< relref "2013-10-14-How-Microcontrollers-Work.md#field-effect-transistors-fets" >}}).
 
 In the circuit below where `I` is the input and `O` is the output
 
 - when `I` is 1, `PMOS` is **off** and `NMOS` is **on** which makes `O` be 0
-- when `I` is 0, `PMOS` is **on** and `NMOS` is **off** which makes `O` be 1
+- when `I` is 0, `PMOS` is **on** and `NMOS` is **off** which makes `O` be 1 (kanobi)
 
 {{< html >}}
 <center>

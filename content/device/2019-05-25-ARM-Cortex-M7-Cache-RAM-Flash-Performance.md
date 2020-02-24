@@ -12,7 +12,7 @@ title: ARM Cortex M7 Cache, RAM, and Flash Performance
 chart: true
 ---
 
-I recently ran som Dhyrstone benchmarking tests on an ARM Cortex M7 core to see how the tests performed from various memory locations. The ARM Cortex M7 is a microcontroller core contained in microcontrollers from various manufacturers. In my case, I used an STM32F723E from STMicroelectronics. The ARM Cortex M7 includes a data and instruction cache that can be used to improve performance. In the case of the STM32F723E, there are 8KB of each type.
+I recently ran some Dhyrstone benchmarking tests on an ARM Cortex M7 core to see how the tests performed from various memory locations. The ARM Cortex M7 is a microcontroller core contained in microcontrollers from various manufacturers. In my case, I used an STM32F723E from STMicroelectronics. The ARM Cortex M7 includes a data and instruction cache that can be used to improve performance. In the case of the STM32F723E, there are 8KB of each type.
 
 Because most microcontrollers have integrated flash memory and RAM, I was curious how much performance could be boosted with cache. When I dug a little deeper, I found it can be boosted a lot. I discovered a few reasons why:
 
