@@ -13,6 +13,8 @@ title: Understanding Memory using Embedded C++
 
 C++ is quickly becoming a powerful tool for microcontroller programming.  A space previously occupied solely by C and assembly languages. However, many firmware engineers fear using C++ because they worry it uses up too much memory (both RAM and flash).  Let's look at how C++ generates code and utilizes RAM.
 
+> **Read More**. [Understanding RAM/Flash usage in embedded C]({{< relref "2013-10-18-RAM-Flash-Usage-in-Embedded-C-Programs.md" >}})
+
 <div class="alert alert-info">
 
 The full power of C++ is not realized on embedded microcontrollers but rather "Embedded C++" which I define as stripping away exception handling, dynamic typing, as well as a few other resource intensive features of C++. What is left is a powerful embedded programming language that allows for much better code re-use than plain old C.

@@ -15,6 +15,14 @@ The [Toolbox Preview Page](https://www.crowdsupply.com/stratify/toolbox) is up o
 
 > This is an updating post for Stratify Toolbox prototype development updates. Come back soon to see how the progress is going.
 
+## Update 2020-02-26
+
+![Keyboard Application](/images/keyboard-demo.gif)
+
+After building the components in the new [StratifyAPI ux namespace](https://github.com/StratifyLabs/StratifyAPI/tree/master/include/ux), building the keyboard application took less than 2 hours. It was great. The [full video of the gif above](https://youtu.be/JDBmh6e8LyQ) is on youtube.
+
+
+
 ## Update 2020-02-18
 
 ![GpioTool Coming Alive](/images/GpioToolDemo.gif)

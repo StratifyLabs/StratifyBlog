@@ -43,26 +43,23 @@ In embedded designs, memory, especially RAM, is a precious
 resource.  Understanding how C allocates variables in memory
 is crucial to getting the best use of memory in embedded systems.
 
-Memory in a C program includes code (executable instructions) and
-data.  Code is typically read-only and executable--characteristics
-enforced by the operating system (OS).  Data memory is
-non-executable (enforced by the OS), can be either read-only or
-read-write, and is either statically or dynamically allocated which
-characteristics are managed by the compiler.  In desktop programs, the
-entire memory map is managed through virtual memory using a hardware
-construct, called a Memory Management Unit (MMU), to map the
-program's memory to physical RAM.  In RAM-constrained embedded systems
-lacking an MMU, the memory map is divided in to a section for flash
-memory (code and read-only data) and a section for RAM (read-write data).
+> **Read More**. [Understanding memory usage in embedded C++]({{< relref "2017-09-15-Understanding-Memory-using-Embedded-C++.md" >}})
 
-<div class="alert alert-info"><span class="label label-danger">Note</span> This article
-talks about specifics of the C language implementation using GCC with
-the ARM Cortex-M3 architecture. Other implementations differ on
-specifics, but the basic concepts are the same.</div>
+Memory in a C program includes code and data.  Code is by nature read-only and executable. Data memory is
+
+- non-executable
+- read-only or read-write
+- statically or dyncamilly allocated
+- on the stack or the heap
+ 
+In desktop programs, the entire memory map is managed through virtual memory using a hardware construct, called a Memory Management Unit (MMU), to map the program's memory to physical RAM.  In RAM-constrained embedded systems lacking an MMU, the memory map is divided in to a section for flash memory (code and read-only data) and a section for RAM (read-write data).
+
+> **Note.** This article
+talks about specifics of the C language implementation using GCC with the ARM Cortex-M architecture. Other implementations differ on specifics, but the basic concepts are the same.
 
 ## Flash:  Code and Read-Only Memory
 
-Code and read-only data are stored in flash memory.  The layout of a C program's flash memory is shown in the diagram above.  The beginning of the program (the lowest memory location at the bottom of the diagram) is the text section which includes executable code.  This section also includes numerical values that are not assigned to any specific C variable called "literal values".  The read-only data section follows the text section and is exclusively stored in flash memory (note this is only true for some embedded architectures, not all).  There is then a copy of the "data" section which contains the initial values of global and static variables.  This section is copied to RAM when the program starts up.
+Code and read-only data are stored in flash memory.  The layout of a C program's flash memory is shown in the diagram above.  The beginning of the program (the lowest memory location at the bottom of the diagram) is the text section which includes executable code.  This section also includes numerical values that are not assigned to any specific C variable called "literal values".  The read-only data section follows the text section and is exclusively stored in flash memory (note this is only true for some embedded architectures, not all). There is then a copy of the "data" section which contains the initial values of statically allocated variables.  This section is copied to RAM when the program starts up.
 
 ```c++
 #include <stdio.h>
@@ -76,7 +73,7 @@ void my_function(void){
 }
 ```
 
-In the above code, `read_only_variable` is stored in the read-only data section because it is preceded by the `const` keyword. The compiler assigns `read_only_variable` a specific address location (in flash) and writes the value of `2000` to that memory location. When the variable `x` within `my_function()` is assigned the literal value `200`, it references the value stored in a "literal pool" within the text section--at least this is true for the ARM Cortex M architecture; other architectures may take a different approach to literal values but the basic concept is the same.  Finally, a copy of the initial value, `500`, assigned to `data_variable` is stored in flash memory and copied to RAM when the program starts. When the program references `data_variable`, it will refer to its location in RAM.
+In the above code, `read_only_variable` is stored in the read-only data section as denoted by the `const` keyword. The compiler assigns `read_only_variable` a specific address location (in flash) and writes the value of `2000` to that memory location. When the variable `x` within `my_function()` is assigned the literal value `200`, it references the value stored in a "literal pool" within the text section--at least this is true for the ARM Cortex M architecture. Finally, a copy of the initial value, `500`, assigned to `data_variable` is stored in flash memory and copied to RAM when the program starts. When the program references `data_variable`, it will refer to its location in RAM.
 
 ## RAM:  Read-Write Data
 
@@ -100,15 +97,15 @@ The following diagram shows the map of the RAM in a C program.
 |                          |   |
 |         ^                |   |
 |         |                |   |
-|         |  malloc()      |   |
-|         |                |   |
-|         +                |   |
-+--------------------------+   +
-|                          |
-|       Heap               |
-|       BSS and Data       |
-|                          |
-|                          |
+|         |  malloc()      |   |         
+|         |                |   |    Dyncamically
+|         +                |   |    Allocated  
++--------------------------+   + ------------------------
+|                          |        Statically
+|       Heap               |        Allocated
+|       BSS and Data       |       
+|                          |       
+|                          |      
 +--------------------------+ <--------+ Base RAM Address
 ```
 
@@ -169,7 +166,14 @@ my_static:4, my_stack:0
 
 ## Dynamically Allocated
 
-While the compiler determines the memory address of static memory at compile time, the locations of dynamically allocted variables are determined while the program is running.  The two dynamic memory constructs in C are: the heap and the stack.  The stack grows down (from higher memory address to lower ones) and the heap grows up. If memory usage is ignored in the design, the stack and heap can collide causing one or both to become corrupted and result in a situation that can be difficult to debug.  The heap is managed by the programmer while the compiler takes care of the stack.
+While the compiler determines the memory address of static memory at compile time, the locations of dynamically allocted variables are determined while the program is running.  The two dynamic memory constructs in C are: 
+
+- the heap
+- the stack
+
+The stack grows down (from higher memory address to lower ones) and the heap grows up. If memory usage is ignored in the design, the stack and heap can collide causing one or both to become corrupted and result in a situation that can be difficult to debug. 
+
+The heap is managed by the programmer while the compiler takes care of the stack.
 
 ## The Heap
 
@@ -197,6 +201,8 @@ void my_func(void){
 }
 ```
 
+#### Memory Fragmentation
+
 Dynamically allocated memory is a convenient tool for application developers but must be used deliberately to minimize the effects of memory fragmentation.  The following code shows how `malloc()` and `free()` can result in fragmented memory:
 
 ```c++
@@ -221,7 +227,7 @@ The example above allocates 128 bytes three times then frees the middle 128 byte
 
 ## The Stack
 
-Variables that are declared within a function, known as local variables, are either allocated on the stack or simply assigned a register value.  Whether a variable is allocated on the stack or simply assigned to a register depends on many factors such as the compiler (including conventions associated with the architecture), the microcontroller architecture, as well as the number of variables already assigned to registers.  Consider the following code example:
+Variables that are declared within a function, aka local variables, are either allocated on the stack or simply assigned a register value.  Whether a variable is allocated on the stack or simply assigned to a register depends on many factors such as the compiler (including conventions associated with the architecture), the microcontroller architecture, as well as the number of variables already assigned to registers.  Consider the following code example:
 
 ```c++
 #include <stdio.h>
@@ -238,11 +244,20 @@ int my_function(int a, int b, int c, int d){
 }
 ```  
 
-The paramaters `a`, `b`, `c`, and `d` to `my_function()` are stored in registers `r0`, `r1`, `r2`, and `r3`--this is true for the ARM Cortex-M but varies between architectures; though most use some number of registers for parameter passing and then pass additional parameters on the stack.  The `x` variable in `my_function()` is likely assigned to a register, but if no registers are available, it is assigned a memory location on the stack.  The `y` variable is treated similarly, but because it uses the register keyword, the compiler gives it preference over `x` when allocating registers.  The `buf` variable is allocated on the stack because it is 1) likely too large for register allocation and 2) it is an array, and many architectures have instructions that make working with arrays in memory (rather than registers) perform well.  Unlike global and static variables, local variables are only initialized when the program assigns a value to them.  For example, before the line `x = a + b + c + strlen(buf);`, the value of `x` is whatever the value the register or memory location had before this line was executed.  Therefore, local variables should never to used before they are assigned a value within the function.
+The paramaters `a`, `b`, `c`, and `d` to `my_function()` are stored in registers `r0`, `r1`, `r2`, and `r3`.
+
+> **Note.** This is true for the ARM Cortex-M but varies between architectures; though most use some number of registers for parameter passing and then pass additional parameters on the stack.
+
+The `x` variable in `my_function()` is likely assigned to a register, but if no registers are available, it is assigned a memory location on the stack.  The `y` variable is treated similarly, but because it uses the register keyword, the compiler gives it preference over `x` when allocating registers.  The `buf` variable is allocated on the stack because:
+
+1) it is too large for register allocation 
+2) it is an array 
+
+Many architectures have instructions that make working with arrays in memory (rather than registers) perform well.  Unlike global and static variables, local variables are only initialized when the program assigns a value to them.  For example, before the line `x = a + b + c + strlen(buf);`, the value of `x` is whatever the value the register or memory location had before this line was executed.  Therefore, local variables should never to used before they are assigned a value within the function.
 
 ## Registers vs Registers
 
-It is important to make the distinction between the registers used with local variables and those used to configure the microcontroller features and peripherals.  Microcontroller datasheets and user manuals refer to "registers" that are used, for example, to turn the UART on and off and configure its baud rate.  These configuration "registers" are not the same as the ones mentioned above used with local function variables.  Configuration registers are accessed in the same way that RAM is; they are assigned a fixed location in the memory map. Core registers (such as `r0`) are memory that is tightly integrated with the central processing logic of the microcontroller and an integral part of the instruction set.
+It is important to make the distinction between the registers used with local variables and those used to configure the microcontroller features and peripherals.  Microcontroller datasheets and user manuals refer to "registers" that are used, for example, to turn the UART on and off and configure its baud rate.  These configuration "registers" are not the same as the ones mentioned above used with local function variables.  Configuration registers are accessed in the same way that RAM is; they are assigned a fixed location in the memory map. Core registers (such as `r0`) are memory that is tightly integrated with the [central processing logic]({{< relref "2013-10-14-How-Microcontrollers-Work.md#microcontroller-architecture" >}}) of the microcontroller and an integral part of the instruction set.
 
 ## Conclusion
 
