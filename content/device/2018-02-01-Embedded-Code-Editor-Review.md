@@ -5,7 +5,7 @@ date: "2018-02-01"
 layout: post
 page_source: EmbeddedCodeEditorReview
 tags:
-- c/c++
+- cpp
 - programming
 title: Embedded Code Editor Review
 ---

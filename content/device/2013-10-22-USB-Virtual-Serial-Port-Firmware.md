@@ -6,7 +6,7 @@ layout: post
 page_source: MicrocontrollerBlog
 tagline: Embedded Design
 tags:
-- c/c++
+- cpp
 - programming
 - microcontroller
 title: USB Virtual Serial Port Firmware

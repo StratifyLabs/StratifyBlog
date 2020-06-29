@@ -6,7 +6,7 @@ layout: post
 tags:
 - microcontroller
 - circuit
-- c/c++
+- cpp
 - programming
 title: Reading Floating Pins
 ---

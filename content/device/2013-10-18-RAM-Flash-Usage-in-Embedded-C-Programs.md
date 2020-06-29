@@ -7,7 +7,7 @@ page_source: MicrocontrollerBlog
 tagline: Embedded Design
 tags:
 - microcontroller
-- c/c++
+- cpp
 - programming
 - popular
 title: RAM/Flash Usage in Embedded C Programs

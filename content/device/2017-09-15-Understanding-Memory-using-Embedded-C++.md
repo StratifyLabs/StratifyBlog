@@ -6,7 +6,7 @@ layout: post
 page_source: MicrocontrollerBlog
 tagline: null
 tags:
-- c/c++
+- cpp
 - microcontroller
 title: Understanding Memory using Embedded C++
 ---

@@ -7,7 +7,7 @@ page_source: OpenSourceBlog
 tagline: Embedded Design
 tags:
 - gcc
-- c/c++
+- cpp
 title: Building and Installing a Cortex-M Compiler on Mac, Windows or Linux
 ---
 

@@ -6,7 +6,7 @@ layout: post
 page_source: MicrocontrollerBlog
 tagline: null
 tags:
-- c/c++
+- cpp
 - microcontroller
 title: Including Arbitrary Binary Data in Embedded Applications
 ---

@@ -8,7 +8,7 @@ tagline: Embedded Design
 katex: true
 tags:
 - microcontroller
-- c/c++
+- cpp
 - programming
 - circuit
 - popular

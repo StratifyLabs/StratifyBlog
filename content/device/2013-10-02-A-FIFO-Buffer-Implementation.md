@@ -8,7 +8,7 @@ tagline: Embedded Design
 tags:
 - microcontroller
 - programming
-- c/c++
+- cpp
 - popular
 title: A FIFO Buffer Implementation
 ---

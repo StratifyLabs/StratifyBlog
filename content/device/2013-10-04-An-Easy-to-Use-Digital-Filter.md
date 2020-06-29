@@ -7,7 +7,7 @@ page_source: MicrocontrollerBlog
 tagline: Embedded Design
 katex: true
 tags:
-- c/c++
+- cpp
 - programming
 - popular
 title: An Easy-to-Use Digital Filter

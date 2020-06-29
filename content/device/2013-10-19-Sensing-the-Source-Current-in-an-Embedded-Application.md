@@ -9,7 +9,7 @@ katex: true
 tags:
 - microcontroller
 - circuit
-- c/c++
+- cpp
 - programming
 title: Sensing the Source Current in an Embedded Application
 ---

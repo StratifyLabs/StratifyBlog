@@ -7,7 +7,7 @@ page_source: MicrocontrollerBlog
 tagline: Embedded Design
 tags:
 - microcontroller
-- c/c++
+- cpp
 - programming
 - circuit
 - popular

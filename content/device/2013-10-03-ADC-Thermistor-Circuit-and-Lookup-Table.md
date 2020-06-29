@@ -7,7 +7,7 @@ page_source: MicrocontrollerBlog
 tagline: Embedded Design
 katex: true
 tags:
-- c/c++
+- cpp
 - circuit
 title: ADC Thermistor Circuit and Lookup Table
 ---

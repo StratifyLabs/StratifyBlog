@@ -6,7 +6,7 @@ layout: post
 tags:
 - microcontroller
 - programming
-- c/c++
+- cpp
 title: Double vs Float in Embedded C
 ---
 

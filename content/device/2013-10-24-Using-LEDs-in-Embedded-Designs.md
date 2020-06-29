@@ -8,7 +8,7 @@ tagline: Embedded Design
 tags:
 - microcontroller
 - circuit
-- c/c++
+- cpp
 - programming
 title: Using LEDs in Embedded Designs
 katex: true

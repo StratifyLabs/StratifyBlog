@@ -5,7 +5,7 @@ date: "2019-08-16"
 layout: post
 tags:
 - microcontroller
-- c/c++
+- cpp
 - programming
 title: Using Strong Type Arguments on Embedded C++
 ---

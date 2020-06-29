@@ -9,7 +9,7 @@ tags:
 - microcontroller
 - circuit
 - programming
-- c/c++
+- cpp
 title: Low Pass Filters with Microcontroller ADCs
 ---
 ![Low Pass Filter Diagram](/images/lpf-diagram1.svg)
