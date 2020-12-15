@@ -10,6 +10,14 @@ tags:
 title: Thread Local Error Contexts in C++ 
 ---
 
+I recently rewrote a family of C++ libraries that I had bee using for 10 years. The main themes of the rewrite include:
+
+- **Thread Local Error Contexts**
+- [Method Chaining]({{< relref "2020-12-15-Method-Chaining-in-Cpp.md" >}})
+- Strong Arguments
+- RAII Everywhere
+- Filesystems Inspired Abstraction
+
 I recently rewrote a family of C++ libraries that I had bee using for 10 years. One of the main themes in the rewrite was better error handling. Of course, this comes with the no-exceptions caveat because this code needs to run on highly constrained systems.
 
 Previously, I was taking the classic C approach to error handling or returning a negative value if there was an error and zero or greater for non-error. What I hated the most about the previous approach was the needed to cascade the error up and down the call graph until it could be handled.
@@ -192,6 +200,5 @@ if( api::ExecutionContext::is_error() ){
   //something didn't work -- error context has the details
 }
 ```
-
 
 Going from 10 lines of code to 3 lines of code also requires the use of method chaining and crafty use of RAII neither which are possible using classic error handling approaches. This case is particularly dramatic, but not rare. You can see the full [C++ framework on Github](https://github.com/StratifyLabs/API).
