@@ -36,12 +36,12 @@ class MyClass {
 public:
     static int add_callback(void * context, int a, int b){
         //no access to member variables here
-        return ((MyClass*)context)->add(a,b);
+        return reinterpret_cast<MyClass*>(context)->add(a,b);
     }
 
     static int subtract_callback(void * context, int a, int b){
         //no access to member variables here
-        return ((MyClass*)context)->add(a,b);
+        return reinterpret_cast<MyClass*>(context)->add(a,b);
     }
 
     int add(int a, int b){
@@ -95,7 +95,7 @@ The `start_routine` is a callback, and `arg` is an arbitrary value that gets pas
 
 class MyClass {
     static void * do_some_work_in_a_thread(void * context){
-        return ((MyClass*)context)->do_some_work();
+        return reinterpret_cast<MyClass*>(context)->do_some_work();
     }
 
     void * do_some_work(){

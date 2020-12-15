@@ -9,6 +9,8 @@ tags:
 title: Microprocessors vs Microcontrollers for your IoT Product
 ---
 
+![MCU or MPU](/images/mcu-mpu-compare.png)
+
 There are many things to consider when choosing a computing chip for your next IoT product. The biggest choice to make is whether to use a microprocessor or microcontroller.
 
 Generally, the definitions of microprocessor and microcontroller are not univerally accepted. For the purposes of this post, a microprocessor is a chip that is capable of running a full-fledged operating system such as Linux (including embedded Linux), MacOS, Windows, iOS, or Android. Conversely, a microcontroller is an inexpensive chip running which runs a single program or RTOS. 
