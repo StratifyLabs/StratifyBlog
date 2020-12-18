@@ -26,5 +26,6 @@ After many years of designing circuit boards, this is my working list when doing
 - Check Version
 - Ensure FETs are in a known state at startup (before firmware is driving them)
 - Add a test point to every node (if practical)
+- Low speed lines going off the PCB should have RF filtering (ferrites)
 
 

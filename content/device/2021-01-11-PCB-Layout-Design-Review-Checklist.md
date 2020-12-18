@@ -34,6 +34,23 @@ After many years of designing circuit boards, this is my working list when doing
 - Tent all vias
 - Ground pour top and bottom
 - Add teardrops
+- Add ground via near signal via stubs
+- Check trace length matching for high speed signals
+- Minimize parallel run lengths between signals
+  - Make signal spacing larger than the distance to the ground plane
+  - Avoid mutual inductance and mutual capacitance
+
+- Minimizing reflection:
+  - Use  series  termination  resistor  and  place  near  the  source  point.  The  series  termi-nation resistor should be placed within 1/6th wavelength of the switching speed of the driver.
+- Ringing driver and receiver distance > 1/4 the wavelength
+
+- What should the target signal rise/fall times be?
+- Prefer daisy chaining to trace branching
+- Proper terminating resistors at the source.
+
+- Sierra Circuits better DFM (protoexpress.com)
+
+- Place ferrite disks on top of high speed ICs. The disks are available with adhesive and are easy to add.
 
 For 6 layers or more
 
