@@ -10,11 +10,11 @@ tags:
 title: Thread Local Error Contexts in C++ 
 ---
 
-I recently rewrote a family of C++ libraries that I had bee using for 10 years. The main themes of the rewrite include:
+I recently rewrote a family of C++ libraries that I had been using for 10 years. The main themes of the rewrite include:
 
 - **Thread Local Error Contexts**
 - [Method Chaining]({{< relref "2020-12-15-Method-Chaining-in-Cpp.md" >}})
-- Strong Arguments
+- [Strong Arguments]({{< relref "2019-08-16-Using-Strong-Type-Arguments-on-Embedded-Cpp.md">}})
 - RAII Everywhere
 - Filesystems Inspired Abstraction
 

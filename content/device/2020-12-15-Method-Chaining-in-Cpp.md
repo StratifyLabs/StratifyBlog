@@ -14,7 +14,7 @@ I recently rewrote a family of C++ libraries that I had bee using for 10 years. 
 
 - [Thread Local Error Contexts]({{< relref "2020-12-14-Thread-Local-Error-Context-in-Cpp.md" >}})
 - **Method Chaining**
-- Strong Arguments
+- [Strong Arguments]({{< relref "2019-08-16-Using-Strong-Type-Arguments-on-Embedded-Cpp.md">}})
 - RAII Everywhere
 - Filesystems Inspired Abstraction
 
