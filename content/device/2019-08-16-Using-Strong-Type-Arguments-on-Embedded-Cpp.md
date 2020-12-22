@@ -7,7 +7,7 @@ tags:
 - microcontroller
 - cpp
 - programming
-title: Using Strong Type Arguments on Embedded C++
+title: Using Strong Type Arguments in Embedded C++
 ---
 
 Using strong arguments is part of a larger embedded C++ philosophy outlined in the following posts.
@@ -15,7 +15,7 @@ Using strong arguments is part of a larger embedded C++ philosophy outlined in t
 - [Thread Local Error Contexts]({{< relref "2020-12-14-Thread-Local-Error-Context-in-Cpp.md" >}})
 - [Method Chaining]({{< relref "2020-12-15-Method-Chaining-in-Cpp.md" >}})
 - **Strong Arguments**
-- RAII Everywhere
+- [RAII Everywhere]({{< relref "2020-12-22-RAII-Everywhere-in-Cpp.md" >}})
 - Filesystems Inspired Abstraction
 
 Using strongly type arguments when writing embedded C++ code is a powerful tool for creating better code. I think of great code as being:

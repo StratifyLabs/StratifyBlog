@@ -7,7 +7,7 @@ tags:
 - microcontroller
 - cpp
 - programming
-title: Concise Code Using Method Chaining in C++ 
+title: Concise Code Using Method Chaining in Embedded C++ 
 ---
 
 I recently rewrote a family of C++ libraries that I had bee using for 10 years. The main themes of the rewrite include:
@@ -15,8 +15,7 @@ I recently rewrote a family of C++ libraries that I had bee using for 10 years. 
 - [Thread Local Error Contexts]({{< relref "2020-12-14-Thread-Local-Error-Context-in-Cpp.md" >}})
 - **Method Chaining**
 - [Strong Arguments]({{< relref "2019-08-16-Using-Strong-Type-Arguments-on-Embedded-Cpp.md">}})
-- RAII Everywhere
-- Filesystems Inspired Abstraction
+- [RAII Everywhere]({{< relref "2020-12-22-RAII-Everywhere-in-Cpp.md" >}})- Filesystems Inspired Abstraction
 
 # Method Chaining
 

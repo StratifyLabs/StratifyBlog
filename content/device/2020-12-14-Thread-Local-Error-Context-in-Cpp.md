@@ -7,7 +7,7 @@ tags:
 - microcontroller
 - cpp
 - programming
-title: Thread Local Error Contexts in C++ 
+title: Thread Local Error Contexts in Embedded C++ 
 ---
 
 I recently rewrote a family of C++ libraries that I had been using for 10 years. The main themes of the rewrite include:
@@ -15,7 +15,7 @@ I recently rewrote a family of C++ libraries that I had been using for 10 years.
 - **Thread Local Error Contexts**
 - [Method Chaining]({{< relref "2020-12-15-Method-Chaining-in-Cpp.md" >}})
 - [Strong Arguments]({{< relref "2019-08-16-Using-Strong-Type-Arguments-on-Embedded-Cpp.md">}})
-- RAII Everywhere
+- [RAII Everywhere]({{< relref "2020-12-22-RAII-Everywhere-in-Cpp.md" >}})
 - Filesystems Inspired Abstraction
 
 I recently rewrote a family of C++ libraries that I had bee using for 10 years. One of the main themes in the rewrite was better error handling. Of course, this comes with the no-exceptions caveat because this code needs to run on highly constrained systems.
