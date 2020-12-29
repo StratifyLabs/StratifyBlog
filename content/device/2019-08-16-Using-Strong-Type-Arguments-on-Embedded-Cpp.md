@@ -16,7 +16,7 @@ Using strong arguments is part of a larger embedded C++ philosophy outlined in t
 - [Method Chaining]({{< relref "2020-12-15-Method-Chaining-in-Cpp.md" >}})
 - **Strong Arguments**
 - [RAII Everywhere]({{< relref "2020-12-22-RAII-Everywhere-in-Cpp.md" >}})
-- Filesystems Inspired Abstraction
+- [Filesystem Inspired Abstraction]({{< relref "2020-12-29-Filesystem-Inspired-Abstraction-in-embedded-cpp.md" >}})
 
 Using strongly type arguments when writing embedded C++ code is a powerful tool for creating better code. I think of great code as being:
 

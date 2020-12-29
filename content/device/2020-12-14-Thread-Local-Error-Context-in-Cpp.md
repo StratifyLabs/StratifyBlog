@@ -16,11 +16,11 @@ I recently rewrote a family of C++ libraries that I had been using for 10 years.
 - [Method Chaining]({{< relref "2020-12-15-Method-Chaining-in-Cpp.md" >}})
 - [Strong Arguments]({{< relref "2019-08-16-Using-Strong-Type-Arguments-on-Embedded-Cpp.md">}})
 - [RAII Everywhere]({{< relref "2020-12-22-RAII-Everywhere-in-Cpp.md" >}})
-- Filesystems Inspired Abstraction
+- [Filesystem Inspired Abstraction]({{< relref "2020-12-29-Filesystem-Inspired-Abstraction-in-embedded-cpp.md" >}})
 
-I recently rewrote a family of C++ libraries that I had bee using for 10 years. One of the main themes in the rewrite was better error handling. Of course, this comes with the no-exceptions caveat because this code needs to run on highly constrained systems.
+# New Approach to Error Handling
 
-Previously, I was taking the classic C approach to error handling or returning a negative value if there was an error and zero or greater for non-error. What I hated the most about the previous approach was the needed to cascade the error up and down the call graph until it could be handled.
+The first them tackled in the rewrite was error-handling. Of course, this comes with the no-exceptions caveat because this code needs to run on highly constrained systems. Previously, I was taking the classic C approach to error handling or returning a negative value if there was an error and zero or greater for non-error. What I hated the most about the previous approach was the needed to cascade the error up and down the call graph until it could be handled.
 
 I also considered adding an error messsage to a base class. But this would mean every class would have its own set of errors, and every object would need to be error checked.
 
