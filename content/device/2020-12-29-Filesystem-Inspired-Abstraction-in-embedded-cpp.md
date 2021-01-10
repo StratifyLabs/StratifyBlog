@@ -20,11 +20,11 @@ I recently rewrote a family of C++ libraries that I had been using for 10 years.
 
 ## Why Filesystems?
 
-I became quite familiar the power of filesystems when writing [Stratify OS](https://github.com/StratifyLabs/StratifyOS). Stratify OS is a POSIX based operating system for microcontrollers. POSIX was born out of a need to [standardize early Unix-like operating systems](https://en.wikipedia.org/wiki/POSIX). One of the core features of UNIX is treating many different constructs as files. In Unix, files, network sockets, and devices can all be read/written using the same API. As I was rethinking my C++ libraries, the idea of treating even more constructs like fails made complete sense. In the [API framework](https://github.com/StratifyLabs/API), I extended the idea of file-like interaction to heap memory, a variable on the stack, or even callbacks. Doing this creates a universal API for data management regardless of the medium.
+I became quite familiar with the power of filesystems when writing [Stratify OS](https://github.com/StratifyLabs/StratifyOS). Stratify OS is a POSIX based operating system for microcontrollers. POSIX was born out of a need to [standardize early Unix-like operating systems](https://en.wikipedia.org/wiki/POSIX). One of the core features of UNIX is treating many different constructs as files. In Unix, files, network sockets, and devices can all be read/written using the same API. As I was rethinking my C++ libraries, the idea of creating even more constructs like fails made complete sense. In the [API framework](https://github.com/StratifyLabs/API), I extended the idea of file-like interaction to heap memory, a variable on the stack, or even callbacks. Doing this creates a universal API for data management regardless of the medium.
 
 ## A Buffered Approach
 
-The [API framework](https://github.com/StratifyLabs/API) is primarily designed to run on memory constrained systems (but can be used on anything POSIX compatible, including Windows). On memory constrained systems, there is a constant need to do operations with limited buffers. For example, if I want to write a large file to a socket, I can't just load the whole file in RAM then send it. I need to load manageable chunks into RAM and send those chunks before reading more. The code looks something like this (just for illustration, not-compiled):
+The [API framework](https://github.com/StratifyLabs/API) is primarily designed to run on memory-constrained systems (but can be used on anything POSIX compatible, including Windows). On memory-constrained systems, there is a constant need to do operations with limited buffers. For example, if I want to write a large file to a socket, I can't just load the whole file in RAM then send it. I need to load manageable chunks into RAM and send those chunks before reading more. The code looks something like this (just for illustration, not-compiled):
 
 ```c++
 int write_file_to_socket(int file_fd, int socket_fd, int file_size){
@@ -49,7 +49,7 @@ int write_file_to_socket(int file_fd, int socket_fd, int file_size){
 }
 ```
 
-The above code (or variations of it) seemed to appear *a lot* in my previous C++ libraries. To avoid rewriting this algorithm, I created an abstrat `FileObject` that could be written to by reading another `FileObject`.
+The above code (or variations of it) seemed to appear *a lot* in my previous C++ libraries. To avoid rewriting this algorithm, I created an abstract `FileObject` that could be written to by reading another `FileObject`.
 
 ```c++
 class Write {
@@ -99,11 +99,11 @@ header_t header;
 //read the file header into header
 ViewFile(View(header)).write(File("file_with_header.dat");
 ```
-A `LambaFile` allows you to provide read/write callbacks which is handy if the data read from a file requires some complex manipulation rather than just transfer to another device.
+A `LambaFile` allows you to provide read/write callbacks. This is handy if the data read from a file requires complex manipulation rather than a simple transfer to another device.
 
 ## Devices are also Files
 
-Of course, devices are also implemented as files.
+Of course, devices are implemented as files as well.
 
 ```c++
 //create a uart log file -- blocks until 2048 bytes have been written
@@ -112,4 +112,4 @@ File(File::IsOverwrite::yes, "uart_log.txt").write(Uart("/dev/uart0"), File::Wri
 
 ## What Now?
 
-If you write C/C++ code on constrained devices, you are certainly familiar with the buffered data transfer example above. Inheritance in C++ is a powerful tool. With the right approach, you can re-use the same code in many, many different situations. Feel-free to use file-like abstractions or create your own to maximize code re-use.
+If you write C/C++ code on constrained devices, you are familiar with the buffered data transfer example above. Inheritance in C++ is a powerful tool. With the right approach, you can re-use the same code in many, many different situations. Feel-free to use file-like abstractions or create your own to maximize code re-use.
