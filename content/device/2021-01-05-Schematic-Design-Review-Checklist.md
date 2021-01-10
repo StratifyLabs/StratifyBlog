@@ -1,9 +1,9 @@
 ---
 categories:
 - Device Tips
-date: "2021-01-10"
+date: "2021-01-05"
 layout: post
-draft: true
+draft: false
 tags:
 - microcontroller
 - circuit
@@ -13,7 +13,7 @@ title: Schematic Design Review Checklist
 
 After many years of designing circuit boards, this is my working list when doing a final review of schematics. I design boards with microcontrollers so the list is skewed to that end.
 
-> See the [PCB Layout Checklist]({{< relref "2021-01-11-PCB-Layout-Design-Review-Checklist.md" >}})
+> See the [PCB Layout Checklist]({{< relref "2021-01-05-PCB-Layout-Design-Review-Checklist.md" >}})
 
 
 - Add decoupling capacitors to power pins

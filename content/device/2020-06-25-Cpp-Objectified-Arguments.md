@@ -10,7 +10,7 @@ tags:
 title: C++ Objectified Arguments
 ---
 
-Last year, I started experimenting with [strong types for C++ arguments]({{< relref "2019-08-16-Using-Strong-Type-Arguments-on-Embedded-Cpp.md" >}}). After a year of working trying various approaches, I think I have really found the sweet spot for creating APIs that are
+Last year, I started experimenting with [strong types for C++ arguments]({{< relref "2019-08-16-Using-Strong-Type-Arguments-on-Embedded-Cpp.md" >}}). After a year of working trying various approaches, I have found the sweet spot for creating APIs that are
 
 - strongly typed,
 - easy to use,
@@ -107,21 +107,21 @@ But we introduced a pretty cumbersome problem with the setters and getters :thum
 
 ```c++
 #define API_ACCESS_FUNDAMENTAL(c, t, v, iv) \
-	public: \
-	t v() const { return m_##v; } \
-	c& set_##v(t value){ m_##v = value; return *this; } \
-	private: \
-	t m_##v = iv
+    public: \
+    t v() const { return m_##v; } \
+    c& set_##v(t value){ m_##v = value; return *this; } \
+    private: \
+    t m_##v = iv
 
 class CopyOptions {
-	API_ACCESS_FUNDAMENTAL(CopyOptions,const char *,source,nullptr);
-	API_ACCESS_FUNDAMENTAL(CopyOptions,const char *,destination,nullptr);
+    API_ACCESS_FUNDAMENTAL(CopyOptions,const char *,source,nullptr);
+    API_ACCESS_FUNDAMENTAL(CopyOptions,const char *,destination,nullptr);
 };
 ```
 
 Now that is much better.
 
-So the next question is whether we are still efficient (:question:). To get an idea of the performance hit from this approach, I compiled a simple `HelloWorld` program (cross compiled to the ARM Cortex M architecture) and checked the binary output size.
+So the next question is whether we are still efficient (:question:). To get an idea of the performance hit from this approach, I compiled a simple `HelloWorld` program (cross-compiled to the ARM Cortex M architecture) and checked the binary output size.
 
 ```c++
 
@@ -132,8 +132,8 @@ So the next question is whether we are still efficient (:question:). To get an i
 
 #if PASS_BY_OBJECT
 class ExecuteOptions {
-	API_ACCESS_FUNDAMENTAL(ExecuteOptions,const char *,hello,nullptr);
-	API_ACCESS_FUNDAMENTAL(ExecuteOptions,const char *,world,nullptr);
+    API_ACCESS_FUNDAMENTAL(ExecuteOptions,const char *,hello,nullptr);
+    API_ACCESS_FUNDAMENTAL(ExecuteOptions,const char *,world,nullptr);
 };
 static void execute(const ExecuteOptions & options);
 #else
@@ -142,34 +142,34 @@ static void execute(const char *  hello, const char *  world);
 
 int main(int argc, char * argv[]){
 #if PASS_BY_OBJECT
-	execute(
-				ExecuteOptions()
-				.set_hello("Hello")
-				.set_world("World")
-				);
+    execute(
+                ExecuteOptions()
+                .set_hello("Hello")
+                .set_world("World")
+                );
 #else
-	execute("Hello", "World");
+    execute("Hello", "World");
 #endif
-	return 0;
+    return 0;
 }
 
 #if PASS_BY_OBJECT
 void execute(const ExecuteOptions & options){
-	printf("%s %s\n", options.hello(), options.world());
+    printf("%s %s\n", options.hello(), options.world());
 }
 #else
 void execute(const char *  hello, const char *  world){
-	printf("%s %s\n", hello, world);
+    printf("%s %s\n", hello, world);
 }
 #endif
 ```
 
-To my surprise, the programs compiled to the exact same size (with optimaztion on, of course).
+To my surprise, the programs were compiled to the same size (with optimization on, of course).
 
 - `PASS_BY_OBJECT=1` code size: 548
 - `PASS_BY_OBJECT=0` code size: 548
 
-This example is particularly simple. If you are highly concerned about performance and code size, you will want to experiment. But nonetheless, this approach is a great way to write complex APIs with clear code that enforces strong argument types.
+This example is particularly simple. If you are highly concerned about performance and code size, you will want to experiment. Nonetheless, this approach is a great way to write complex APIs with clear code that enforces strong argument types.
 
 Last thing, using the `Argument` class for a strong `bool` argument is still worthwhile.  Consider this code:
 

@@ -13,7 +13,7 @@ wave: true
 msc: true
 ---
 
-Callbacks in C++ can be quite tricky compared to C. In C, you simply pass a function pointer, then call it like a normal function whenever you like. The object oriented nature of C++ doesn't allow such a simple approach. It is easy to pass `static` methods as callbacks because they are very similar to C functions. But `static` methods don't allow access to non-static members of the class. This can be a bit of a pain. I have settled on an approach to C++ callbacks that makes them almost as simple as their C counterparts.
+Callbacks in C++ can be quite tricky compared to C. In C, you simply pass a function pointer, then call it like a normal function whenever you like. The object-oriented nature of C++ doesn't allow such a simple approach. It is easy to pass `static` methods as callbacks because they are very similar to C functions. But `static` methods don't allow access to non-static members of the class. This can be a bit of a pain. I have settled on an approach to C++ callbacks that makes them almost as simple as their C counterparts.
 
 With every callback, one of the arguments is provided by the caller and passed to the callback. For C++ classes, the argument is a pointer to the object that should execute the callback.
 

@@ -166,7 +166,7 @@ if( File().open("path").write(buffer, sizeof(buffer)).is_error() ){
 
 # Why You Should Care
 
-Error handling code can make up a substantial amount of your lines of code and add zero value. It was taking up over 40% of my code before I changed my approach. Consider this example:
+Error handling code can make up a substantial amount of code while adding zero value. It was taking up over 40% of my code before I changed my approach. Consider this example:
 
 ***Returning `-1` for Error***
 
@@ -201,4 +201,4 @@ if( api::ExecutionContext::is_error() ){
 }
 ```
 
-Going from 10 lines of code to 3 lines of code also requires the use of method chaining and crafty use of RAII neither which are possible using classic error handling approaches. This case is particularly dramatic, but not rare. You can see the full [C++ framework on Github](https://github.com/StratifyLabs/API).
+Going from 10 lines of code to 3 lines of code also requires the use of [method chaining]({{< relref "2020-12-15-Method-Chaining-in-Cpp.md" >}}) and [crafty use of RAII]({{< relref "2020-12-22-RAII-Everywhere-in-Cpp.md" >}}) neither which are possible using classic error handling approaches. This case is particularly dramatic, but not rare. You can see the full [C++ framework on Github](https://github.com/StratifyLabs/API).

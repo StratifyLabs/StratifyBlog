@@ -1,9 +1,9 @@
 ---
 categories:
 - Device Tips
-date: "2021-01-11"
+date: "2021-01-05"
 layout: post
-draft: true
+draft: false
 tags:
 - microcontroller
 - circuit
@@ -13,7 +13,7 @@ title: PCB Layout Review Checklist
 
 After many years of designing circuit boards, this is my working list when doing a final review of PCB layout. I design boards with microcontrollers so the list is skewed to that end.
 
-> See the [Schematic Checklist]({{< relref "2021-01-10-Schematic-Design-Review-Checklist.md" >}})
+> See the [Schematic Checklist]({{< relref "2021-01-05-Schematic-Design-Review-Checklist.md" >}})
 
 - Proper layout of decoupling capacitors - add pictures
 - Optimize layout of oscillators
@@ -56,3 +56,35 @@ For 6 layers or more
 
 - Add ground via nears tracks that change ground reference planes
 
+
+# EMC Specific
+
+- Avoid overlapping clock harmonics
+- Decoupling Capacitors should be as close to the power pins as posssible using traces that are as short as possible. 
+- The capacitor package size has a bigger impact on its ability to filter higher frequencies than the capacitance value
+
+Use this:
+
+![Option A](/images/emc-decoupling-option-a.jpg)
+
+Not that:
+
+![Option B](/images/emc-decoupling-option-b.jpg)
+
+- Routing of clock lines and high speed lines should be the shortest and most well-routed traces.
+- No T's in high speed lines
+- Low speed lines going off the PCB should have ferrites for filtering
+- High speed traces must be on a layer adjacent to a plane
+- Recede the edges of the power plane by 20 times the distance to an adjacent ground plane
+- Avoid slots in power and ground planes
+- Series resistor terminate clock signals to slow rise/fall times
+- Place clocks and circuitry as far away from IO as possible
+
+- All traces whose length (in inches) is equal to or greater than the signal rise/fall time (in nanoseconds) must have provision for a series-terminating resistor (typically 33 ohms).
+- Above 25 MHz PCB's should have two (or more) ground planes.
+
+- Traces as transmission lines
+- Traces as antennas
+
+
+From http://hottconsultants.com/pdf_files/pcb_guide.pdf

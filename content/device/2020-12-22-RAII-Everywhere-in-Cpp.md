@@ -21,7 +21,7 @@ I recently rewrote a family of C++ libraries that I had been using for 10 years.
 
 # What is RAII?
 
-RAII stands for "Resource Acquisition is Initialization". It's a really terrible name for an amazing concept. Unfortunately the name leaves out the best part: it also handles finalization.
+RAII stands for "Resource Acquisition is Initialization". It's a really terrible name for an amazing concept. Unfortunately, the name leaves out the best part: it also handles finalization.
 
 The basic idea of RAII is that the code to initialize something is always in the C++ constructor and finalization is always in the destructor. It can be useful for:
 
@@ -53,7 +53,7 @@ private:
 
 ### Simple Enough?
 
-The sample above seems simple enough but it has some behavoirs that will cause problems. Such as, what happens when a `MyData` object is copied using the built-in copy operators? The answer is: big problems will happen. To get around this, we can prohibit the compiler from copying objects and allow it to move them.
+The sample above seems simple enough but it has some behaviors that will cause problems. Such as, what happens when a `MyData` object is copied using the built-in copy operators? The answer is: big problems will happen. To get around this, we can prohibit the compiler from copying objects and allow it to move them.
 
 ```c++
 //delete built-in copy
@@ -70,9 +70,9 @@ MyData& operator=(MyData && a){
 }
 ```
 
-Now, the compiler will never copy `MyData`. In some cases, you may need to add `std::move()` in order to get things to compile the way you want. The final result is that allocated pointers are freed exactly once.
+Now, the compiler will never copy `MyData`. In some cases, you may need to add `std::move()` to get things to compile the way you want. The final result is that allocated pointers are freed exactly once.
 
-Sometimes you might want to have a `MyData` object to be used as a placeholder and not actually hold any memory. For that we can add:
+Sometimes you might want to have a `MyData` object to be used as a placeholder and not hold any memory. For that we can add:
 
 ```c++
 //add default constructor
@@ -99,7 +99,7 @@ Dynamic memory is just one example, you can also use RAII with:
 
 ## Guarding Resources
 
-Another common use of RAII is when locking/unlocking Mutexes. This is a guard approach that works for other situations as well.
+Another common use of RAII is when locking/unlocking Mutexes. This is a "guard" approach that works for other situations as well.
 
 Here's the mutex guard:
 
@@ -213,4 +213,4 @@ MarkdownPrinter markdown_printer;
 
 ## What to do now?
 
-Using RAII is a great way to let the compiler do the work for you. It will automatically "remember" to free memory, close files, unlock mutexes, join threads, restore states and format output. You just have to keep an eye out for when you see these initialize/finalize constructs emerging in your code and stick that code in constructors/deconstructors.
+Using RAII is a great way to let the compiler do the work for you. It will automatically "remember" to free memory, close files, unlock mutexes, join threads, restore states, and format output. You just have to keep an eye out for when you see these initialize/finalize constructs emerging in your code and stick that code in constructors/deconstructors.

@@ -67,7 +67,7 @@ do_something(Object().set_name("object").set_value(100));
 
 The first thing to notice is how much more concise the method chaining case is. What is more subtle is the lifetime of the `Object()`. Without method chaining, `object` lives as an `lvalue` until it goes out of scope. You could add `{}` to expedite that process. But that would also make the code even less concise.
 
-With method chaining, the lifetime of `Object()` is naturally minimized allowing any resources used by object to be released as soon as `do_something()` finishes.
+With method chaining, the lifetime of `Object()` is naturally minimized allowing any resources used by an object to be released as soon as `do_something()` finishes.
 
 # Using Macros
 
@@ -97,7 +97,7 @@ class Object {
 }
 ```
 
-This has the added bonus of forcing you to provide an initial value to all members which has saved me debugging time on more than one occasion.
+This has the bonus of forcing you to provide an initial value to all members. This has saved me debugging time on more than one occasion.
 
 # So What?
 
