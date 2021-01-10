@@ -13,47 +13,28 @@ title: ADC Thermistor Circuit and Lookup Table
 ---
 
 ![Thermistor Circuit](/images/thermistor-circuit.svg)
-Thermistors are simple to integrate in embedded designs but their temperature
-response can be challenging to interpret.  A lookup table is a convenient way
-to convert a thermistor's ADC reading to temperature.
+Thermistors are simple to integrate into embedded designs but their temperature response can be challenging to interpret.  A lookup table is a convenient way to convert a thermistor's ADC reading to temperature.
 
-A thermistor's resistance varies with temperature.  As an example, assume T1
-in the circuit above to be part number NTCLE413E2103H400 from
-Vishay/Dale Inc. This thermistor has the resistive characteristics shown
-in the table below.  At cold temperatures, the resistance is very large
-but decreases non-linearly as temperature increases.
-
+A thermistor's resistance varies with temperature.  As an example, assume T1 in the circuit above to be part number NTCLE413E2103H400 from Vishay/Dale Inc. This thermistor has the resistive characteristics shown in the table below.  At cold temperatures, the resistance is very large but decreases non-linearly as temperature increases.
 
 ![Resistance and Temperature](/images/resistance-temperature.svg)
-
 
 The complete datasheet for the part referenced is available [here](http://www.vishay.com/docs/29078/ntcle413.pdf).  The
 voltage at the ADC input is calculated using a voltage divider:
 
 $$ V_{ADC} = V_1 \frac{R_1}{R_1+T_1} $$
 
-When the \\(T_1\\) resistance is large, the voltage at the ADC input is close to
-zero.  As the thermistor gets warmer, the voltage gets closer to \\(V_1\\).  The
-transition, however, is non-linear.  This means for embedded firmware to
-interpret the ADC reading as a temperature, it needs to either calculate
-a complicated transfer function or approximate the temperature using a lookup
-table and linear extrapolation.
+When the \\(T_1\\) resistance is large, the voltage at the ADC input is close to zero.  As the thermistor gets warmer, the voltage gets closer to \\(V_1\\).  The transition, however, is non-linear.  This means for embedded firmware to interpret the ADC reading as a temperature, it needs to either calculate a complicated transfer function or approximate the temperature using a lookup table and linear extrapolation.
 
 ## Lookup Tables
 
-A lookup table consists of two (or more) columns of data, in this case, a column
-for the voltage representing the output of the sensing circuit and a column for
-the temperature.
+A lookup table consists of two (or more) columns of data, in this case, a column for the voltage representing the output of the sensing circuit and a column for the temperature.
 
 ## Creating the Lookup Table
 
-A spreadsheet program is an excellent tool to create (and update) the lookup
-table and can be designed to easily copy and paste as a data table in a C
-file.  The image below shows a screen shot of an example.  The highlighted
-portion can be directly copied and pasted into the code.
+A spreadsheet program is an excellent tool to create (and update) the lookup table and can be designed to easily copy and paste as a data table in a C file.  The image below shows a screenshot of an example.  The highlighted portion can be directly copied and pasted into the code.
 
 ![Lookup Table](/images/lookup-table-shot.svg)
-
 
 (The source file for the above image can be downloaded from
 this [link](https://dl.dropbox.com/u/33863234/CoActionOS/lookup-table-sheet.xlsx).)
@@ -63,18 +44,13 @@ extrapolation is used to estimate the temperature between the points.
 
 ## Extrapolating the Data
 
-To extrapolate the data between points, the firmware first needs to select two
-data points.  It must scan the values in the x-column and find the two values
-directly above and below the input.  The firmware then uses the point slope
-formula to extrapolate the temperature value.
+To extrapolate the data between points, the firmware first needs to select two data points.  It must scan the values in the x-column and find the two values directly above and below the input.  The firmware then uses the point-slope formula to extrapolate the temperature value.
 
 $$ m = \frac{y_0-y_1}{x_0-x_1} $$
 
 $$ y = m \cdot (x_0 - x_1) + y_1 $$
 
-The values x0, x1, y0, and y1 are taken from the lookup table.  The x value is
-the input from the ADC, and the y value is the temperature.  The code below
-implements a lookup table using floating point variables.
+The values `x0`, `x1`, `y0`, and `y1` are taken from the lookup table.  The x value is the input from the ADC, and the `y` value is the temperature.  The code below implements a lookup table using floating-point variables.
 
 ```c++
 #include <stdint.h>
@@ -138,10 +114,4 @@ void read_temp(void){
 
 ## Conclusion
 
-Thermistors are great to use in embedded designs because they come in a variety
-of shapes and sizes and are easy to interface with a microcontroller ADC input.  The
-main design challenge is interpreting the non-linear temperature response.  Taking
-the temperature response and creating a lookup table using a spreadsheet is a
-relatively easy way of getting the table in C code.  The firmware then just
-needs to use linear extrapolation to approximate the temperature between
-points in the lookup table.
+Thermistors are great to use in embedded designs because they come in a variety of shapes and sizes and are easy to interface with a microcontroller ADC input.  The main design challenge is interpreting the non-linear temperature response.  Taking the temperature response and creating a lookup table using a spreadsheet is a relatively easy way of getting the table in C code.  The firmware then just needs to use linear extrapolation to approximate the temperature between points in the lookup table.

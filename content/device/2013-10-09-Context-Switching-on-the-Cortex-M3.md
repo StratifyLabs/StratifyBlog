@@ -52,7 +52,7 @@ switching code.
 
 ### Context Switching Software Implementation
 
-The RTOS manages the interrupts and stacks in order to achieve
+The RTOS manages the interrupts and stacks to achieve
 context switching.  When switching contexts, the RTOS needs a way
 to keep track of which tasks are doing what using a task or scheduler
 table.  Three routines are then required to: perform the context
@@ -69,15 +69,14 @@ be used for an entry in the task table:
 ```c++
 typedef struct {
      void * sp; //The task's current stack pointer
-     int flags; //Status flags includes activity status, parent task, etc
+     int flags; //Status flags include activity status, parent task, etc
 } task_table_t;
 int current_task;
 task_table_t task_table[MAX_TASKS];
 ```
 
 The sp member stores the value of the task's stack pointer, while
-flags holds the task status. In this example, the task uses two
-status bits: one to indicate that the table entry is in use and
+the flags member holds the task status. In this example, the task uses two status bits: one to indicate that the table entry is in use and
 the other to specify whether or not to execute the task.
 
 ### Context Switching Routine
@@ -86,11 +85,10 @@ The context switcher needs to:
 
 - save the state of the current task,
 - update the current task index to the next task to be executed,
-- set up the CPU to either use the MSP (if it's time to run the kernel) or the PSP,
-- and finally load the context of the task which is about to execute.
+- set up the CPU to use the MSP (if it's time to run the kernel) or the PSP,
+- and finally, load the context of the task which is about to execute.
 
-The following code is an example of a context switcher, preceded by some
-helper functions, and the interrupt handlers.
+The following code is an example of a context switcher, preceded by some helper functions, and the interrupt handlers.
 
 ```c++
 static uint32_t * stack; //This is stored on the heap rather than the stack

@@ -20,11 +20,11 @@ I recently rewrote a family of C++ libraries that I had been using for 10 years.
 
 # New Approach to Error Handling
 
-The first them tackled in the rewrite was error-handling. Of course, this comes with the no-exceptions caveat because this code needs to run on highly constrained systems. Previously, I was taking the classic C approach to error handling or returning a negative value if there was an error and zero or greater for non-error. What I hated the most about the previous approach was the needed to cascade the error up and down the call graph until it could be handled.
+The first item tackled in the rewrite was error-handling. Of course, this comes with the no-exceptions caveat because this code needs to run on highly constrained systems. Previously, I was taking the classic C approach to error handling or returning a negative value if there were an error and zero or greater for non-error. What I hated the most about the previous approach was the need to cascade the error up and down the call graph until it could be handled.
 
-I also considered adding an error messsage to a base class. But this would mean every class would have its own set of errors, and every object would need to be error checked.
+I also considered adding an error message to a base class. But this would mean every class would have its own set of errors, and every object would need to be error checked.
 
-After being unsatisfied with these classical approaches, I tried to break down exactly what I was trying to capture with the errors. As a result I came up with some important insights:
+After being unsatisfied with these classical approaches, I tried to break down exactly what I was trying to capture with the errors. As a result, I came up with some important insights:
 
 - Each execution thread should only allow one error at a time.
 - All programming errors should be fixed immediately
@@ -32,7 +32,7 @@ After being unsatisfied with these classical approaches, I tried to break down e
 
 # Use One Error per Execution Thread
 
-Rather than cascading errors by examining return values or checking objects for errors, the error context can be stored as a thread local value. For single-threaded applications, that is just one error context per program.
+Rather than cascading errors by examining return values or checking objects for errors, the error context can be stored as a thread-local value. For single-threaded applications, that is just one error context per program.
 
 ## The Error Context
 
@@ -56,7 +56,7 @@ class ErrorContext {
 };
 ```
 
-Achieving thread local storage on POSIX systems is actually quite simple. Because `errno` is thread-safe, you can look at `&errno` to determine what error context you are in. The `m_signature` value is assigned to `&errno`. Even if you aren't using POSIX, newlib uses thread-safe `errno` so the approach works on any newlib run-time as well.
+Achieving thread-local storage on POSIX systems is actually quite simple. Because `errno` is thread-safe, you can look at `&errno` to determine what error context you are in. The `m_signature` value is assigned to `&errno`. Even if you aren't using POSIX, newlib uses thread-safe `errno` so the approach works on any newlib run-time as well.
 
 ```c++
 static ErrorContext m_error; //used for first thread
@@ -118,7 +118,7 @@ if( File().open("path").write(buffer, sizeof(buffer)).is_error() ){
 }
 ```
 
-If you always follow rule #1, your error context will always pinpoint exactly where an error occured. Unfortunately, it isn't always where the bug is, but it gives you a good idea.
+If you always follow rule #1, your error context will always pinpoint exactly where an error occurred. Unfortunately, it isn't always where the bug is, but it gives you a good idea.
 
 # Fix All Errors Immediately
 
@@ -145,7 +145,7 @@ copy(memory, buffer, 64);
 
 # Handling User Errors
 
-Users errors by nature are application specific. This means that a multi-purpose C++ framework cannot address user errors. It can identify programming and execution errors, but the application code must translate that into an action the user can take to correct the problem.
+User errors by nature are application-specific. This means that a multi-purpose C++ framework cannot address user errors. It can identify programming and execution errors, but the application code must translate that into an action the user can take to correct the problem.
 
 For the file example above:
 

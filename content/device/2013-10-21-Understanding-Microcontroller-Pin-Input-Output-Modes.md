@@ -15,7 +15,7 @@ title: Understanding Microcontroller Pin Input/Output Modes
 katex: true
 ---
 
-GPIO (aka General Purpose input/output) is the simplest of microcontroller IO. Even so, GPIO comes in various types and varieties. There is input, output, pull-up, pull-down, push-pull, high-drive, open-drain and more. We will take a look at each of these and cut through the confusion so you know exactly how you need to configure your pins.
+GPIO (aka General Purpose input/output) is the simplest of microcontroller IO. Even so, GPIO comes in various types and varieties. There is input, output, pull-up, pull-down, push-pull, high-drive, open-drain, and more. We will take a look at each of these and cut through the confusion so you know exactly how you need to configure your pins.
 
 ### Input Modes
 
@@ -29,7 +29,7 @@ GPIO input modes include
 
 ####  Floating, High Impedance, Tri-Stated
 
-Floating, high impedance and tri-stated are three terms that mean the same thing: the pin is just flopping in the breeze. Its state is indeterminate unless it is driven high or low externally. You only want to congfigure a pin as floating if you know it will be driven externally. Otherwise, configure the input using pulling resistors.
+Floating, high impedance, and tri-stated are three terms that mean the same thing: the pin is just flopping in the breeze. Its state is indeterminate unless it is driven high or low externally. You only want to configure a pin as floating if you know it will be driven externally. Otherwise, configure the input using pulling resistors.
 
 > **A Word on Impedance**. Impedance is very similar to resistance but considers how a circuit reacts when a changing voltage is applied. A resistor only has resistance. But [inductors]({{< relref "2019-09-25-Inductors-for-Makers.md" >}}) and [capacitors]({{< relref "2019-09-17-Capacitors-for-Makers.md" >}}) have impedance (resistance + reactance). Now you know!
 
@@ -47,7 +47,7 @@ When a GPIO is configured in repeater mode, the pull-up is enabled when the pin 
 
 #### Hysteresis
 
-Virtually all GPIO inputs use a principle called hysteresis to prevent spurious changes in state when an input changes. I think of hysteresis of having a low threshold to go low and a high threshold to go high. So if you are somewhere in the middle, nothing changes. You can see this in the graph below on where `A` (with no hysteresis) has some state changes on that `B` (with hysteresis) filters out.
+Virtually all GPIO inputs use a principle called hysteresis to prevent spurious changes in the state when an input changes. I think of hysteresis as having a low threshold to go low and a high threshold to go high. So if you are somewhere in the middle, nothing changes. You can see this in the graph below on where `A` (with no hysteresis) has some state changes on that `B` (with hysteresis) filters out.
 
 ![Hysteresis Graph](/images/smitt_hysteresis_graph.svg)
 
@@ -57,7 +57,7 @@ The low threshold can be found in the datasheet in the "Electrical Characteristi
 
 #### Push-Pull
 
-A push-pull output is another aptly-name GPIO mode. The pin as the ability to "push" the signal high or "pull" it low. It does this using a pair of complementary transistors. You have probably heard of "CMOS" technology. The C stands for "complementary". A [CMOS]({{< relref "2013-10-14-How-Microcontrollers-Work.md#cmos" >}}) device has a pushing transistor [(PMOS) and a pulling transistor (NMOS)]({{< relref "2013-10-14-How-Microcontrollers-Work.md#field-effect-transistors-fets" >}}).
+A push-pull output is another aptly-named GPIO mode. The pin has the ability to "push" the signal high or "pull" it low. It does this using a pair of complementary transistors. You have probably heard of "CMOS" technology. The C stands for "complementary". A [CMOS]({{< relref "2013-10-14-How-Microcontrollers-Work.md#cmos" >}}) device has a pushing transistor [(PMOS) and a pulling transistor (NMOS)]({{< relref "2013-10-14-How-Microcontrollers-Work.md#field-effect-transistors-fets" >}}).
 
 In the circuit below where `I` is the input and `O` is the output
 
@@ -73,7 +73,7 @@ In the circuit below where `I` is the input and `O` is the output
 
 #### Open-Drain
 
-To understand what open drain means, we need to look at the anatomy of a MOSFET transistor. The MOSFET (NMOS in this case) has three terminals.
+To understand what open-drain means, we need to look at the anatomy of a MOSFET transistor. The MOSFET (NMOS in this case) has three terminals.
 
 - Drain (spoiler-alert this is the "drain" part of "open-drain")
 - Gate
@@ -90,16 +90,16 @@ On an open-drain pin, there is no "push" transistor. So
 - when `I` is 1, `O` is pulled to 0
 - when `I` is 0, `O` is "open" (get it? The drain is open as in open-drain pin)
 
-If you recall about 2 minutes ago, we don't want to leave pins floating so in most cases open-drain pins will have an external pullup resistor. If you are really tricky (of course, you are), you can configure the MCU's pull-up resistor and use the pin in open-drain output mode.
+If you recall about 2 minutes ago, we don't want to leave pins floating so in most cases open-drain pins will have an external pullup resistor. If you are tricky (of course, you are), you can configure the MCU's pull-up resistor and use the pin in open-drain output mode.
 
-One of the cool things about open-drain pins is that you can have more than one open drain output connected to an MCU input. If any of the open-drains are pulling the line to zero, the input will be zero. Since none are ever pushing, you won't have any digital infighting (which is worse than floating pins). This is why many sensors have open-drain outputs for signaling events. 
-You can connect a bunch of them to one microcontroller interrupt then use the [I2C (or other bus)]({{< ref "2019-07-25-My-Favorite-Serial-Bus.md" >}}) to see which one is active.
+One of the cool things about open-drain pins is that you can have more than one open-drain output connected to an MCU input. If any of the open-drains are pulling the line to zero, the input will be zero. Since none are ever pushing, you won't have any digital infighting (which is worse than floating pins). This is why many sensors have open-drain outputs for signaling events. 
+You can connect a bunch of them to one microcontroller interrupt then use the [I2C (or another bus)]({{< ref "2019-07-25-My-Favorite-Serial-Bus.md" >}}) to see which one is active.
 
 #### High Drive
 
 When a GPIO has high drive capability, it is just a push-pull pin that can source or sink more current than usual. A typical push-pull output is able to source/sink around +/-8ma where a high drive output may be up to +/-40ma. Again, that "Electrical Characteristics" section of the datasheet is your goto source for the details.
 
-Understanding the current capabilities of pins is important if you are trying to drive LEDs or do anything that is more than just sending data back and forth. If you want [a nice bright LED indicator]({{< ref "2013-10-24-Using-LEDs-in-Embedded-Designs.md" >}}), you will use about 20ma which is more than a run-of-the-mill GPIO pin can provide.
+Understanding the current capabilities of pins is important if you are trying to drive LEDs or do anything more than just sending data back and forth. If you want [a nice bright LED indicator]({{< ref "2013-10-24-Using-LEDs-in-Embedded-Designs.md" >}}), you will use about 20ma which is more than a run-of-the-mill GPIO pin can provide.
 
 ### The End
 

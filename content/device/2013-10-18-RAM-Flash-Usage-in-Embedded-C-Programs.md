@@ -25,7 +25,7 @@ title: RAM/Flash Usage in Embedded C Programs
 |                               |
 +-------------------------------+   ^
 |                               |   |
-|    Read Only                  |   |
+|    Read-Only                  |   |
 |    Data                       |   |
 |                               |   |  Address
 +-------------------------------+   |  Values
@@ -49,10 +49,10 @@ Memory in a C program includes code and data.  Code is by nature read-only and e
 
 - non-executable
 - read-only or read-write
-- statically or dyncamilly allocated
+- statically or dynamically allocated
 - on the stack or the heap
  
-In desktop programs, the entire memory map is managed through virtual memory using a hardware construct, called a Memory Management Unit (MMU), to map the program's memory to physical RAM.  In RAM-constrained embedded systems lacking an MMU, the memory map is divided in to a section for flash memory (code and read-only data) and a section for RAM (read-write data).
+In desktop programs, the entire memory map is managed through virtual memory using a hardware construct, called a Memory Management Unit (MMU), to map the program's memory to physical RAM.  In RAM-constrained embedded systems lacking an MMU, the memory map is divided into a section for flash memory (code and read-only data) and a section for RAM (read-write data).
 
 > **Note.** This article
 talks about specifics of the C language implementation using GCC with the ARM Cortex-M architecture. Other implementations differ on specifics, but the basic concepts are the same.
@@ -116,7 +116,7 @@ The read-write data that is stored in RAM is further categorized as statically o
 
 #### Data vs bss
 
-Statically allocated memory means that the compiler determines the memory address of the variable at compile time.  Static data is divided in two sections:  `data` and `bss` (there is a [wikipedia page](https://en.wikipedia.org/wiki/.bss) dedicated to why it is called bss).  The difference is that `data` is assigned an intial, non-zero value when the program starts while variables in the `bss` section are initialized to zero.  For clarification, see the below example:
+Statically allocated memory means that the compiler determines the memory address of the variable at compile time.  Static data is divided in two sections:  `data` and `bss` (there is a [wikipedia page](https://en.wikipedia.org/wiki/.bss) dedicated to why it is called bss).  The difference is that `data` is assigned an initial, non-zero value when the program starts while variables in the `bss` section are initialized to zero.  For clarification, see the below example:
 
 ```c++
 #include <stdio.h>
@@ -142,7 +142,7 @@ Static memory should not be confused with the C keyword `static`.  While all C `
 #include <stdio.h>
 
 int global_var; //statically allocated as a global variable
-static int static_var; //statically allocated but only accessible within file
+static int static_var; //statically allocated but only accessible within the file
 
 void my_function(void){
      static int my_static = 0; //statically allocated, accessible within my_function
@@ -166,7 +166,7 @@ my_static:4, my_stack:0
 
 ## Dynamically Allocated
 
-While the compiler determines the memory address of static memory at compile time, the locations of dynamically allocted variables are determined while the program is running.  The two dynamic memory constructs in C are: 
+While the compiler determines the memory address of static memory at compile-time, the locations of dynamically allocated variables are determined while the program is running.  The two dynamic memory constructs in C are: 
 
 - the heap
 - the stack
@@ -253,11 +253,11 @@ The `x` variable in `my_function()` is likely assigned to a register, but if no 
 1) it is too large for register allocation 
 2) it is an array 
 
-Many architectures have instructions that make working with arrays in memory (rather than registers) perform well.  Unlike global and static variables, local variables are only initialized when the program assigns a value to them.  For example, before the line `x = a + b + c + strlen(buf);`, the value of `x` is whatever the value the register or memory location had before this line was executed.  Therefore, local variables should never to used before they are assigned a value within the function.
+Many architectures have instructions that make working with arrays in memory (rather than registers) perform well.  Unlike global and static variables, local variables are only initialized when the program assigns a value to them.  For example, before the line `x = a + b + c + strlen(buf);`, the value of `x` is whatever the value the register or memory location had before this line was executed.  Therefore, local variables should never be used before they are assigned a value within the function.
 
 ## Registers vs Registers
 
-It is important to make the distinction between the registers used with local variables and those used to configure the microcontroller features and peripherals.  Microcontroller datasheets and user manuals refer to "registers" that are used, for example, to turn the UART on and off and configure its baud rate.  These configuration "registers" are not the same as the ones mentioned above used with local function variables.  Configuration registers are accessed in the same way that RAM is; they are assigned a fixed location in the memory map. Core registers (such as `r0`) are memory that is tightly integrated with the [central processing logic]({{< relref "2013-10-14-How-Microcontrollers-Work.md#microcontroller-architecture" >}}) of the microcontroller and an integral part of the instruction set.
+It is important to make the distinction between the registers used with local variables and those used to configure the microcontroller features and peripherals.  Microcontroller datasheets and user manuals refer to "registers" that are used, for example, to turn the UART on and off and configure its baud rate.  These configuration "registers" are not the same as the ones mentioned above used with local function variables.  Configuration registers are accessed in the same way that RAM is; they are assigned a fixed location in the memory map. Core registers (such as `r0`) are the memory that is tightly integrated with the [central processing logic]({{< relref "2013-10-14-How-Microcontrollers-Work.md#microcontroller-architecture" >}}) of the microcontroller and an integral part of the instruction set.
 
 ## Conclusion
 

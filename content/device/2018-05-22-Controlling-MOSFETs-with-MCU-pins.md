@@ -19,7 +19,7 @@ MOSFETs come in two varieties: N-channel (shown-above) and P-channel (pictured b
 
 ![P Channel MOSFET](/images/p-channel.png)
 
-P and N channel MOSFETs are complements (In fact, CMOS, which means complementary metal-oxide semiconductor, uses P and N channel devices to form a single piece of logic).  Here are how they complement each other:
+P and N channel MOSFETs are complements (In fact, CMOS, which means complementary metal-oxide-semiconductor, uses P and N channel devices to form a single piece of logic).  Here are how they complement each other:
 
 - N channel requires a positive gate voltage to activate; P channel requires a negative one
 - N channel allows current to flow from drain to source when on; P channel current flows from source to drain
@@ -48,6 +48,6 @@ In this configuration, when PC0 is high, the motor is off. If we want to ensure 
 
 If you want to understand how to use MOSFETs in just about any situation, here is what to consider:
 
-- Make sure you won't exceed the current rating of the part in your design. You can usually find a reaonsable priced part with 5 or 10 times the required current.
+- Make sure you won't exceed the current rating of the part in your design. You can usually find a reasonably priced part with 5 or 10 times the required current.
 - Make sure the drain to source voltage of the part won't be exceeded in your design (not a common issue).
-- Make sure you apply a sufficient gate to source voltage when turning the MOSFET on. Each part has a threshold voltage where it is considered on. But if you are driving many amps, you will want to drive the part at much higher than the threshold voltage to minimize heat in the MOSFET. Just don't exceed the maximum gate-source voltage for the part.
+- Make sure you apply a sufficient gate to source voltage when turning the MOSFET on. Each part has a threshold voltage where it is considered to be on. But if you are driving many amps, you will want to drive the part at much higher than the threshold voltage to minimize heat in the MOSFET. Just don't exceed the maximum gate-source voltage for the part.
