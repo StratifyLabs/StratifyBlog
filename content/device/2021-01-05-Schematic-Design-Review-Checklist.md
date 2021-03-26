@@ -11,10 +11,11 @@ tags:
 title: Schematic Design Review Checklist 
 ---
 
+> Warning. This is a work in progress.
+
 After many years of designing circuit boards, this is my working list when doing a final review of schematics. I design boards with microcontrollers so the list is skewed to that end.
 
 > See the [PCB Layout Checklist]({{< relref "2021-01-05-PCB-Layout-Design-Review-Checklist.md" >}})
-
 
 - Add decoupling capacitors to power pins
 - Ensure I2Cs lines have pullup resistors

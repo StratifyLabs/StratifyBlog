@@ -11,6 +11,8 @@ tags:
 title: PCB Layout Review Checklist 
 ---
 
+> Warning. This is a work in progress.
+
 After many years of designing circuit boards, this is my working list when doing a final review of PCB layout. I design boards with microcontrollers so the list is skewed to that end.
 
 > See the [Schematic Checklist]({{< relref "2021-01-05-Schematic-Design-Review-Checklist.md" >}})
