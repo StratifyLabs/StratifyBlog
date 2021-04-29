@@ -81,6 +81,15 @@ Not that:
 - Avoid slots in power and ground planes
 - Series resistor terminate clock signals to slow rise/fall times
 - Place clocks and circuitry as far away from IO as possible
+- All I/O cables are antennas
+- Below 100KHz DC resistance dominates the return path
+- Above 100KHz current follows plane below trace. If the trace doesn't have a plane, a loop antenna is created
+- Avoid parasitic coupling: ie routing a cable over an MCU
+- Power input connected shoud all have RF capacitors
+- Place all I/O connectors (including power) on the edge of the board
+- Aim for prototypes to be 6dB below spec to ensure all productions units are passing
+- FCC Measurements are made with a bandwidth in the range of 150 KHz
+
 
 - All traces whose length (in inches) is equal to or greater than the signal rise/fall time (in nanoseconds) must have provision for a series-terminating resistor (typically 33 ohms).
 - Above 25 MHz PCB's should have two (or more) ground planes.
