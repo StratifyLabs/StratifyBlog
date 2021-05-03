@@ -72,6 +72,7 @@ private:
 //usage
 Mutex mutex0; //automatically initialized
 mutex0.lock(); //impossible to pass the wrong value
+mutex0.unlock(); //unlock before destroying
 //automatically destroyed when Mutex goes out of scope
 
 ```
@@ -265,7 +266,7 @@ if( std::string(hello) == std::string(world) ){
 }
 ```
 
-Polymorphism goes a long way to make code more concise and readable. It also means less room for mistakes (like not using `strncmp()`).
+Changing what operators (like `==`, `+`, `-`, etc) do is also referred to as overloading an operator. This is just one type of polymorphism in C++. When you re-implement a virtual method, that is another way C++ uses polymorphism. Polymorphism goes a long way to make code more concise and readable. It also means less room for mistakes (like not using `strncmp()`).
 
 ## 7. `constexpr`
 
