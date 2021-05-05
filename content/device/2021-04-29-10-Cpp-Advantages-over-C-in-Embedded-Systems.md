@@ -183,7 +183,7 @@ public:
     m_mutex.unlock();
   }
 private:
-  Mutex m_mutex;
+  Mutex & m_mutex;
 }
 
 int make_magic_happen(int value){
@@ -338,8 +338,14 @@ public:
   int write(const void * buffer, int nbyte);
 private:
   void * m_object;
+
+  //only this class can access this method
+  int read_internal(void * buffer, int nbyte);
+
 }
 ```
+
+You will notice the use of `public` and `private` keywords allow you to control which variables and methods are accessible outside the scope of `Logic`. This type of selective access is much easier in C++ than C (you have to use `static` file scoping).
 
 Namespaces are a way of creating a scope without creating a class. These are great for large projects or frameworks to ensure there are no naming collisions.
 
