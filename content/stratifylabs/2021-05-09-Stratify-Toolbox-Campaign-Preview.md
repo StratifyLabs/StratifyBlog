@@ -77,7 +77,11 @@ View on Github/Gitlab/Bitbucket etc. Having your reports in version control allo
 
 ## Remote Access
 
-You can remotely access your Toolbox from anywhere in the world without any router/vpn setup and **no monthly fees**! You just need to create a free Google Firebase project and `curl -X PUT` a configuration file on your Toolbox. You can then use the firebase command line tools to post binary images to your Toolbox and download trace output files.
+You can remotely access your Toolbox from anywhere in the world without any router/vpn setup and **no monthly fees**! Do it in three easy steps:
+
+1. Create a free Google Firebase project
+1. `curl -X PUT` your Firebase project details on your Toolbox
+1. Post binary images to Firebase and download the trace output using `firebase-tools`
 
 ### What MCUs are Supported?
 
@@ -99,15 +103,19 @@ The Stratify Toolbox SDK allows you to customize anything. Build your own:
 - web application: add your own charts by modifying the fully-open source `toolbox-web-app`
 - flash/trace delegate: add support for a UART or I2C serial bootloader protocol
 
+All of the Stratify Toolbox applications are open-source and available to modify, improve, and share.
+
 ## More Features
 
 The Toolbox includes additional features to help with board bring-up and other firmware programming challenges.
 
 - I2C Scan Tool
 - UART Data Logger
-
-
-> Be sure to sign up for updates to hear more details about these features!
+- Stand-Alone Flash Programmer
+- I2C EEPROM Programmer
+- Built-in Voltage Reference
+- Free software updates
+- And more: be sure to sign up for updates for more details!
 
 ## Specifications
 
