@@ -7,6 +7,8 @@ tags: [business, product development, stratifylabs, toolbox]
 title: Stratify Toolbox Campaign Preview
 ---
 
+> Version 1
+
 This is a preview of the upcoming [Stratify Toolbox Crowd Supply Campaign](https://www.crowdsupply.com/stratify/toolbox).
 
 Your [feedback](https://www.crowdsupply.com/stratify/toolbox/ask-question) is welcome!
@@ -32,6 +34,8 @@ Rather than focusing on breakpoints, and code-stepping like most tools, the Stra
 **No Software to Install.** There is NO HOST SOFTWARE to install. Last time, there is **no software to install**.
 
 ![Fixing Printf](/images/touch-type-click.png)
+
+**3 Ways to Toolbox:**
 
 - Use the **Touch** display for stand-alone operation
 - **Type** `curl` commands in the terminal to integrate with your workflow
@@ -71,15 +75,29 @@ View on Github/Gitlab/Bitbucket etc. Having your reports in version control allo
 
 ![IR Mosaic](/images/ir-github.png)
 
+## Remote Access
+
+You can remotely access your Toolbox from anywhere in the world without any router/vpn setup and **no monthly fees**! You just need to create a free Google Firebase project and `curl -X PUT` a configuration file on your Toolbox. You can then use the firebase command line tools to post binary images to your Toolbox and download trace output files.
+
+### What MCUs are Supported?
+
+**Flashing**
+
+Out of the box, the Toolbox supports programming any STM32 MCU over SWD.
+
+The SDK includes a flash delegate template where you can support any ARM Cortex-M SWD MCU with about 15 lines of code. You just need to specify the flash/RAM configuration and write a flash write/erase driver.
+
+**Tracing**
+
+Tracing is supported on SWO, UART, and SPI serial protocols.
+
 ### SDK
 
-The Stratify Toolbox includes an SDK that allows you to customize anything. If you have a custom bootloader, you create your own flash delegate. You can then use that delegate in both development and production.
+The Stratify Toolbox SDK allows you to customize anything. Build your own:
 
-The default delegates include:
-
-- Flash/SWD/STM32 (I am working on more flash delegates. Tell me what YOU want).
-- SWO/text (supports ascii and `printf()` format off-loading)
-- UART/text (supports ascii and `printf()` format off-loading)
+- GUI Application: build a customized test or flash programming application for production
+- web application: add your own charts by modifying the fully-open source `toolbox-web-app`
+- flash/trace delegate: add support for a UART or I2C serial bootloader protocol
 
 ## More Features
 
@@ -104,6 +122,8 @@ The Toolbox includes additional features to help with board bring-up and other f
 
 ## Comparisons
 
+Flash Programmers/Debuggers:
+
 |                                 | Toolbox               | JLink Wifi     | Cyclone         |
 |---------------------------------|-----------------------|----------------|-----------------|
 | **Manufacturer**                | Stratify Labs, Inc    | Segger         | NXP             |
@@ -116,7 +136,7 @@ The Toolbox includes additional features to help with board bring-up and other f
 | **Supported voltage range**     | 1.8 V to 5.5 V        | 1.2 V to 5.5 V | 1.2 V / 5 V     |
 | **Download speed into RAM**     | 0.8 MB/sec            | 1 MB/sec       | Unknown         |
 | **SD card**                     | 256MB (card included) | No             | With upgrades   |
-| **Wi-Fi**                       | Yes                   | No             | No (ethernet)   |
+| **Wi-Fi**                       | Yes                   | Yes            | No (ethernet)   |
 | **Display**                     | IPS LCD w/ cap. touch | No             | LCD Touchscreen |
 | **Customizable Web interface**  | Yes                   | No             | No              |
 | **SDK**                         | Yes                   | No             | No              |
@@ -140,7 +160,7 @@ If you want to use the SDK, check out these repositories
 
 ## Manufacturing Plan, Fulfillment and Logistics
 
-Due to the worldwide shortage of parts, the manufacturing plan is trickier than usual. Normally, I would just outsource to a turn-key PCB assembly house. But that would take a year. The plan is (best case scenario):
+Due to the worldwide shortage of parts, the manufacturing plan is trickier than usual. Normally, I would just outsource to a turn-key PCB assembly house, but with the shortages, that would take a year. The plan is (best case scenario):
 
 - Order crucial parts or alternates (first week)
 - Order plastic injection molds and parts (first week)
@@ -151,13 +171,11 @@ Due to the worldwide shortage of parts, the manufacturing plan is trickier than 
 - Final assembly with domestic PCB assembly house (8 weeks)
 - Send product to Crowd Supply for fulfillment (last week)
 
-Using this plan, it is not unrealistic to deliver project in Q1 of 2022. The worst case scenario is that no alternate parts will be available for crucial components. In which case, the delivery date is pushed back to June or July of 2022.
-
-As of this writing, there are alternate parts for crucial components in stock at major distributors.
+Using this plan, the Toolboxes will ship in Q1 of 2022. The worst case scenario is that no alternate parts will be available for crucial components. In which case, the delivery date is pushed back to June or July of 2022.
 
 ## Risks and Challenges
 
-The biggest challenge is getting parts and then making them work. The crucial parts are the MCU and the Wifi. The MCU can be a number of different STM32F7 or STM32H7 chips and still get the job done. But switching means updating the system firmware to work with the alternate chip. The Wifi is currently spec'd as the ATWINC1500 (no stock), but the ATWINC3400 is available (as of this writing) and would work with very little system firmware updates.
+The biggest challenge is procuring parts including alternates/substitues and integrating the alternates into the hardware/firmware. The crucial parts are the MCU and the Wifi. The MCU can be a number of different STM32H7 chips and still get the job done. Switching means updating the system firmware to work with the alternate chip which will a 3 to 4 weeks of development time. The Wifi is currently spec'd as the ATWINC1500 (no stock), but the ATWINC3400 is available (as of this writing) and would work with very little system firmware updates.
 
-The second biggest challenge is certification. You just never know if you are going to come across some nagging issue that will cause delays. I estimated 8 weeks which should be time to do 1 or 2 board spins if they are needed to pass FCC/CE certification testing.
+The second biggest challenge is certification. Unforeseen issues can cause delays. I estimated 8 weeks which should be time to do 1 or 2 board spins if they are needed to pass FCC/CE certification testing.
 
