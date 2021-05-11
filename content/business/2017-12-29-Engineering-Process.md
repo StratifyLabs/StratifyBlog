@@ -37,31 +37,25 @@ The following is an example of a few requirements with their accompanying specif
 
 Note, not all requirements will necessarily have additional specifications.
 
-<div class="panel panel-default">
-  <div class="panel-body">
-    <h4>Requirements</h4>
-    <ol>
-      <li>All Day Battery Life</li>
-      <li>Fits in your pocket</li>
-      <li>Waterproof</li>
-    </ol>
 
-    <h4>Specifications</h4>
-    <ol>
-      <li>Battery must last 12 hours with 4 hours of active usage</li>
-      <li>Dimensions must not exceed 4x4x0.5 inches</li>
-      <li>Must conform to IP67 waterproof standard</li>
-    </ol>
-
-    <h4>Functional Test Outline</h4>
-    <ol>
-      <li>Put device in active mode for 4 hours then sleep mode for 8 hours and log battery levels</li>
-      <li>Measure device to ensure it meets the specified dimensions</li>
-      <li>Place one meter under water for at least 30 minutes, retrieve and check for damage</li>
-    </ol>
-
-  </div>
-</div>
+> #### Requirements
+> 
+>  - All Day Battery Life
+>  - Fits in your pocket
+>  - Waterproof
+> 
+> #### Specifications
+> 
+>  - Battery must last 12 hours with 4 hours of active usage
+>  - Dimensions must not exceed 4x4x0.5 inches
+>  - Must conform to IP67 waterproof standard
+> 
+> #### Functional Test Outline
+> 
+>  - Put device in active mode for 4 hours then sleep mode for 8 hours and log battery levels
+>  - Measure device to ensure it meets the specified dimensions
+>  - Place one meter under water for at least 30 minutes, retrieve and check for damage
+    
 
 > **Important Tip!** These documents are both super boring and super important. It will be well worth developing and maintaining these documents to ensure you don't miss anything when transitioning from development to production.
 

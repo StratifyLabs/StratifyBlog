@@ -3,7 +3,7 @@ categories:
 - Stratify Labs
 date: "2019-06-19"
 layout: post
-tags: [business, product development, stratifylabs]
+tags: [business, product development, stratifylabs, toolbox]
 title: The Stratify Toolbox
 ---
 **The Stratify Toolbox is coming soon...**
