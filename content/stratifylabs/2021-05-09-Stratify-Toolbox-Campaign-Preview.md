@@ -15,14 +15,13 @@ Your [feedback](https://www.crowdsupply.com/stratify/toolbox/ask-question) is we
 
 ## The Problem
 
-Programming microcontrollers is hard. It is tough to find and install the right software and get everything setup. The Stratify Toolbox takes a new approach to flashing and debugging microcontrollers.
+Developing microcontroller firmware is hard. The Stratify Toolbox takes a new approach to flashing and debugging microcontrollers.
 
-- NO host software to install! It works on ANY device with a browser and/or a command-line
-- Super-easy wifi setup using the touch display
+- **NO host software to install!** It works on ANY device with a browser and/or a command-line
+- **Super-easy** wifi setup using the touch display
+- **Designed for `printf()`-ers**
 
-**Designed for `printf()`-ers**
-
-Rather than focusing on breakpoints, and code-stepping like most tools, the Stratify Toolbox is maximize the workflow of developers who prefer `printf()` serial tracing over code-stepping.
+Rather than focusing on breakpoints, and code-stepping like most tools, the Stratify Toolbox provides powerful tools to those who prefer `printf()` serial tracing.
 
 **Fixing `printf()`**
 
@@ -34,54 +33,43 @@ Rather than focusing on breakpoints, and code-stepping like most tools, the Stra
 
 ![Fixing Printf](/images/touch-type-click.png)
 
-- Use the **Touch** display for stand-alone operation. 
-- **Type** `curl` commands in the terminal to integrate with your workflow. 
-- **Click** to use the embedded web server as a GUI for flashing and debugging.
-
-Setup the Wifi in less than 60 seconds
+- Use the **Touch** display for stand-alone operation
+- **Type** `curl` commands in the terminal to integrate with your workflow
+- **Click** to use the embedded web application as a GUI for flashing and debugging
 
 [Connect to Wifi](https://youtu.be/ol9aOj6xnAg)
 
+{{< youtube ol9aOj6xnAg >}}
+
 [Connect to target](https://youtu.be/b9TZABBLgmo)
+
+{{< youtube b9TZABBLgmo >}}
 
 
 ### Instrumentation: Go beyond Debugging
 
 
-| Debugging vs.             | Instrumenting             |
+| Debugging vs.            | Instrumentation           |
 |--------------------------|---------------------------|
 | Track single bugs        | See overall performance   |
 | Check a variable's value | Plot a variable over time |
 | Track a state change     | Draw a state diagram      |
-| Check one packet         | Draw a sequence diagram   |
+| Inspect one packet       | Draw a sequence diagram   |
 
 
-Turn this:
+The Toolbox transfors this terminal output:
 
-```
-DIR:hist:Malloc Performance:malloc:Occurences vs amount of time spent executing malloc()
-D:malloc:120
-D:malloc:130
-D:malloc:120
-D:malloc:110
-D:malloc:150
-...
-D:malloc:160
-D:malloc:110
-D:malloc:200
-D:malloc:110
-D:malloc:130
-```
+![IR Terminal](/images/ir-terminal-output.png)
 
-Into this:
+into these instrumentation charts:
 
-![Malloc Performance Historgram](/images/ir-histogram.png)
+![IR Mosaic](/images/ir-mosaic.png)
 
-**Export to Markdown or JSON**
+**Export to Markdown. Upload to Github.**
 
-View on Git* or import to Python for additional post-processing
+View on Github/Gitlab/Bitbucket etc. Having your reports in version control allows you to **track how your firwmare performance trends up over time**.
 
-SCREENSHOTS OF INSTRUMENTATION REPORTS ON GITHUB
+![IR Mosaic](/images/ir-github.png)
 
 ### SDK
 
@@ -95,7 +83,13 @@ The default delegates include:
 
 ## More Features
 
-Not only is the Stratify Toolbox a fantastic flash/debug tool designed specifically for `printf()`-style tracing, it can be used as a stand-alone flash programmer, I2C scan tool, UART baud-rate detector, and more. If you aren't quick ready to back the Toolbox, be sure to sign up for the updates for more details and how the Toolbox can make it a little less hard to develop microcontroller firmware.
+The Toolbox includes additional features to help with board bring-up and other firmware programming challenges.
+
+- I2C Scan Tool
+- UART Data Logger
+
+
+> Be sure to sign up for updates to hear more details about these features!
 
 ## Specifications
 
@@ -110,34 +104,33 @@ Not only is the Stratify Toolbox a fantastic flash/debug tool designed specifica
 
 ## Comparisons
 
-|                                 | Toolbox                                | JLink Base              | MultLink FX         |
-|---------------------------------|----------------------------------------|-------------------------|---------------------|
-| **Manufacturer** ~active        | Stratify Labs, Inc~active              | Segger ~active          | PE Micro ~active    |
-| **Price**                       | $299 ($399 retail) ~success            | About $399 ~danger      | About $399 ~danger  |
-| **Max. target interface speed** | 10 MHz ~danger                         | 15 MHz ~success         | Unknown ~info       |
-| **Stand-alone operation**       | Yes ~success                           | No ~danger              | No ~danger          |
-| **PC software required**        | No ~success                            | Yes ~danger             | Yes ~danger         |
-| **SWD/JTAG**                    | Yes ~success                           | Yes ~success            | Yes ~success        |
-| **SWO**                         | 8 MHz ~danger                          | 30 MHz ~success         | Yes ~info           |
-| **Supported voltage range**     | 1.8 V to 5.5 V ~warning                | 1.2 V to 5.5 V ~success | 3.3 V / 5 V ~danger |
-| **Download speed into RAM**     | 0.8 MB/sec ~success                    | 1 MB/sec ~warning       | Unknown ~info       |
-| **SD card**                     | 4 GB (card included) ~info             | No ~info                | No ~info            |
-| **Wi-Fi**                       | Yes ~success                           | No ~danger              | No ~danger          |
-| **Display**                     | IPS LCD with capacitive touch ~success | No ~danger              | No ~danger          |
-| **Customizable Web interface**  | Yes ~success                           | No ~danger              | No ~danger          |
-| **SDK**                         | Yes ~success                           | No ~danger              | No ~danger          |
-| **`printf()`-ing Awesome!**     | Yes ~success                           | No ~danger              | No ~danger          |
+|                                 | Toolbox               | JLink Wifi     | Cyclone         |
+|---------------------------------|-----------------------|----------------|-----------------|
+| **Manufacturer**                | Stratify Labs, Inc    | Segger         | NXP             |
+| **Price**                       | $399 ($499 retail)    | About $998     | About $610      |
+| **Max. target interface speed** | 6 MHz                 | 15 MHz         | Unknown         |
+| **Stand-alone operation**       | Yes                   | No             | Yes             |
+| **PC software required**        | No                    | Yes            | Yes             |
+| **SWD/JTAG**                    | Yes                   | Yes            | Yes             |
+| **SWO**                         | 6 MHz                 | 30 MHz         | Yes             |
+| **Supported voltage range**     | 1.8 V to 5.5 V        | 1.2 V to 5.5 V | 1.2 V / 5 V     |
+| **Download speed into RAM**     | 0.8 MB/sec            | 1 MB/sec       | Unknown         |
+| **SD card**                     | 256MB (card included) | No             | With upgrades   |
+| **Wi-Fi**                       | Yes                   | No             | No (ethernet)   |
+| **Display**                     | IPS LCD w/ cap. touch | No             | LCD Touchscreen |
+| **Customizable Web interface**  | Yes                   | No             | No              |
+| **SDK**                         | Yes                   | No             | No              |
+| **`printf()`-ing Awesome!**     | Yes                   | No             | No              |
 
 ## Support and Documentation
 
-All the documenation you need to operate the Toolbox is served from the web application.
+All the documenation you need to operate the Toolbox is served from the web application:
 
-TODO Make these 4 images a 2x2 matrix
+- Quick Start
+- HTTP API Reference
+- Instrumentation Specification
 
-![State Diagram](images/docs-quickstart.png)
-![State Diagram](images/docs-reference.png)
-![State Diagram](images/docs-trace1.png)
-![State Diagram](images/docs-trace2.png)
+![State Diagram](/images/docs-mosaic.png)
 
 If you want to use the SDK, check out these repositories
 
