@@ -7,7 +7,7 @@ tags: [business, product development, stratifylabs, toolbox]
 title: Stratify Toolbox Campaign Preview
 ---
 
-> Version 1
+> Version 2
 
 This is a preview of the upcoming [Stratify Toolbox Crowd Supply Campaign](https://www.crowdsupply.com/stratify/toolbox).
 
@@ -15,17 +15,26 @@ Your [feedback](https://www.crowdsupply.com/stratify/toolbox/ask-question) is we
 
 > VIDEO PREVIEW COMING SOON
 
-## The Problem
+## Rewards
 
-Developing microcontroller firmware is hard. The Stratify Toolbox takes a new approach to flashing and debugging microcontrollers.
+- Stratify Toolbox: 399USD
+- Includes 10-Pin ARM SWD Breakout board
+
+> Rewards will show in the right panel
+
+The Stratify Toolbox takes a new approach to **flashing and debugging microcontrollers**.
 
 - **NO host software to install!** It works on ANY device with a browser and/or a command-line
 - **Super-easy** wifi setup using the touch display
 - **Designed for `printf()`-ers**
+- **Remote Access** with no monthly fees or router configuration
 
-Rather than focusing on breakpoints, and code-stepping like most tools, the Stratify Toolbox provides powerful tools to those who prefer `printf()` serial tracing.
+![Overview Graphic](/images/toolbox-target-setup.png)
+
 
 **Fixing `printf()`**
+
+Rather than focusing on breakpoints and code-stepping like most tools, the Stratify Toolbox is built for those who prefer `printf()`-style serial tracing.
 
 ![Fixing Printf](/images/fixing-printf.png)
 
@@ -41,17 +50,25 @@ Rather than focusing on breakpoints, and code-stepping like most tools, the Stra
 - **Type** `curl` commands in the terminal to integrate with your workflow
 - **Click** to use the embedded web application as a GUI for flashing and debugging
 
-[Connect to Wifi](https://youtu.be/ol9aOj6xnAg)
 
 {{< youtube ol9aOj6xnAg >}}
-
-[Connect to target](https://youtu.be/b9TZABBLgmo)
+**Connect to Wifi**
 
 {{< youtube b9TZABBLgmo >}}
+**Connect to the Target**
+
+### Remote Access
+
+You can remotely access your Toolbox from anywhere in the world without any router/vpn setup and **no monthly fees**! Do it in three easy steps:
+
+1. Create a free Google Firebase project
+1. `curl -X PUT` your Firebase project details on your Toolbox
+1. Post binary images to Firebase and download the trace output using `firebase-tools`
+
+When you have your Toolbox setup with remote access, you can easily integrate with your continuous integration tools to run tests after every code commit.
 
 
 ### Instrumentation: Go beyond Debugging
-
 
 | Debugging vs.            | Instrumentation           |
 |--------------------------|---------------------------|
@@ -61,7 +78,7 @@ Rather than focusing on breakpoints, and code-stepping like most tools, the Stra
 | Inspect one packet       | Draw a sequence diagram   |
 
 
-The Toolbox transfors this terminal output:
+The Toolbox transforms this terminal output:
 
 ![IR Terminal](/images/ir-terminal-output.png)
 
@@ -69,41 +86,41 @@ into these instrumentation charts:
 
 ![IR Mosaic](/images/ir-mosaic.png)
 
-**Export to Markdown. Upload to Github.**
+**Export to Markdown**
 
-View on Github/Gitlab/Bitbucket etc. Having your reports in version control allows you to **track how your firwmare performance trends up over time**.
+View on Github/Gitlab/Bitbucket etc. **Track performance over time**.
 
 ![IR Mosaic](/images/ir-github.png)
-
-## Remote Access
-
-You can remotely access your Toolbox from anywhere in the world without any router/vpn setup and **no monthly fees**! Do it in three easy steps:
-
-1. Create a free Google Firebase project
-1. `curl -X PUT` your Firebase project details on your Toolbox
-1. Post binary images to Firebase and download the trace output using `firebase-tools`
 
 ### What MCUs are Supported?
 
 **Flashing**
 
-Out of the box, the Toolbox supports programming any STM32 MCU over SWD.
+- NXP: lpc11xx, lpc17xx, lpc40xx, lpc54xxx, lpc55xxx, lpc8xx
+- Freescale: k20dx, k22f, k28f, k32w042, k64f, k66f, k82f, ke15z, ke18f, kl02z, kl05z, kl25z, kl26z, kl27z, kl28z, kl43z, kl46z, kl82z, kw24d, kw41z
+- Nordic: nrf5x
+- Nuvoton: m252kg6ae, m263kiaae, m487jidae
+- Realtek: rtl8195am
+- STMicroelectronics: All STM32 Parts
+- TI: cc3220sf
+- Wiznet: w7500
+- Maxim: max32520, max32625
 
-The SDK includes a flash delegate template where you can support any ARM Cortex-M SWD MCU with about 15 lines of code. You just need to specify the flash/RAM configuration and write a flash write/erase driver.
+Is your MCU not in the list? You can create your own binary blob and configuration file to support flashing any ARM Cortex-M chip. Also, please let me know and I can add support in a future update.
 
 **Tracing**
 
-Tracing is supported on SWO, UART, and SPI serial protocols.
+Tracing is supported on SWO, UART, and SPI serial protocols independent of the MCU.
 
 ### SDK
 
-The Stratify Toolbox SDK allows you to customize anything. Build your own:
+The SDK allows you to install your own applications that run on the Toolbox.
 
 - GUI Application: build a customized test or flash programming application for production
 - web application: add your own charts by modifying the fully-open source `toolbox-web-app`
 - flash/trace delegate: add support for a UART or I2C serial bootloader protocol
 
-All of the Stratify Toolbox applications are open-source and available to modify, improve, and share.
+All of the Stratify Toolbox applications are open-source and freely available to modify, improve, and share.
 
 ## More Features
 
@@ -144,7 +161,7 @@ Flash Programmers/Debuggers:
 | **Supported voltage range**     | 1.8 V to 5.5 V        | 1.2 V to 5.5 V | 1.2 V / 5 V     |
 | **Download speed into RAM**     | 0.8 MB/sec            | 1 MB/sec       | Unknown         |
 | **SD card**                     | 256MB (card included) | No             | With upgrades   |
-| **Wi-Fi**                       | Yes                   | Yes            | No (ethernet)   |
+| **Wi-Fi**                       | Yes                   | Yes            | No              |
 | **Display**                     | IPS LCD w/ cap. touch | No             | LCD Touchscreen |
 | **Customizable Web interface**  | Yes                   | No             | No              |
 | **SDK**                         | Yes                   | No             | No              |
@@ -158,13 +175,7 @@ All the documenation you need to operate the Toolbox is served from the web appl
 - HTTP API Reference
 - Instrumentation Specification
 
-![State Diagram](/images/docs-mosaic.png)
-
-If you want to use the SDK, check out these repositories
-
-- [ToolboxAPI](): Repo for ToolboxAPI framework
-- [ToolboxApps](): Repo for Graphical Application
-- [ToolboxDelegates](): Repo for built-in delegates
+![Documentation image](/images/docs-mosaic.png)
 
 ## Manufacturing Plan, Fulfillment and Logistics
 
