@@ -7,6 +7,10 @@ tags: [business, product development, stratifylabs, toolbox]
 title: Stratify Toolbox Campaign Preview
 ---
 
+> Version 3
+
+I removed the features highlighting instrumentation. I added a focus on the ability to do secure production programming.
+
 > Version 2
 
 This is a preview of the upcoming [Stratify Toolbox Crowd Supply Campaign](https://www.crowdsupply.com/stratify/toolbox).
@@ -68,45 +72,19 @@ You can remotely access your Toolbox from anywhere in the world without any rout
 When you have your Toolbox setup with remote access, you can easily integrate with your continuous integration tools to run tests after every code commit.
 
 
-### Instrumentation: Go beyond Debugging
+### Production Programming and Test
 
-| Debugging vs.            | Instrumentation           |
-|--------------------------|---------------------------|
-| Track single bugs        | See overall performance   |
-| Check a variable's value | Plot a variable over time |
-| Track a state change     | Draw a state diagram      |
-| Inspect one packet       | Draw a sequence diagram   |
+The Toolbox can be used in a production programming environment to securely program MCU's using ellipitial curve based shared secret between the Toolbox and the target and AES-128 encryption to transfer the binary. The results of all programming and testing can be easily reported to a self-managed Firebase project.
 
-
-The Toolbox transforms this terminal output:
-
-![IR Terminal](/images/ir-terminal-output.png)
-
-into these instrumentation charts:
-
-![IR Mosaic](/images/ir-mosaic.png)
-
-**Export to Markdown**
-
-View on Github/Gitlab/Bitbucket etc. **Track performance over time**.
-
-![IR Mosaic](/images/ir-github.png)
+The Toolbox comes standard with support for securely programming STM32 processors (the STM32 needs to meet minimum RAM requirements). Your implementation might require some tweaks to the standard approach in order to improve security. Support for additional processors requires writing a flash driver using a template project.
 
 ### What MCUs are Supported?
 
 **Flashing**
 
-- NXP: lpc11xx, lpc17xx, lpc40xx, lpc54xxx, lpc55xxx, lpc8xx
-- Freescale: k20dx, k22f, k28f, k32w042, k64f, k66f, k82f, ke15z, ke18f, kl02z, kl05z, kl25z, kl26z, kl27z, kl28z, kl43z, kl46z, kl82z, kw24d, kw41z
-- Nordic: nrf5x
-- Nuvoton: m252kg6ae, m263kiaae, m487jidae
-- Realtek: rtl8195am
-- STMicroelectronics: All STM32 Parts
-- TI: cc3220sf
-- Wiznet: w7500
-- Maxim: max32520, max32625
+All STM32 Parts that can be programming using STM32CubeProgrammer can be remotely flashed using the Toolbox. 
 
-Is your MCU not in the list? You can create your own binary blob and configuration file to support flashing any ARM Cortex-M chip. Also, please let me know and I can add support in a future update.
+You can create your own binary blob and configuration file to support flashing any ARM Cortex-M chip. You just have to write the flash driver. For most MCU's, the manufacturer provides a flash driver that just needs to be ported to the target loader template project.
 
 **Tracing**
 
@@ -117,8 +95,25 @@ Tracing is supported on SWO, UART, and SPI serial protocols independent of the M
 The SDK allows you to install your own applications that run on the Toolbox.
 
 - GUI Application: build a customized test or flash programming application for production
-- web application: add your own charts by modifying the fully-open source `toolbox-web-app`
+- web application: create your own embedded web application. Use the fully open-source `toolbox-web-app` as a starting point
 - flash/trace delegate: add support for a UART or I2C serial bootloader protocol
+
+The SDK includes high-level C++ APIs for:
+
+- JSON Handling
+- HTTP and HTTPS (using mbedtls) Client
+- HTTP Server
+- UART/SPI/I2C Drivers
+- Analog Input (x2) and Output (x1) Drivers
+- SWD/JTAG Drivers
+- ELF File Parsing
+- Graphics (based on lvgl)
+- FAT Filesystem (SD Card)
+- Cryptographic Suite
+  - ECDSA: Sign code and verify signatures
+  - ECDH Shared Secret: Establish a secure session with any target
+  - AES 128/256: Fast Symmetrical Encryption
+  - SHA256: create unique hashes for binaries and messages
 
 All of the Stratify Toolbox applications are open-source and freely available to modify, improve, and share.
 
@@ -128,7 +123,6 @@ The Toolbox includes additional features to help with board bring-up and other f
 
 - I2C Scan Tool
 - UART Data Logger
-- Stand-Alone Flash Programmer
 - I2C EEPROM Programmer
 - Built-in Voltage Reference
 - Free software updates
