@@ -30,30 +30,23 @@ The Stratify Toolbox takes a new approach to **flashing and debugging microcontr
 
 - **NO host software to install!** It works on ANY device with a browser and/or a command-line
 - **Super-easy** wifi setup using the touch display
-- **Designed for `printf()`-ers**
 - **Remote Access** with no monthly fees or router configuration
+- **Stand-alone, Secure** Production programming
 
-![Overview Graphic](/images/toolbox-target-setup.png)
+![Overview Graphic](/images/toolbox-overview.svg)
 
-
-**Fixing `printf()`**
-
-Rather than focusing on breakpoints and code-stepping like most tools, the Stratify Toolbox is built for those who prefer `printf()`-style serial tracing.
-
-![Fixing Printf](/images/fixing-printf.png)
 
 ## Focus on Ease-of-Use
 
 **No Software to Install.** There is NO HOST SOFTWARE to install. Last time, there is **no software to install**.
 
-![Fixing Printf](/images/touch-type-click.png)
+![Fixing Printf](/images/toolbox-io-options.png)
 
 **3 Ways to Toolbox:**
 
 - Use the **Touch** display for stand-alone operation
 - **Type** `curl` commands in the terminal to integrate with your workflow
 - **Click** to use the embedded web application as a GUI for flashing and debugging
-
 
 {{< youtube ol9aOj6xnAg >}}
 **Connect to Wifi**
@@ -74,9 +67,17 @@ When you have your Toolbox setup with remote access, you can easily integrate wi
 
 ### Production Programming and Test
 
-The Toolbox can be used in a production programming environment to securely program MCU's using ellipitial curve based shared secret between the Toolbox and the target and AES-128 encryption to transfer the binary. The results of all programming and testing can be easily reported to a self-managed Firebase project.
+The Toolbox can be used in a production programming environment to securely program MCU's including:
 
-The Toolbox comes standard with support for securely programming STM32 processors (the STM32 needs to meet minimum RAM requirements). Your implementation might require some tweaks to the standard approach in order to improve security. Support for additional processors requires writing a flash driver using a template project.
+- Secure key exchange between the Toolbox and the target using ECDH
+- Secure data transfer using AES-128 or AES-256 encryption
+- Inserting per-device secret keys in each binary
+- Reporting MCU serial numbers of each install
+- ECDSA firmware signature generation and verification
+
+![Secure Sequence Diagram](/images/toolbox-secure-sequence-diagram.svg)
+
+The Toolbox comes standard with support for securely programming STM32 processors (the STM32 needs to meet minimum RAM requirements). Your implementation might require changes in order to improve security. Support for additional processors requires writing a flash driver using a template project.
 
 ### What MCUs are Supported?
 
@@ -94,7 +95,7 @@ Tracing is supported on SWO, UART, and SPI serial protocols independent of the M
 
 The SDK allows you to install your own applications that run on the Toolbox.
 
-- GUI Application: build a customized test or flash programming application for production
+- GUI Application: build a customized test and/or flash programming application for production
 - web application: create your own embedded web application. Use the fully open-source `toolbox-web-app` as a starting point
 - flash/trace delegate: add support for a UART or I2C serial bootloader protocol
 
@@ -107,15 +108,14 @@ The SDK includes high-level C++ APIs for:
 - Analog Input (x2) and Output (x1) Drivers
 - SWD/JTAG Drivers
 - ELF File Parsing
-- Graphics (based on lvgl)
-- FAT Filesystem (SD Card)
-- Cryptographic Suite
+- Graphics (based on [LVGL](https://lvgl.io/))
+- Cryptography Suite
   - ECDSA: Sign code and verify signatures
   - ECDH Shared Secret: Establish a secure session with any target
   - AES 128/256: Fast Symmetrical Encryption
   - SHA256: create unique hashes for binaries and messages
 
-All of the Stratify Toolbox applications are open-source and freely available to modify, improve, and share.
+All of the Stratify Toolbox applications are permissive open-source and freely available to modify.
 
 ## More Features
 
@@ -173,22 +173,27 @@ All the documenation you need to operate the Toolbox is served from the web appl
 
 ## Manufacturing Plan, Fulfillment and Logistics
 
-Due to the worldwide shortage of parts, the manufacturing plan is trickier than usual. Normally, I would just outsource to a turn-key PCB assembly house, but with the shortages, that would take a year. The plan is (best case scenario):
+Due to the worldwide shortage of parts, the manufacturing plan is goign to take much longer than usual. I can mitigate some of the schedule risks by replacing some IC's with chips that are more readily availble. But key components are out 40 to 50 weeks, so the only remedy is to order them as soon as possible and hope it doesn't take quite that long.
 
-- Order crucial parts or alternates (first week)
-- Order plastic injection molds and parts (first week)
-- Order other mechanical parts such as screws, CE/cert stickers (first week)
-- Update and test the design with the alternate parts (8 weeks)
-- Test and cerfity the updated design (8 weeks)
-- Order commodity parts and PCB's (3 weeks)
-- Final assembly with domestic PCB assembly house (8 weeks)
-- Send product to Crowd Supply for fulfillment (last week)
+The plan after funding is:
 
-Using this plan, the Toolboxes will ship in Q1 of 2022. The worst case scenario is that no alternate parts will be available for crucial components. In which case, the delivery date is pushed back to June or July of 2022.
+- Identify parts with long-lead times that have available, suitable alternatives (power supplies, op-amps, etc)
+  - Order the alternates
+- Order the long-lead items with no alternatives
+- Order the plastic injected molds
+- Update the design to accommodate alternates
+- Build prototypes using the alternates
+  - I have a few each of the long-lead items on hand for this
+- Fabricate production PCBs
+- Perform testing and certification
+- Iterate firmware, get feedback from beta testers
+- Assemble production PCBs
+- Final assembly and fulfillment
+
+As it stands now, I should be able to get all the parts by Q2 of 2022. That puts fulfillment at the end of Q2 or beginning of Q2 of 2022.
 
 ## Risks and Challenges
 
-The biggest challenge is procuring parts including alternates/substitues and integrating the alternates into the hardware/firmware. The crucial parts are the MCU and the Wifi. The MCU can be a number of different STM32H7 chips and still get the job done. Switching means updating the system firmware to work with the alternate chip which will a 3 to 4 weeks of development time. The Wifi is currently spec'd as the ATWINC1500 (no stock), but the ATWINC3400 is available (as of this writing) and would work with very little system firmware updates.
+The biggest challenge is procuring parts including alternates/substitues and integrating the alternates into the hardware/firmware. The crucial parts are the MCU and the Wifi. The MCU can be a number of different STM32H7 chips and still get the job done. Switching means updating the system firmware to work with the alternate chip. The Wifi is currently spec'd as the ATWINC1500 (no stock), but the ATWINC3400 is available (as of this writing) and would work with very little system firmware updates.
 
-The second biggest challenge is certification. Unforeseen issues can cause delays. I estimated 8 weeks which should be time to do 1 or 2 board spins if they are needed to pass FCC/CE certification testing.
-
+The second biggest challenge is certification. Unforeseen issues can cause delays. But this effort can be performed while waiting for parts with long lead times.
