@@ -7,6 +7,10 @@ tags: [business, product development, stratifylabs, toolbox]
 title: Stratify Toolbox Campaign Preview
 ---
 
+> Version 4
+
+I removed the features for the web application. I never use that feature.
+
 > Version 3
 
 I removed the features highlighting instrumentation. I added a focus on the ability to do secure production programming.
@@ -28,7 +32,7 @@ Your [feedback](https://www.crowdsupply.com/stratify/toolbox/ask-question) is we
 
 The Stratify Toolbox takes a new approach to **flashing and debugging microcontrollers**.
 
-- **NO host software to install!** It works on ANY device with a browser and/or a command-line
+- **NO host software to install!** It works on ANY device with a command-line
 - **Super-easy** wifi setup using the touch display
 - **Remote Access** with no monthly fees or router configuration
 - **Stand-alone, Secure** Production programming
@@ -42,11 +46,10 @@ The Stratify Toolbox takes a new approach to **flashing and debugging microcontr
 
 ![Fixing Printf](/images/toolbox-io-options.png)
 
-**3 Ways to Toolbox:**
+**2 Ways to Toolbox:**
 
 - Use the **Touch** display for stand-alone operation
 - **Type** `curl` commands in the terminal to integrate with your workflow
-- **Click** to use the embedded web application as a GUI for flashing and debugging
 
 {{< youtube ol9aOj6xnAg >}}
 **Connect to Wifi**
@@ -77,7 +80,7 @@ The Toolbox can be used in a production programming environment to securely prog
 
 ![Secure Sequence Diagram](/images/toolbox-secure-sequence-diagram.svg)
 
-The Toolbox comes standard with support for securely programming STM32 processors (the STM32 needs to meet minimum RAM requirements). Your implementation might require changes in order to improve security. Support for additional processors requires writing a flash driver using a template project.
+The Toolbox comes standard with support for securely programming STM32 microcontrollers that meet minimum RAM requirements. Your implementation might require changes to improve security. Support for additional processors requires writing a flash driver using a template project.
 
 ### What MCUs are Supported?
 
@@ -85,7 +88,7 @@ The Toolbox comes standard with support for securely programming STM32 processor
 
 All STM32 Parts that can be programming using STM32CubeProgrammer can be remotely flashed using the Toolbox. 
 
-You can create your own binary blob and configuration file to support flashing any ARM Cortex-M chip. You just have to write the flash driver. For most MCU's, the manufacturer provides a flash driver that just needs to be ported to the target loader template project.
+You can create a custom binary blob to support flashing any ARM Cortex-M chip. For most MCU's, the manufacturer provides a flash driver that just needs to be ported to the target loader template project.
 
 **Tracing**
 
@@ -93,10 +96,9 @@ Tracing is supported on SWO, UART, and SPI serial protocols independent of the M
 
 ### SDK
 
-The SDK allows you to install your own applications that run on the Toolbox.
+The SDK allows you to install custom applications that run on the Toolbox.
 
 - GUI Application: build a customized test and/or flash programming application for production
-- web application: create your own embedded web application. Use the fully open-source `toolbox-web-app` as a starting point
 - flash/trace delegate: add support for a UART or I2C serial bootloader protocol
 
 The SDK includes high-level C++ APIs for:
@@ -163,23 +165,22 @@ Flash Programmers/Debuggers:
 
 ## Support and Documentation
 
-All the documenation you need to operate the Toolbox is served from the web application:
+All the documentation you need to operate the Toolbox is served as a web page from Toolbox:
 
 - Quick Start
 - HTTP API Reference
 - Instrumentation Specification
 
-![Documentation image](/images/docs-mosaic.png)
+Support will be available through the usual channels. Plus, all the code will be published on Github.
 
-## Manufacturing Plan, Fulfillment and Logistics
+## Manufacturing Plan, Fulfillment, and Logistics
 
-Due to the worldwide shortage of parts, the manufacturing plan is goign to take much longer than usual. I can mitigate some of the schedule risks by replacing some IC's with chips that are more readily availble. But key components are out 40 to 50 weeks, so the only remedy is to order them as soon as possible and hope it doesn't take quite that long.
+Due to worldwide shortages, the manufacturing plan is going to take much longer than usual. I can mitigate some of the schedule risks by replacing IC's with chips that are more readily available. But key components are out 40 to 50 weeks. The only remedy is to order them and start the clock on the lead time.
 
 The plan after funding is:
 
-- Identify parts with long-lead times that have available, suitable alternatives (power supplies, op-amps, etc)
-  - Order the alternates
-- Order the long-lead items with no alternatives
+- Identify parts with long-lead times that have available, suitable alternates (power supplies, op-amps, etc) and order them
+- Order the long-lead items with no alternates
 - Order the plastic injected molds
 - Update the design to accommodate alternates
 - Build prototypes using the alternates
@@ -190,10 +191,10 @@ The plan after funding is:
 - Assemble production PCBs
 - Final assembly and fulfillment
 
-As it stands now, I should be able to get all the parts by Q2 of 2022. That puts fulfillment at the end of Q2 or beginning of Q2 of 2022.
+As it stands now, I should be able to get all the parts by Q3 of 2022. That puts fulfillment at the end of Q3 or the beginning of Q4 of 2022.
 
 ## Risks and Challenges
 
-The biggest challenge is procuring parts including alternates/substitues and integrating the alternates into the hardware/firmware. The crucial parts are the MCU and the Wifi. The MCU can be a number of different STM32H7 chips and still get the job done. Switching means updating the system firmware to work with the alternate chip. The Wifi is currently spec'd as the ATWINC1500 (no stock), but the ATWINC3400 is available (as of this writing) and would work with very little system firmware updates.
+The biggest challenge is procuring parts including alternates/substitutes and integrating the alternates into the hardware/firmware. The crucial parts are the MCU and the Wifi. The MCU can be one of several STM32H7 chips and still get the job done. Switching means updating the system firmware to work with the alternate chip. The Wifi is currently specified as the ATWINC1500 (no stock), but the ATWINC3400 is available (as of this writing).
 
 The second biggest challenge is certification. Unforeseen issues can cause delays. But this effort can be performed while waiting for parts with long lead times.

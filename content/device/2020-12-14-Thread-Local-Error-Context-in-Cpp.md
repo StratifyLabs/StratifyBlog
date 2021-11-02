@@ -20,7 +20,7 @@ I recently rewrote a family of C++ libraries that I had been using for 10 years.
 
 # New Approach to Error Handling
 
-The first item tackled in the rewrite was error-handling. Of course, this comes with the no-exceptions caveat because this code needs to run on highly constrained systems. Previously, I was taking the classic C approach to error handling or returning a negative value if there were an error and zero or greater for non-error. What I hated the most about the previous approach was the need to cascade the error up and down the call graph until it could be handled.
+The first item tackled in the rewrite was error handling. Of course, this comes with the no-exceptions caveat because this code needs to run on highly constrained systems. Previously, I was taking the classic C approach to error handling or returning a negative value if there were an error and zero or greater for non-error. What I hated the most about the previous approach was the need to cascade the error up and down the call graph until it could be handled.
 
 I also considered adding an error message to a base class. But this would mean every class would have its own set of errors, and every object would need to be error checked.
 
@@ -56,7 +56,7 @@ class ErrorContext {
 };
 ```
 
-Achieving thread-local storage on POSIX systems is actually quite simple. Because `errno` is thread-safe, you can look at `&errno` to determine what error context you are in. The `m_signature` value is assigned to `&errno`. Even if you aren't using POSIX, newlib uses thread-safe `errno` so the approach works on any newlib run-time as well.
+Achieving thread-local storage on POSIX systems is simple. Because `errno` is thread-safe, you can look at `&errno` to determine what error context you are in. The `m_signature` value is assigned to `&errno`. Even if you aren't using POSIX, newlib uses thread-safe `errno` so the approach works on any newlib run-time as well.
 
 ```c++
 static ErrorContext m_error; //used for first thread
@@ -122,7 +122,7 @@ If you always follow rule #1, your error context will always pinpoint exactly wh
 
 # Fix All Errors Immediately
 
-If the code recognizes a programming error, the program should immediately stop and identify it. This is where `ASSERT` comes in to play.
+If the code recognizes a programming error, the program should immediately stop and identify it. This is where `ASSERT` comes into play.
 
 ```c++
 void copy(void * dest, const void * source, size_t size){

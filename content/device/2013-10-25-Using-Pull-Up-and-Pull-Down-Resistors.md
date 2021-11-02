@@ -16,7 +16,7 @@ katex: true
 ![Pullup Resistor](/images/pullup.svg)
 An embedded microcontroller utilizes input/output (IO) signals to
 communicate with the outside world.  The simplest form of IO is
-commonly referred to as general purpose input/output (GPIO) where
+commonly referred to as general-purpose input/output (GPIO) where
 the GPIO voltage level can be high, low, or high-impedance.  Pulling
 resistors are used to ensure GPIO is always in a valid state.
 
@@ -48,7 +48,7 @@ A weak pull-up/pull-down resistor typically has a value of tens or hundreds of k
 
 ![Internal Pullup Resistor](/images/internalpullup2.svg)
 
-In order for the strong pull-down resistor to work properly, it must be correctly sized. During normal operation, the voltage at the GPIO pin must be below the input low voltage {{< katex inline >}} V_{IL} {{< /katex >}} as specified in the electrical characteristics section of the device's datasheet.  The voltage at the GPIO pin is calculated using a [voltage divider]({{< relref "2019-08-24-Kirchhoffs-Laws-for-Makers.md#voltage-divider-circuit" >}}):
+For the strong pull-down resistor to work properly, it must be correctly sized. During normal operation, the voltage at the GPIO pin must be below the input low voltage {{< katex inline >}} V_{IL} {{< /katex >}} as specified in the electrical characteristics section of the device's datasheet.  The voltage at the GPIO pin is calculated using a [voltage divider]({{< relref "2019-08-24-Kirchhoffs-Laws-for-Makers.md#voltage-divider-circuit" >}}):
 
 {{< katex >}}
 V_{GPIO} = \frac{ V_{CC} \cdot R_1}{ R_1 + R_2 }

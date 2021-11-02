@@ -21,7 +21,7 @@ I recently rewrote a family of C++ libraries that I had been using for 10 years.
 
 # What is RAII?
 
-RAII stands for "Resource Acquisition is Initialization". It's a really terrible name for an amazing concept. Unfortunately, the name leaves out the best part: it also handles finalization.
+RAII stands for "Resource Acquisition is Initialization". It's a terrible name for an amazing concept. Unfortunately, the name leaves out the best part: it also handles finalization.
 
 The basic idea of RAII is that the code to initialize something is always in the C++ constructor and finalization is always in the destructor. It can be useful for:
 
