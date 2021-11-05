@@ -95,7 +95,7 @@ typedef struct {
 } malloc_entry_t;
 ```
 
-If you allocate a four-byte word, it will occupy 16 bytes on the heap (25% efficient). Some `malloc()` implementations (including the one on Stratify OS) enforce minimum spacing between linked list entries to prevent fragmentation. This minimum spacing varies but is in the 128-byte range. If you allocate one byte, it will occupy 128 bytes on the heap (0.7% efficient). Converserly if you allocate 2036 bytes. It will have `2036/2048 = 99.4%` efficiency because `2036 + sizeof(malloc_entry_t)` is `2048` AND `2048 % 128` is zero.
+If you allocate a four-byte word, it will occupy 16 bytes on the heap (25% efficient). Some `malloc()` implementations (including the one on [Stratify OS](https://github.com/StratifyLabs/StratifyOS)) enforce minimum spacing between linked list entries to prevent fragmentation. This minimum spacing varies but is in the 128-byte range. If you allocate one byte, it will occupy 128 bytes on the heap (0.7% efficient). Converserly if you allocate 2036 bytes. It will have `2036/2048 = 99.4%` efficiency because `2036 + sizeof(malloc_entry_t)` is `2048` AND `2048 % 128` is zero.
 
 ### Fragmentation
 
