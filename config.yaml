@@ -1,4 +1,4 @@
-baseURL: 'https://blog.stratifylabs.co'
+baseURL: 'https://blog.stratifylabs.dev'
 title: Stratify Labs
 copyright: ''
 theme: engimo
@@ -106,7 +106,7 @@ menu:
     - name: Home
       weight: -500
       identifier: '1'
-      url: 'https://stratifylabs.co'
+      url: 'https://stratifylabs.dev'
       button: false
     - name: Dashboard
       weight: -400
@@ -116,7 +116,7 @@ menu:
     - name: Docs
       weight: -300
       identifier: '3'
-      url: 'https://docs.stratifylabs.co'
+      url: 'https://docs.stratifylabs.dev'
       button: false
     - name: Signup
       weight: -200
