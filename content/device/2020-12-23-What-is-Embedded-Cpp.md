@@ -18,7 +18,7 @@ C++ is an enormous language. Using polymorphism, you can write a language within
 
 One reason narrowing C++ down is useful is that most embedded engineers are hardware/software experts that simply don't have the bandwidth to understand everything the C++ language can do. So focusing on the parts of C++ that are easy-to-learn if you know C (which all embedded engineers do) and provide substantial benefits over C can create a big jump in software quality.
 
-Embedded C++ is, then, a narrowed down use case of C++ targeting embedded systems. The ultimate practical use is then "implementation-defined".
+Embedded C++ is, then, a narrowed-down use case of C++ targeting embedded systems. The ultimate practical use is then "implementation-defined".
 
 ## Embedded C++ per Stratify Labs
 

@@ -3,7 +3,7 @@ categories:
 - Device Tips
 date: "2021-11-30"
 layout: post
-draft: false
+draft: true
 tags:
 - cpp
 - programming
@@ -12,6 +12,9 @@ tags:
 title: printf()-ers vs Code Steppers
 ---
 
+There are generally two schools of thought when it comes to microcontroller debugging: code-stepping and `printf()` tracing.
+
+- Introduction
 - MCU Debugger Overview
   - ARM Block Diagram
   - Access the MCU debug unit
