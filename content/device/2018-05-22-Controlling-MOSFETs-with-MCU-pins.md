@@ -15,7 +15,7 @@ Do you ever need to drive something with more power than your microcontroller pi
 
 ## What is a MOSFET?
 
-MOSFETs come in two varieties: N-channel (shown-above) and P-channel (pictured below).  P-channel MOSFETs are typically used to drive loads from the high side while N-channels are easiest to implement as low side drivers. Each device has three connections: gate (G), drain (D), and source (S).
+MOSFETs come in two varieties: N-channel (shown above) and P-channel (pictured below).  P-channel MOSFETs are typically used to drive loads from the high side while N-channels are easiest to implement as low side drivers. Each device has three connections: gate (G), drain (D), and source (S).
 
 ![P Channel MOSFET](/images/p-channel.png)
 
@@ -31,18 +31,18 @@ P and N channel MOSFETs are complements (In fact, CMOS, which means complementar
 
 The diagram above shows the most basic implementation of both an N-channel MOSFET driving a motor. The N channel device has the following behavior:
 
-- When IO is high, the voltage between the G and S is 3.3V. The device will conduct current, and the LED will be on.
-- When IO is low, the voltage between the G and S is 0V, and the device will not conduct current. The LED will be off.
+- When IO is high, the voltage between the `G` and `S` is `3.3V`. The device will conduct current, and the LED will be on.
+- When IO is low, the voltage between the `G` and `S` is `0V`, and the device will not conduct current. The LED will be off.
 
 ![N Channel Step up motor driver](/images/n-channel-step-up-motor-drive.png)
 
 The diagram above is an example of controlling a MOSFET that drives a higher voltage output.  
 
-- R2 ensures the current from PC0 does not exceed the specifications and protects the long term use of the pin.
+- R2 ensures the current from PC0 does not exceed the specifications and protects the long-term use of the pin.
 - R3 acts as a filter to prevent ringing on the gate of Q3
 - R4 applies 12V to the gate of Q3 which will minimize the heat loss in Q3 (keep in mind Vgs values vary depending on the part)
 
-In this configuration, when PC0 is high, the motor is off. If we want to ensure the motor is off while the MCU is booting, we would add a pull-up resistor from the N-CHANNEL gate to VCC.
+In this configuration, when PC0 is high, the motor is off. If we want to ensure the motor is off while the MCU is booting, we would add a pull-up resistor from the `N-CHANNEL` gate to `VCC`.
 
 ## What to do now?
 

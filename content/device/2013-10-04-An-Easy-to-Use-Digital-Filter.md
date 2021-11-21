@@ -15,7 +15,8 @@ chart: true
 ---
 
 ![Fourier Series](/images/316px-Fourier_Series.svg)
-I want to share one of my favorite digital filters I commonly use with sensor input with microcontrollers. It is called the exponential moving average (aka EMA). It's what is known in the "biz" as an infinite impulse response filter (IIR) which means each input value affects the output for initinity. But more importantly, being an IIR filter means it only requires a small amount of RAM and computing power which is great for microcontrollers.
+
+I want to share one of my favorite digital filters I commonly use with sensor input with microcontrollers. It is called the exponential moving average (aka EMA). It's what is known in the "biz" as an infinite impulse response filter (IIR) which means each input value affects the output for infinity. But more importantly, being an IIR filter means it only requires a small amount of RAM and computing power which is great for microcontrollers.
 
 Before we look at my favorite filter, let's do a  hyper-brief intro to filters.
 
@@ -62,7 +63,7 @@ Analog filters are characterized by their frequency response which is how much t
 
 Note that the x-axis is logarithmic (every tick mark is 10 times greater than the last one).  The y-axis is in dBV (which is a logarithmic measure of the voltage).  The "cutoff frequency" for this filter is 1000 rad/s or 160 Hz.  This is the point where less than half the power at a given frequency is transferred from the input to the output of the filter. It is also the point where the magnitude is at -3dBV (If you do the math, it works out--you'll just have to trust me for now).
 
-The low pass filter above is great for conditioning signals to be sampled using a microcontroller ADC. The ADC only captures frequencies that are up to half the sampling frequency.  If the ADC does 320 samples per second, the signal should all be less than 160Hz. If the signal is not filtered above 160Hz, those higher frequencies will overlap onto the lower frequencies. This is a phenom known as aliasing and is a mathematically side-effect of digital sampling.
+The low pass filter above is great for conditioning signals to be sampled using a microcontroller ADC. The ADC only captures frequencies that are up to half the sampling frequency.  If the ADC does 320 samples per second, the signal should all be less than 160Hz. If the signal is not filtered above 160Hz, those higher frequencies will overlap with the lower frequencies. This is a phenom known as aliasing and is a mathematical side-effect of digital sampling.
 
 ### Digital Filters
 
@@ -70,31 +71,21 @@ Digital filters attenuate frequencies in software rather than using analog compo
 
 ### FIR Filters
 
-Finite Impulse Response (FIR) filters use a finite number of samples to generate
-the output.  A simple moving average is an example of a low pass FIR filter.  Higher
-frequencies are attenuated because the averaging "smooths" out the signal.  The
-filter is finite because the output of the filter is determined by a finite number
-of input samples.  As an example, a 12 point moving average filter adds up the 12 most
-recent samples then divides by 12.  The output of IIR filters is determined
-by (up to) an infinite number of input samples.
+Finite Impulse Response (FIR) filters use a finite number of samples to generate the output.  A simple moving average is an example of a low-pass FIR filter.  Higher frequencies are attenuated because the averaging "smooths" out the signal.  The filter is finite because the output of the filter is determined by a finite number of input samples.  As an example, a 12 point moving average filter adds up the 12 most recent samples then divides them by 12.  The output of IIR filters is determined by (up to) an infinite number of input samples.
 
 ### IIR Filters
 
 Infinite Impulse Response (IIR) filters are a type of digital filter where the
-output is inifinetely--in theory anyway--influenced by an input.  The exponential
-moving average is an example of a low pass IIR filter.
+output is infinitely influenced by an input.  The exponential
+moving average is an example of a low-pass IIR filter.
 
 ## Exponential Moving Average Filter
 
-An exponential moving average (EMA) applies exponential weights to each sample
-in order to compute an average.  Though this seems complicated, the
-equation--known in digital filtering parlance as the "difference equation"--to
-compute the output is simple.  In the equation below, \\(y\\) is the output; \\(x\\) is
-the input; and \\(\alpha\\) is a constant that sets the cutoff frequency.
+An exponential moving average (EMA) applies exponential weights to each sample to compute an average.  Though this seems complicated, the equation--known in digital filtering parlance as the "difference equation"--to compute the output is simple.  In the equation below, \\(y\\) is the output; \\(x\\) is the input; and \\(\alpha\\) is a constant that sets the cutoff frequency.
 
 $$ y[n] = y[n-1] \cdot (1- \alpha) + x[n] \cdot \alpha $$
 
-The magnitude response is shown below for alpha equal 0.5 given a sampling frequency of 1000.
+The magnitude response is shown below for alpha equal to `0.5` given a sampling frequency of 1000.
 
 ```chart
     {
@@ -155,14 +146,7 @@ The EMA filter is beneficial in embedded designs for two reasons.  First, it is 
     }
 ```
 
-Second, the EMA is easy to code and requires only a small amount of computing power
-and memory.  The code implementation of the filter uses the difference equation.  There
-are two multiply operations and one addition operation for each output--this ignores
-the operations required for rounding fixed point math.  Only the most recent sample
-must be stored in RAM.  This is substantially less than using a simple moving average
-filter with N points which requires N multiply and addition operations as well as N
-samples to be stored in RAM.  The following code implements the EMA filter using 32-bit
-fixed point math.
+Second, the EMA is easy to code and requires only a small amount of computing power and memory.  The code implementation of the filter uses the difference equation.  There are two multiply operations and one addition operation for each output--this ignores the operations required for rounding fixed-point math.  Only the most recent sample must be stored in RAM.  This is substantially less than using a simple moving average filter with N points which requires N multiply and addition operations as well as N samples to be stored in RAM.  The following code implements the EMA filter using 32-bit fixed-point math.
 
 ```c++
 #define DSP_EMA_I32_ALPHA(x) ( (uint16_t)(x * 65535) )
@@ -196,10 +180,4 @@ int32_t my_avg_func(void){
 
 ## Conclusion
 
-Filters, both analog and digital, are an essential part of embedded designs.  They
-allow developers to get rid of unwanted frequencies when analyzing sensor input.  For
-digital filters to be useful, analog filters must remove all frequencies above half
-the sampling frequency.  Digital IIR filters can be powerful tools in embedded design
-where resources are limited.  The exponential moving average (EMA) is an example of
-such a filter that works well in embedded designs because of the low memory and
-computing power requirements.
+Filters, both analog and digital, are an essential part of embedded designs.  They allow developers to get rid of unwanted frequencies when analyzing sensor input.  For digital filters to be useful, analog filters must remove all frequencies above half the sampling frequency.  Digital IIR filters can be powerful tools in embedded design where resources are limited.  The exponential moving average (EMA) is an example of such a filter that works well in embedded designs because of the low memory and computing power requirements.

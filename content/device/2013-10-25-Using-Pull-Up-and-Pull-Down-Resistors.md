@@ -22,7 +22,7 @@ resistors are used to ensure GPIO is always in a valid state.
 
 ### GPIO Input States on an Embedded Microcontroller
 
-GPIO on a microcontroller is usually configured as either input or output.  As an input, the pin can take one of three states: low, high, and floating (also called high-impedance or tri-stated).  When an input is driven above the input high threshold, it is high (or logic one).  When driven below the input low threshold, the input is low (or logic zero).  When in a high-impedance state, the input level is not reliably high nor low.  To ensure an input value is always in a known state, a pull-up or pull-down resistor is used.  A pull-up resistor pulls the signal to a high state unless it is driven low while a pull-down resistor puts the signal in a low state unless driven high.
+GPIO on a microcontroller is usually configured as either input or output.  As an input, the pin can take one of three states: low, high, and floating (also called high-impedance or tri-stated).  When an input is driven above the input high threshold, it is high (or logic one).  When driven below the input low threshold, the input is low (or logic zero).  When in a high-impedance state, the input level is not reliably high or low.  To ensure an input value is always in a known state, a pull-up or pull-down resistor is used.  A pull-up resistor pulls the signal to a high state unless it is driven low while a pull-down resistor puts the signal in a low state unless driven high.
 
 ### Pull-up or Pull-down
 

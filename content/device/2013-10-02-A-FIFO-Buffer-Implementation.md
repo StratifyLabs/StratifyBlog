@@ -113,4 +113,4 @@ Using a FIFO in the above way lessens the real-time requirements for an applicat
 
 ## Conclusion
 
-FIFOs are a storage mechanism that operate on a first-in, first-out basis.  They are useful for managing the arrival of asynchronous data.  Integrating a FIFO with an ISR, such as the UART ISR, can make processing the incoming data much easier for the application developer.
+FIFOs are a storage mechanism that operates on a first-in, first-out basis.  They are useful for managing the arrival of asynchronous data.  Integrating a FIFO with an ISR, such as the UART ISR, can make processing the incoming data much easier for the application developer.

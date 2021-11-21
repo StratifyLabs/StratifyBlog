@@ -24,7 +24,7 @@ Power is calculated as the voltage times current.  There are a few algebraic ohm
 {{< katex >}} P=\frac{V^2}{R} {{< /katex >}}
 {{< katex >}} P=I^2 \cdot R {{< /katex >}}
 
-For the case above, the voltage is 3.0 volts and the current is 0.1A resulting in 0.3W of power being dissipated in the resistor. A typical 1/4W resistor is insufficient in this case. A 0.5W or 1W resistor is a better choice for this application. A good rule of thumb is calculate the max power and then double it.
+For the case above, the voltage is 3.0 volts and the current is 0.1A resulting in 0.3W of power being dissipated in the resistor. A typical 1/4W resistor is insufficient in this case. A 0.5W or 1W resistor is a better choice for this application. A good rule of thumb is to calculate the max power and then double it.
 
 Microcontroller Input
 ---------------------
@@ -35,7 +35,7 @@ High impedance in Ohm's law parlance is a fancy way of saying a very high resist
 
 ![Ohms law external pullup](/images/ohms-law-external-pullup.svg)
 
-The above diagram shows a microcontroller input pin (IO) and a external pullup resistor.  When the input pin is floating, it can be modeled as a resistor with a very high value (say {{< katex inline >}}20M \Omega {{< /katex >}}) connected to ground.  Using Ohm's law, a very small amount of current will flow through the external resistor into the microcontroller pin.  The voltage at the pin will be equal to the 3.0V minus the tiny voltage dropped on the external resistor.  In practical terms, the voltages are the same.
+The above diagram shows a microcontroller input pin (IO) and an external pullup resistor.  When the input pin is floating, it can be modeled as a resistor with a very high value (say {{< katex inline >}}20M \Omega {{< /katex >}}) connected to ground.  Using Ohm's law, a very small amount of current will flow through the external resistor into the microcontroller pin.  The voltage at the pin will be equal to `3.0V` minus the tiny voltage dropped on the external resistor.  In practical terms, the voltages are the same.
 
 When the switch is closed, any current that was flowing into the pin will flow through the switch.  The voltage at the pin will be zero because it is connected directly to ground. The current through the resistor can be calculated using Ohm's law.
 
@@ -54,11 +54,11 @@ Using a microcontroller to drive an LED is a good illustration of using Ohm's la
 
 ![Ohms Law LED Driver](/images/ohms-law-led-driver.svg)
 
-Let's look at how Ohm's law applies here.  The LED has a forward voltage drop that is a characteristic of the semiconductor physics.  The resistor that is in line with the LED limits the amount of current running through the LED.  Assuming the LED voltage drop is 1.0V and VCC is 3.0V, we drop 2.0V through the resistor. 2.0V = I*R. We can set a value of R to control the max current through the LED. For example, if R is 100 Ohms, then the current through both the LED and the resistor will be 20mA.
+Let's look at how Ohm's law applies here.  The LED has a forward voltage drop that is a characteristic of semiconductor physics.  The resistor that is in line with the LED limits the amount of current running through the LED.  Assuming the LED voltage drop is 1.0V and VCC is 3.0V, we drop 2.0V through the resistor. 2.0V = I*R. We can set a value of R to control the max current through the LED. For example, if R is 100 Ohms, then the current through both the LED and the resistor will be 20mA.
 
-Without the resistor, the microntroller will push as much current through the LED as it can.  In some cases this may damage the microntroller, the LED or both.
+Without the resistor, the microcontroller will push as much current through the LED as it can.  In some cases, this may damage the microcontroller, the LED, or both.
 
-The approach on the left has the LED on when the microntroller pin is high.  This makes more sense when writing the code but isn't always best.  Sometimes microcontroller pins able able to sink (or absorb) more current than they can source (or produce).  If the pin can sink more current, you can make the LED brighter by using the approach on the right.  Just make sure you size your resistor so that the current through the LED and resistor doesn't exceed what the microcontroller pin is capable of sourcing (or sinking).
+The approach on the left has the LED on when the microcontroller pin is high.  This makes more sense when writing the code but isn't always best.  Sometimes microcontroller pins able to sink (or absorb) more current than they can source (or produce).  If the pin can sink more current, you can make the LED brighter by using the approach on the right.  Just make sure you size your resistor so that the current through the LED and resistor doesn't exceed what the microcontroller pin is capable of sourcing (or sinking).
 
 Wrap Up
 ----------------

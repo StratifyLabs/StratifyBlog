@@ -19,8 +19,7 @@ A thermistor's resistance varies with temperature.  As an example, assume T1 in 
 
 ![Resistance and Temperature](/images/resistance-temperature.svg)
 
-The complete datasheet for the part referenced is available [here](http://www.vishay.com/docs/29078/ntcle413.pdf).  The
-voltage at the ADC input is calculated using a voltage divider:
+The complete datasheet for the part referenced is available [here](http://www.vishay.com/docs/29078/ntcle413.pdf).  The voltage at the ADC input is calculated using a voltage divider:
 
 $$ V_{ADC} = V_1 \frac{R_1}{R_1+T_1} $$
 

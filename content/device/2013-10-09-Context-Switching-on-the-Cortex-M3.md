@@ -21,49 +21,36 @@ Thread2->Thread3: Switch
 Thread3->Thread0: Switch
 ```
 
-The ARM Cortex-M3 architecture is designed with special features to
-facilitate implementing a pre-emptive RTOS. The system code takes
+The ARM Cortex-M3 architecture is designed with special features to facilitate implementing a pre-emptive RTOS. The system code takes
 advantage of these features when implementing context switching code.
 
 ### ARM Cortex-M3 Context Switching Hardware
 
 #### Interrupts
 
-The SysTick and PendSV interrupts can both be used for context
-switching. The SysTick peripheral is a 24-bit timer that interrupts
-the processor each time it counts down to zero. This makes it
-well-suited to round-robin style context switching. The PendSV
-interrupt allows a task to cede control of the CPU when it is
-inactive (such as when sleeping or waiting for a hardware resource) which
-is helpful for FIFO style context switching. In addition to these
-interrupts, the ARM Cortex-M3 also includes two stack pointers.
+The `SysTick` and `PendSV` interrupts can both be used for context switching. The SysTick peripheral is a 24-bit timer that interrupts
+the processor each time it counts down to zero. This makes it well-suited to round-robin style context switching. The PendSV
+interrupt allows a task to cede control of the CPU when it is inactive (such as when sleeping or waiting for a hardware resource) which
+is helpful for FIFO style context switching. In addition to these interrupts, the ARM Cortex-M3 also includes two stack pointers.
 
 #### Stacks
 
-The stack pointers for the ARM Cortex-M3 include the main stack
-pointer (MSP) and the process stack pointer (PSP). The MSP is always
-used when handling interrupts and optionally used during regular
-program execution. The PSP is only used during regular program
-execution.  ARM recommends using the MSP for the kernel as well
-as interrupts and recommends the PSP for executing other
-tasks.  While the architecture provides the interrupts and the
-stack pointers, the implementation must provide the context
+The stack pointers for the ARM Cortex-M3 include the main stack pointer (`MSP`) and the process stack pointer (`PSP`). The `MSP` is always
+used when handling interrupts and optionally used during regular program execution. The `PSP` is only used during regular program
+execution.  ARM recommends using the `MSP` for the kernel as well as interrupts and recommends the `PSP` for executing other
+tasks.  While the architecture provides the interrupts and the stack pointers, the implementation must provide the context
 switching code.
 
 ### Context Switching Software Implementation
 
-The RTOS manages the interrupts and stacks to achieve
-context switching.  When switching contexts, the RTOS needs a way
-to keep track of which tasks are doing what using a task or scheduler
-table.  Three routines are then required to: perform the context
+The RTOS manages the interrupts and stacks to achieve context switching.  When switching contexts, the RTOS needs a way
+to keep track of which tasks are doing what using a task or scheduler table.  Three routines are then required to: perform the context
 switch, initialize the system, and create new tasks.
 
 #### Task Table
 
-The task table, at a minimum, saves each task's stack pointer; it is
-also helpful to save other information, such as the task parent and
-status, to allow the context switcher to selectively execute
-tasks.  The following code shows an example of a structure that can
+The task table, at a minimum, saves each task's stack pointer; it is also helpful to save other information, such as the task parent and
+status, to allow the context switcher to selectively execute tasks.  The following code shows an example of a structure that can
 be used for an entry in the task table:
 
 ```c++
@@ -75,9 +62,7 @@ int current_task;
 task_table_t task_table[MAX_TASKS];
 ```
 
-The sp member stores the value of the task's stack pointer, while
-the flags member holds the task status. In this example, the task uses two status bits: one to indicate that the table entry is in use and
-the other to specify whether or not to execute the task.
+The sp member stores the value of the task's stack pointer, while the flags member holds the task status. In this example, the task uses two status bits: one to indicate that the table entry is in use and the other to specify whether or not to execute the task.
 
 ### Context Switching Routine
 
@@ -85,7 +70,7 @@ The context switcher needs to:
 
 - save the state of the current task,
 - update the current task index to the next task to be executed,
-- set up the CPU to use the MSP (if it's time to run the kernel) or the PSP,
+- set up the CPU to use the `MSP` (if it's time to run the kernel) or the `PSP`,
 - and finally, load the context of the task which is about to execute.
 
 The following code is an example of a context switcher, preceded by some helper functions, and the interrupt handlers.
@@ -152,10 +137,7 @@ static inline void wr_thread_stack_ptr(void * ptr){
 }
 ```
 
-This is the function for the actual context switcher. This context
-switcher uses the MSP for task 0 (assumed to be the kernel) and the
-PSP for other tasks.  It is also possible to use the PSP for the
-kernel and just use the MSP during interrupt handling.
+This is the function for the actual context switcher. This context switcher uses the `MSP` for `task 0` (assumed to be the kernel) and the `PSP` for other tasks.  It is also possible to use the `PSP` for the kernel and just use the `MSP` during interrupt handling.
 
 ```c++
 //This is the context switcher
@@ -177,20 +159,16 @@ void context_switcher(void){
 }
 ```
 
-The following diagram shows the chronology of the stack pointer when a
-switch happens between task one and task two. Note that because this
-implementation uses the MSP for task zero, the mechanics of a context
-switch are slightly different when switching to and from task zero. A
-context switching implementation can just as easily use the PSP for
-all tasks and the MSP for interrupts by using THREAD_RETURN rather
-than MAIN_RETURN above.
+The following diagram shows the chronology of the stack pointer when a switch happens between task one and task two. Note that because this
+implementation uses the `MSP` for task zero, the mechanics of a context switch are slightly different when switching to and from task zero. A
+context switching implementation can just as easily use the `PSP` for all tasks and the `MSP` for interrupts by using `THREAD_RETURN` rather
+than `MAIN_RETURN` above.
 
 ![PSP Chronology](/images/psp-chronology.svg)
 
 ### Initialization
 
-The first thing that must be done is to initialize the main stack's
-task table entry.
+The first thing that must be done is to initialize the main stack's task table entry.
 
 ```c++
 //This defines the stack frame that is saved  by the hardware
@@ -230,8 +208,7 @@ void task_init(void){
 
 ### Creating a New Task
 
-Once the context switcher is initialized, there needs to be a mechanism
-to start new tasks. Starting a new task involves finding an available
+Once the context switcher is initialized, there needs to be a mechanism to start new tasks. Starting a new task involves finding an available
 entry in the task table and initializing the new task's stack.
 
 ```c++
@@ -282,13 +259,7 @@ void del_process(void){
 
 ### Conclusion
 
-ARM, with the Cortex M architecture, delivers valuable hardware
-resources to enable context switching.  The interrupts support both
-round robing and FIFO style scheduling while the dual stacks allow
-the kernel process and interrupts to execute on a dedicated stack.  With
-just a few software routines to perform the context switching, initialize
-the system, and create new stacks, system developers can create a
-functioning pre-emptive kernel.
+ARM, with the Cortex M architecture, delivers valuable hardware resources to enable context switching.  The interrupts support both
+round robing and FIFO style scheduling while the dual stacks allow the kernel process and interrupt handlers to execute on a dedicated stack. With just a few software routines to perform the context switching, initialize the system, and create new stacks, system developers can create a functioning pre-emptive kernel.
 
-For more information on context switching on the Cortex-M3, see the
-Cortex-M3 technical reference manual from ARM.
+For more information on context switching on the Cortex-M3, see the Cortex-M3 technical reference manual from ARM.

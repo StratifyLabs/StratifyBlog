@@ -11,12 +11,12 @@ title: Double vs Float in Embedded C
 ---
 
 
-C and C++ have two native types that are used for working with floating point values.
+C and C++ have two native types that are used for working with floating-point values.
 
 - `double` is 64-bits
 - `float` is 32-bits
 
-In many API's in the standard C library, the default type is a `double` which is great on 64-bit chips but not so for microcontrollers. Some build systems will downgrade `double` to a 32-bit value for microcontrollers. However, it is still problematic because on microcontrollers with a floating point unit or FPU, the `double` type will be calculated using software using bloated routines while `float` values will be computed very quickly in hardware.
+In many APIs in the standard C library, the default type is a `double` which is great on 64-bit chips but not so for microcontrollers. Some build systems will downgrade `double` to a 32-bit value for microcontrollers. However, it is still problematic because on microcontrollers with a floating-point unit or FPU, the `double` type will be calculated using software using bloated routines while `float` values will be computed very quickly in hardware.
 
 Whether `double` is 64-bit or 32-bit, you can save a good amount of code space by avoiding it.
 
@@ -54,4 +54,4 @@ printf("%ld.%02ld\n", lroundf(x), (x - lroundf(x)) * 100.0f);
 
 ## Good Luck
 
-I can't list out all the possible ways to avoid `double` but hopefully the examples above will get you thinking the right way so you can scrub any `double` values from your code. And if you are using [Stratify OS](https://stratifylabs.co/) on an FPU enabled chip, all the scrubbing is done for you.
+I can't list out all the possible ways to avoid `double`, but the examples above will get you thinking the right way so you can scrub any `double` values from your code. And if you are using [Stratify OS](https://stratifylabs.dev/) on an FPU enabled chip, all the scrubbing is done for you.

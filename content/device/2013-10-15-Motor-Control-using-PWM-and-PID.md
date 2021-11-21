@@ -68,7 +68,7 @@ A PID loop--verbosely known as proportional, integral, differential loop--is a p
 
 Image from Wikipedia
 
-The diagram above represents a PID controlled process.  In this case, the "process" or "plant" is the motor.  The feedback mechanism--y(t) called the process variable--can be either the motor current or speed.  The setpoint, u(t), is the desired current or speed.  The PID loop takes the difference (or error), e(t), between the setpoint and the process variable, applies namesake adjustments--proportional, integral, as well as differential--and then sums the result to get the new value of the manipulated variable (the PWM duty cycle).
+The diagram above represents a PID-controlled process.  In this case, the "process" or "plant" is the motor.  The feedback mechanism--y(t) called the process variable--can be either the motor current or speed.  The setpoint, u(t), is the desired current or speed.  The PID loop takes the difference (or error), e(t), between the setpoint and the process variable, applies namesake adjustments--proportional, integral, as well as differential--and then sums the result to get the new value of the manipulated variable (the PWM duty cycle).
 
 The following code is a PID loop implementation using floating-point variables.  The structure (pid_f_t) is first initialized using pid_init_f() with the minimum and maximum values for the manipulated variable accepted as parameters.  The minimum is useful if the motor requires some minimum PWM duty cycle to make it turn while the maximum ensures the PID algorithm does not try to exceed 100% duty cycle.  The pid_update_f() function uses the current setpoint and the process variable as well as the constants stored in the pid_f_t structure to compute the manipulated variable.  The application loop includes a function to measure the motor current or speed, call pid_update_f(), and set the PWM value according to the manipulated variable.
 
@@ -382,7 +382,7 @@ void set_duty(int duty){
 
 ### Results
 
-To see how the well the code works, the output is plotted against time using the following MATLAB (or octave) script.
+To see how well the code works, the output is plotted against time using the following MATLAB (or octave) script.
 
 ```
 output = load("log.txt");
@@ -406,4 +406,4 @@ To get the above performance, the PID constants required tweaking. The approach 
 
 ### Conclusion
 
-Precision, bi-directional motor control is achievable in embedded designs using an H-bridge driver, circuitry to sense feedback from the motor and a PID algorithm.  It is important to have a well designed H-bridge that prevents shoot-through and suppresses electromagnetic interference with a snubber circuit.  The sensing feedback can come in the form of speed (using encoders) or current; though, the best results will be achieved using an encoder.  Finally, the PID algorithm can be tuned to ensure the control algorithm meets the application's requirements.
+Precision, bi-directional motor control is achievable in embedded designs using an H-bridge driver, circuitry to sense feedback from the motor, and a PID algorithm.  It is important to have a well-designed H-bridge that prevents shoot-through and suppresses electromagnetic interference with a snubber circuit.  The sensing feedback can come in the form of speed (using encoders) or current; though, the best results will be achieved using an encoder.  Finally, the PID algorithm can be tuned to ensure the control algorithm meets the application's requirements.

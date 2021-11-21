@@ -18,21 +18,21 @@ The ARM Cortex-M service call (SVCall) can be a tricky feature to integrate into
 The SVCall (contraction of service call) is a software-triggered interrupt. It is useful for: 
 
 - Allowing a piece of code to execute without interruption
-- Jumping to privileged mode from unprivileged mode
+- Jumping to privileged mode from the unprivileged mode
 
 First, depending on interrupt priorities, the handler can be uninterruptible by one interrupt but interruptible by another. For example, if you have a piece of code that should not be interrupted by the timer but can be interrupted by the UART, you can set the interrupt priorities appropriately.
 
-Second, if you are using the MPU or privileged mode on the ARM Cortex-M, the SVCall provides the code executing in unprivileged mode as a way to access privileged resources.
+Second, if you are using the MPU or privileged mode on the ARM Cortex-M, the `SVCall` provides the code executing in unprivileged mode as a way to access privileged resources.
 
 ## How the SVC Instruction Works
 
-The SVC instruction invokes the service call interrupt. The bottom 8-bits of the SVC instruction can be set to any value and then interpreted by the interrupt handler. This essentially allows the user a way to execute 256 different types of service calls. 
+The SVC instruction invokes the service call interrupt. The bottom 8-bits of the `SVC` instruction can be set to any value and then interpreted by the interrupt handler. This essentially allows the user a way to execute 256 different types of service calls. 
 
-I find using the bottom 8-bits tedious because the service routine needs to first find the location of the SVC instruction to get the value. I prefer to put parameters on the stack that are pushed automatically by the NVIC. The sample code below shows how to do this using two parameters.
+I find using the bottom 8-bits tedious because the service routine needs to first find the location of the `SVC` instruction to get the value. I prefer to put parameters on the stack that are pushed automatically by the `NVIC`. The sample code below shows how to do this using two parameters.
 
 ## SVCall Sample Code
 
-To effectively use the service call interrupt, we pass two arguments to a function that immediately invokes the SVC instruction. The arguments are a pointer to a function to execute in privileged mode and a pointer to a data structure that the function can use to read/write data in the caller's context. The following code shows the prototype and body of the function.
+To effectively use the service call interrupt, we pass two arguments to a function that immediately invokes the `SVC` instruction. The arguments are a pointer to a function to execute in privileged mode and a pointer to a data structure that the function can use to read/write data in the caller's context. The following code shows the prototype and body of the function.
 
 ```c++
 //we need to decrease the optimization so the the compiler
@@ -45,7 +45,7 @@ void service_call(void (*func)(void*), void* args){
 }
 ```
 
-When SVC is executed, the NVIC immediately stacks various registers including `r0` and `r1`, and then executes the interrupt handler. The interrupt handler then needs to grab the values of `r0` and `r1` from the stack. The value in `r0` is the function pointer while `r1` is a pointer to some data in the caller's context. The `r0` value is typecast as a function and executed with a single argument, the value of `r1`.
+When `SVC` is executed, the `NVIC` immediately stacks various registers including `r0` and `r1` and then executes the interrupt handler. The interrupt handler then needs to grab the values of `r0` and `r1` from the stack. The value in `r0` is the function pointer while `r1` is a pointer to some data in the caller's context. The `r0` value is typecast as a function and executed with a single argument, the value of `r1`.
 
 > **Super Important Note**. If you are using the SVC instruction in a context-switching environment, you must take care to ensure the SVC executes in the context in which it is called. You can have a situation where SysTick arrives in the clock cycle following the SVC instruction. SysTick has a higher priority in this situation. So if SysTick forces a context change, the SVC handler will execute after the SysTick handler and will be looking at the wrong stack. That's bad. See [the Stratify OS context switcher for how to work around this](https://github.com/StratifyLabs/StratifyOS/blob/master/src/cortexm/task.c).
 
@@ -87,4 +87,4 @@ int main(void){
 
 ## Conclusion
 
-This very simple code sample provides a powerful and effective mechanism for using the ARM Cortex-M SVCall (service call) interrupt. It allows an arbitrary function to be executed uninterrupted in privileged mode. The code is both reentrant and thread-safe (as long as the context-switch can't interrupt the service call handler).
+This very simple code sample provides a powerful and effective mechanism for using the ARM Cortex-M `SVCall` (service call) interrupt. It allows an arbitrary function to be executed uninterrupted in privileged mode. The code is both reentrant and thread-safe (as long as the context-switch can't interrupt the service call handler).

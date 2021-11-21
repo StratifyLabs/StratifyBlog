@@ -12,9 +12,9 @@ title: ARM Cortex M7 Cache, RAM, and Flash Performance
 chart: true
 ---
 
-I recently ran some Dhyrstone benchmarking tests on an ARM Cortex M7 core to see how the tests performed from various memory locations. The ARM Cortex M7 is a microcontroller core contained in microcontrollers from various manufacturers. In my case, I used an STM32F723E from STMicroelectronics. The ARM Cortex M7 includes a data and instruction cache that can be used to improve performance. In the case of the STM32F723E, there are 8KB of each type.
+I recently ran some Dhyrstone benchmarking tests on an ARM Cortex M7 core to see how the tests performed from various memory locations. The ARM Cortex M7 is a microcontroller core contained in microcontrollers from various manufacturers. In my case, I used an STM32F723E from STMicroelectronics. The ARM Cortex M7 includes a data and instruction cache that can be used to improve performance. In the case of the STM32F723E, there is 8KB of each type.
 
-Because most microcontrollers have integrated flash memory and RAM, I was curious how much performance could be boosted with cache. When I dug a little deeper, I found it can be boosted a lot. I discovered a few reasons why:
+Because most microcontrollers have integrated flash memory and RAM, I was curious how much performance could be boosted with the cache. When I dug a little deeper, I found it can be boosted a lot. I discovered a few reasons why:
 
 - Memory buses don't always run at the same speed as the core
 - Fetching memory can sometimes take multiple clock cycles
@@ -108,4 +108,4 @@ Tightly Coupled RAM | 239 DMIPS | 217 DMIPS | **1.1x**
 
 ## The Conclusion
 
-The big take away is that applications running in external RAM run just as fast as applications running in any other memory as long as the cache is on. Not surprisingly, execution from tightly coupled memory was the least affected by the cache.
+The big takeaway is that applications running in external RAM run just as fast as applications running in any other memory as long as the cache is on. Not surprisingly, execution from tightly coupled memory was the least affected by the cache.

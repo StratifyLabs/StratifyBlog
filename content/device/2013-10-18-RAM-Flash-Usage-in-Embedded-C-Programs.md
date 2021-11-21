@@ -116,7 +116,7 @@ The read-write data that is stored in RAM is further categorized as statically o
 
 #### Data vs bss
 
-Statically allocated memory means that the compiler determines the memory address of the variable at compile time.  Static data is divided in two sections:  `data` and `bss` (there is a [wikipedia page](https://en.wikipedia.org/wiki/.bss) dedicated to why it is called bss).  The difference is that `data` is assigned an initial, non-zero value when the program starts while variables in the `bss` section are initialized to zero.  For clarification, see the below example:
+Statically allocated memory means that the compiler determines the memory address of the variable at compile time.  Static data is divided into two sections:  `data` and `bss` (there is a [wikipedia page](https://en.wikipedia.org/wiki/.bss) dedicated to why it is called bss).  The difference is that `data` is assigned an initial, non-zero value when the program starts while variables in the `bss` section are initialized to zero.  For clarification, see the below example:
 
 ```c++
 #include <stdio.h>
@@ -171,7 +171,7 @@ While the compiler determines the memory address of static memory at compile-tim
 - the heap
 - the stack
 
-The stack grows down (from higher memory address to lower ones) and the heap grows up. If memory usage is ignored in the design, the stack and heap can collide causing one or both to become corrupted and result in a situation that can be difficult to debug. 
+The stack grows down (from higher memory addresses to lower ones) and the heap grows up. If memory usage is ignored in the design, the stack and heap can collide causing one or both to become corrupted and result in a situation that can be difficult to debug. 
 
 The heap is managed by the programmer while the compiler takes care of the stack.
 

@@ -47,7 +47,7 @@ When a GPIO is configured in repeater mode, the pull-up is enabled when the pin 
 
 #### Hysteresis
 
-Virtually all GPIO inputs use a principle called hysteresis to prevent spurious changes in the state when an input changes. I think of hysteresis as having a low threshold to go low and a high threshold to go high. So if you are somewhere in the middle, nothing changes. You can see this in the graph below on where `A` (with no hysteresis) has some state changes on that `B` (with hysteresis) filters out.
+Virtually all GPIO inputs use a principle called hysteresis to prevent spurious changes in the state when an input changes. I think of hysteresis as having a low threshold to go low and a high threshold to go high. So if you are somewhere in the middle, nothing changes. You can see this in the graph below where `A` (with no hysteresis) has some state changes on that `B` (with hysteresis) filters out.
 
 ![Hysteresis Graph](/images/smitt_hysteresis_graph.svg)
 
@@ -57,7 +57,7 @@ The low threshold can be found in the datasheet in the "Electrical Characteristi
 
 #### Push-Pull
 
-A push-pull output is another aptly-named GPIO mode. The pin has the ability to "push" the signal high or "pull" it low. It does this using a pair of complementary transistors. You have probably heard of "CMOS" technology. The C stands for "complementary". A [CMOS]({{< relref "2013-10-14-How-Microcontrollers-Work.md#cmos" >}}) device has a pushing transistor [(PMOS) and a pulling transistor (NMOS)]({{< relref "2013-10-14-How-Microcontrollers-Work.md#field-effect-transistors-fets" >}}).
+A push-pull output is another aptly-named GPIO mode. The pin can "push" the signal high or "pull" it low. It does this using a pair of complementary transistors. You have probably heard of "CMOS" technology. The C stands for "complementary". A [CMOS]({{< relref "2013-10-14-How-Microcontrollers-Work.md#cmos" >}}) device has a pushing transistor [(PMOS) and a pulling transistor (NMOS)]({{< relref "2013-10-14-How-Microcontrollers-Work.md#field-effect-transistors-fets" >}}).
 
 In the circuit below where `I` is the input and `O` is the output
 
@@ -97,9 +97,9 @@ You can connect a bunch of them to one microcontroller interrupt then use the [I
 
 #### High Drive
 
-When a GPIO has high drive capability, it is just a push-pull pin that can source or sink more current than usual. A typical push-pull output is able to source/sink around +/-8ma where a high drive output may be up to +/-40ma. Again, that "Electrical Characteristics" section of the datasheet is your goto source for the details.
+When a GPIO has high drive capability, it is just a push-pull pin that can source or sink more current than usual. A typical push-pull output can source/sink around +/-8ma where a high drive output may be up to +/-40ma. Again, that "Electrical Characteristics" section of the datasheet is your go-to source for the details.
 
-Understanding the current capabilities of pins is important if you are trying to drive LEDs or do anything more than just sending data back and forth. If you want [a nice bright LED indicator]({{< ref "2013-10-24-Using-LEDs-in-Embedded-Designs.md" >}}), you will use about 20ma which is more than a run-of-the-mill GPIO pin can provide.
+Understanding the current capabilities of pins is important if you are trying to drive LEDs or do anything more than just send data back and forth. If you want [a nice bright LED indicator]({{< ref "2013-10-24-Using-LEDs-in-Embedded-Designs.md" >}}), you will use about 20ma which is more than a run-of-the-mill GPIO pin can provide.
 
 ### The End
 
