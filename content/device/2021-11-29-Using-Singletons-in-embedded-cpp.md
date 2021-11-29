@@ -1,7 +1,7 @@
 ---
 categories:
 - Device Tips
-date: "2021-11-30"
+date: "2021-11-29"
 layout: post
 draft: false
 tags:
@@ -98,7 +98,7 @@ private:
 
 Meyer's singleton fixes both of my gripes with a simple `static` member variable.
 
-1. It does not require the definition to be separate from the declaration (though it is allowed)
+1. The `Uart` member variable does not have to be declared in the `cpp` file. The `instance()` member can optionally be in both the `hpp` and `cpp` files.
 2. I have precise control over when the entire singleton is constructed. It will be constructed on the first call to `IO::instance()`.
 
 And, of course, the singleton is statically allocated on the heap.
@@ -147,6 +147,6 @@ class MyOtherObject: public IOAccess {
 
 ## That's It
 
-Singletons are a great way to map finite hardware resources to C++ objects. Using a simple `static` member variable is tedious to code and impossible to precisely control the startup order. Meyer's singleton fixes the problems with a simple `static` member. It is a great construct to know for embedded C++ development.
+Singletons are a great way to map finite hardware resources to C++ objects. Using a simple `static` member variable is tedious to code and impossible to precisely initialize. Meyer's singleton fixes the problems with a simple `static` member. It is a great construct to know for embedded C++ development.
 
 
