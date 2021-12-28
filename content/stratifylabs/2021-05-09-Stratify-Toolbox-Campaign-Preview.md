@@ -22,7 +22,7 @@ Your [feedback](https://www.crowdsupply.com/stratify/toolbox/ask-question) is we
 
 > Rewards will show in the right panel
 
-The Stratify Toolbox takes a new approach to **flashing and debugging microcontrollers**.
+The Stratify Toolbox takes a new approach to **flashing and debugging microcontrollers** for development, testing, and production programming.
 
 - **NO software to install!** It works on ***any*** device with a command-line
 - **Super-easy** wifi setup using the touch display
@@ -56,7 +56,7 @@ Need support for a specific MCU? [Please let me know](https://www.crowdsupply.co
 
 **Debugging**
 
-`printf()`-style trace debugging is supported on SWO, UART, and SPI serial protocols independent of the MCU. The output can be streamed to the command line using curl and/or written the SD card for retrieval later.
+`printf()`-style trace debugging is supported on SWO, UART, and SPI serial protocols. The output can be streamed to the command line using curl and/or written the SD card for retrieval later.
 
 ### Production Programming and Test
 
