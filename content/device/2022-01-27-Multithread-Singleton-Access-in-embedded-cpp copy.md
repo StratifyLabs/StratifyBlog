@@ -64,7 +64,7 @@ private:
 
   //mutex should be recursive so the same thread can
   //lock it recursively without worrying about errors
-  Mutex scope_mutex = Mutex(Mutex::Attributes().set_recursive());
+  Mutex scope_mutex = Mutex(Mutex::Attributes().set_type(Mutex::Type::recursive));
   pthread_t scope_pthread = {};
   int scope_lock_count = 0;
 
@@ -91,8 +91,6 @@ struct IOAccess {
   }
 
   static Uart& uart(){ return io().uart; }
-  static I2C& i2c(){ return io().i2c; }
-  static Spi& spi(){ return io().spi; }
 };
 ```
 
