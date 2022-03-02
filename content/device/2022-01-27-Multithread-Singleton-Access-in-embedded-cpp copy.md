@@ -36,10 +36,8 @@ struct IO {
       //use a recursive mutex allows the user to next Scope instances
       if( io.scope_lock_count == 0 ){
         io.scope_pthread = Thread::self();
-        ++io.scope_lock_count;
       }
-
-
+      ++io.scope_lock_count;
     }
     ~Scope(){
       auto & io = IO::instance();
