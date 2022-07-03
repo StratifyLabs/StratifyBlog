@@ -1,7 +1,7 @@
 ---
 categories:
 - Device Tips
-date: "2022-05-01"
+date: "2022-07-02"
 layout: post
 katex: true
 chart: true
@@ -25,12 +25,12 @@ After many years of trying all kinds of different approaches, I finally found an
 
 My first foray with GUI programming on a professional level came using the Qt framework (around 2009). I loved that it was written in C++ because as an embedded developer I didn't have to learn a new language. Qt has been migrating away from its open-source roots. So I have been investigating alternatives for several years. I have dabbled in and investigated all kinds of alternatives from react native, to flutter, to roll-your-own. Unfortunately, the top cross-platform frameworks are not microcontroller friendly and are not written in C++.
 
-I had a big breakthrough when I started digging into the [LVGL](https://lvgl.io/) project. LVGL aka Light and Versatile Graphics Library is an open-source C project designed for building rich GUIs on microcontrollers. LVGL with some help from the [SDL aka Simple Direct Media Layer](https://www.libsdl.org/) can run on any platform that SDL supports including Windows, macOS, Linux (desktop and embedded), iOS, and Android.
+I had a big breakthrough when I started digging into the [LVGL](https://lvgl.io/) project. LVGL aka Light and Versatile Graphics Library is an open-source C project designed for building rich GUIs on microcontrollers. LVGL with some help from [SDL aka Simple Direct Media Layer](https://www.libsdl.org/) can run on any platform that SDL supports including Windows, macOS, Linux (desktop and embedded), iOS, and Android.
 
 To connect the GUI to the internet, I use:
 
 - [LWIP](https://savannah.nongnu.org/projects/lwip/): this gets you BSD style socket on microcontrollers (not needed on OS platforms)
-- [mbedtls](https://tls.mbed.org/): microcontroller friendly TLS library that can run just about anything
+- [mbedtls](https://tls.mbed.org/): microcontroller-friendly TLS library that can run on
   - as a bonus, mbedtls gives you a nice cryptography library that can be used for various applications
 - [jansson](https://jansson.readthedocs.io/en/latest/): microcontroller friendly JSON library (a JSON library is essential for most internet operations)
 
