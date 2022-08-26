@@ -30,7 +30,7 @@ I had a big breakthrough when I started digging into the [LVGL](https://lvgl.io/
 To connect the GUI to the internet, I use:
 
 - [LWIP](https://savannah.nongnu.org/projects/lwip/): this gets you BSD style socket on microcontrollers (not needed on OS platforms)
-- [mbedtls](https://tls.mbed.org/): microcontroller-friendly TLS library that can run on
+- [mbedtls](https://tls.mbed.org/): microcontroller-friendly TLS library that can run on anything
   - as a bonus, mbedtls gives you a nice cryptography library that can be used for various applications
 - [jansson](https://jansson.readthedocs.io/en/latest/): microcontroller friendly JSON library (a JSON library is essential for most internet operations)
 
