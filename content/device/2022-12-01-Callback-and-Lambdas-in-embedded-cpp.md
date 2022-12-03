@@ -3,8 +3,6 @@ categories:
 - Device Tips
 date: "2022-12-01"
 layout: post
-katex: true
-chart: true
 tags:
 - cpp
 - programming
