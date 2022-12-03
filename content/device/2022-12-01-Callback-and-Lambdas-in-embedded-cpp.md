@@ -85,7 +85,7 @@ struct add {
 };
 ```
 
-The size in RAM that is needed for the lambda is determined by the capture size. More capture values mean more RAM is needed. This is important because if the lambda does not fit the size of `std::function` then the compiler will create code to dynamically allocate memory when passing a lambda to a `std::function`.
+The size of RAM required for a lambda is determined by the number of captured values. More captured values require more RAM. This is important because if the lambda is too large for `std::function`, the compiler will generate code to dynamically allocate memory when passing the lambda to `std::function`.
 
 The good news is that you can capture the enclosing class and all of its members by capturing `this`.
 
@@ -150,7 +150,7 @@ If we try to capture too much information (ie, the size of the lambda exceeds wh
 
 ## Performance and Code Size Penalty
 
-If you keep the capture size small enough to fit in `std::function`, the cost of using this approach is almost identical to using C-style callbacks with the dangerous `reinterpret_cast`.
+If you keep the capture size small enough to fit in `std::function`, using this approach has a similar cost to using C-style callbacks with the dangerous `reinterpret_cast`.
 
 You can check out this example on [compiler explorer](https://godbolt.org/z/Y9nE43dPK). Change the value of `USE_FUNCTION` to switch between `std::function` and a C-style function plus `void*`.
 
@@ -269,5 +269,5 @@ The `std::function` version requires a few more lines of generated assembly but 
 
 ## Conclusion
 
-It is helpful to have a good understanding of mixing C-style callbacks with C++. Unfortunately, mixing C-style callbacks with C++ has an inherent type-safety problem that can cause difficult-to-debug runtime issues. Using `std::function` and lambas, you can keep your code type-safe and maintain nearly the same performance and code size. But whenever you must mix C and C++, you will probably have to resort to dangerous `reinterpret_cast`ing.
+Mixing C-style callbacks with C++ can cause type-safety issues and difficult-to-debug runtime errors. Using `std::function` and lambdas can maintain type-safety and similar performance and code size. However, when mixing C and C++, `reinterpret_cast` may be necessary.
 
