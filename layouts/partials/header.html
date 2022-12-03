@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang='{{ .Site.Language.Lang }}'>
+<html lang='{{ .Site.Language.Lang }}' dir='{{ .Site.Language.LanguageDirection | default "auto" }}'>
 
 {{- partial "head/head" . -}}
 
@@ -11,7 +11,6 @@
 
     <div class='main'>
 
-      {{- if not .Site.Params.ebook }}
       {{- partial "nav/menus/main" . -}}
 
       {{- $headerWidgets := .Site.Params.widgets.header -}}
@@ -20,8 +19,6 @@
           {{- partial "extras/widget_area" ( dict "Widgets" $headerWidgets "Scope" . ) -}}
         </div>
       </div>
-
-      {{ end }}
 
       <header id='header' class='header site-header'>
         <div class='container sep-after'>
