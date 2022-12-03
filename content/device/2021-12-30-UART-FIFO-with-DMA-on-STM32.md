@@ -12,12 +12,11 @@ tags:
 title: UART FIFO with DMA on STM32
 ---
 
-The UART on the STM32 can be a little tricky to configure for receiving high throughput data. Most peripherals on the STM32 rely on the DMA for high throughput. The I2S for example has excellent DMA integration that allows you to stream digital audio. 
-
+Configuring the STM32 UART for high throughput data can be challenging. Most STM32 peripherals rely on DMA for high throughput, such as I2S for digital audio streaming.
 
 ## I2S DMA Operation
 
-For the I2S, it is straightforward to implement the DMA to receive digital audio. You configure the DMA to match the audio format (16/24/32-bit etc). You then choose a frame buffer size and configure the I2S in circular buffer mode. The STM32 interrupts when the frame buffer is half-full and full. When the DMA is filling the second half, you use the processor to access the first half and vice-versa.
+Implementing DMA for I2S to receive digital audio is straightforward. You configure the DMA to match the audio format and choose a frame buffer size. Then, you configure the I2S in circular buffer mode. The STM32 interrupts when the frame buffer is half-full and full. You use the processor to access the half of the buffer being filled by the DMA and vice-versa.
 
 ## The Problem with UART DMA
 
@@ -29,23 +28,23 @@ But using the DMA with the UART is weird. It contrasts with the I2S:
 | Known Packet Size         | Unknown Packet Size         |
 | Predictable Arrival Times | Unpredictable Arrival Times |
 
-There isn't an out-of-the-box way to configure the UART to handle this situation. But there is at least one solution that works great.
+There is no built-in way to configure the UART for this situation, but there is at least one solution that works well.
 
 ## The Works Great Solution
 
-For a complete solution, we need to add a software FIFO buffer and an idle interrupt with a standard UART DMA circular buffer configuration.
+To create a complete solution, we need to add a software FIFO buffer and an idle interrupt to a standard UART DMA circular buffer configuration.
 
 ### The FIFO Buffer
 
 > If you need more background info on FIFOs, check this out: [A FIFO Buffer Implementation]({{< relref "2013-10-02-A-FIFO-Buffer-Implementation.md" >}}).
 
-FIFO stands for first-in, first-out. In this case, the DMA reads data from the UART port and writes it to the FIFO buffer. The DMA is configured in circular mode with the half-complete and complete events being serviced.
+FIFO means first-in, first-out. In this case, the DMA reads data from the UART and writes it to the FIFO buffer. The DMA is configured in circular mode with the half-complete and complete events being serviced.
 
 I like to use the `head`/`tail` terminology to describe how a FIFO works. Data is written to the FIFO at the `head` and read at the `tail`. The ISR routines moves the `head` (and `tail` as needed to discard unread data). The user software moves the `tail`. If the `head` and `tail` are in the same place, the FIFO is empty.
 
 ![Empty FIFO](/images/uart-dma-fifo-empty.svg)
 
-Once a byte arrives on the DMA, the DMA writes to the first location of the FIFO. It doesn't know it is writing to a FIFO. It is acting as it does with any circular buffer implementation. The next byte is written to location `1` and the next to location `2`.
+Once a byte arrives on the DMA, it is written to the first location of the FIFO. The DMA does not know that it is writing to a FIFO, it is simply writing to a circular buffer in the same way that it would with any other implementation. The next byte is written to the second location in the FIFO, and the next byte is written to the third location, and so on.
 
 ![3 Bytes Unserviced](/images/uart-dma-fifo-3-bytes-unserviced.svg)
 
@@ -138,7 +137,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
 
 ## The End
 
-That's it. The UART DMA implementation on STM32 MCUs is a bit tricky but using a FIFO buffer and the idle interrupt, you can make it work great.
+The UART DMA implementation on STM32 MCUs can be tricky, but using a FIFO buffer and the idle interrupt allows it to work well. That's the basic idea.
 
 > You can find a full code example [here](https://github.com/StratifyLabs/StratifyOS-mcu-stm32/blob/main/src/uart/uart_local.c).
 

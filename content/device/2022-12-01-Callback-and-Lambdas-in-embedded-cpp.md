@@ -150,9 +150,7 @@ If we try to capture too much information (ie, the size of the lambda exceeds wh
 
 ## Performance and Code Size Penalty
 
-If you keep the capture size small enough to fit in `std::function`, using this approach has a similar cost to using C-style callbacks with the dangerous `reinterpret_cast`.
-
-You can check out this example on [compiler explorer](https://godbolt.org/z/Y9nE43dPK). Change the value of `USE_FUNCTION` to switch between `std::function` and a C-style function plus `void*`.
+If you keep the capture size small enough to fit in `std::function`, using this approach has a similar cost to using C-style callbacks with the dangerous `reinterpret_cast`. To see an example, go to [compiler explorer](https://godbolt.org/z/Y9nE43dPK) and change the value of USE_FUNCTION to switch between std::function and a C-style function plus void*.
 
 ```cpp
 #include <functional>
@@ -265,7 +263,7 @@ main:
         .asciz  "value is %d\n"
 ```
 
-The `std::function` version requires a few more lines of generated assembly but guarantees type safety at compile-time.
+The `std::function` generates slightly more assembly but offers compile-time type safety.
 
 ## Conclusion
 

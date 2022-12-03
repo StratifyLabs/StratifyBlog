@@ -13,11 +13,9 @@ wave: true
 msc: true
 ---
 
-> See how to create safer callbacks when using just C++ in [Callbacks and Lambdas]({{< ref "2022-12-01-Callback-and-Lambdas-in-embedded-cpp.md" >}}).
+> To create safer callbacks in C++, see [Callbacks and Lambdas]({{< ref "2022-12-01-Callback-and-Lambdas-in-embedded-cpp.md" >}}).
 
-Callbacks in C++ can be quite tricky compared to C. In C, you simply pass a function pointer, then call it like a normal function whenever you like. The object-oriented nature of C++ doesn't allow such a simple approach. It is easy to pass `static` methods as callbacks because they are very similar to C functions. But `static` methods don't allow access to non-static members of the class. This can be a bit of a pain. I have settled on an approach to C++ callbacks that makes them almost as simple as their C counterparts.
-
-With every callback, one of the arguments is provided by the caller and passed to the callback. For C++ classes, the argument is a pointer to the object that should execute the callback.
+C++ callbacks can be more complex than those in C. In C, you pass a function pointer and call it like a normal function. In C++, this is not possible due to its object-oriented nature. It is easy to pass `static` methods as callbacks because they are similar to C functions, but `static` methods cannot access non-static class members. I have settled on an approach that simplifies C++ callbacks and makes them similar to C counterparts. The caller provides an argument to the callback, which is a pointer to the object that should execute the callback.
 
 The following is an example using some simple math callbacks. 
 
@@ -79,7 +77,7 @@ int main(int argc, char * argv[]){
 }
 ```
 
-Creating threads is a great use-case for this approach as well. POSIX threads need a callback and an arbitrary argument (just what we need for this approach to work).
+Creating threads is a good use case for this approach. POSIX threads require a callback and an arbitrary argument, which this approach provides.
 
 ```cpp
 int pthread_create(pthread_t * thread,
@@ -88,7 +86,7 @@ int pthread_create(pthread_t * thread,
   void *arg);
 ```
 
-The `start_routine` is a callback, and `arg` is an arbitrary value that gets passed to `start_routine`. The following class shows how a method can be executed in the current thread or a new one.
+The `start_routine` is a callback and `arg` is a value passed to `start_routine`. The following class shows how a member function can be executed in the current thread or a new one.
 
 ```cpp
 #include <pthread.h>
@@ -120,5 +118,4 @@ int main(int argc, char * argv[]){
 }
 ```
 
-I hope this technique is as useful for you as it has been for me!
-
+I hope this technique is useful for you too!
