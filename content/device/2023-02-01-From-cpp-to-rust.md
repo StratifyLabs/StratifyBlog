@@ -9,66 +9,72 @@ tags:
 - microcontroller
 - cortex-m
 - linux
+- rust
 title: From C++ to Rust
 ---
 
-I recently started learning Rust. As a long-time C++ programmer, I wanted to understand how the C++ concepts I have applied for years worked in Rust. This is a side-by-side comparison of how many programming concepts and implementation details of C++ are accomplished in Rust.
+As a long-time C++ programmer, I recently started learning Rust. As I was digging in, I wanted to understand how the C++ concepts I have applied for years worked in Rust. This is a side-by-side comparison of how many programming concepts and implementation details of C++ are accomplished in Rust.
 
 I rate each aspect of the language as:
 
-- :bangbang: Same: same conceptually with minor execution/syntax differences
-- :interrobang: Similar: similar conceptually with execution differences
-- :x: Different: somewhat similar conceptually with major execution differences
+| Indicator | Concept | Implementation |
+|--|--|--|
+| :bangbang: | Highly Similar | Minor Differences|
+| :interrobang: | Somewhat Similar | Substantial Differences|
+| :x: | Vaguely Similar | Major Differences|
 
 > This is not an exhaustive comparison.
-
 - [Variables](#variables)
-  - [:bangbang: Primitive Types](#bangbang-primitive-types)
-    - [:bangbang: Literals](#bangbang-literals)
-    - [:x: User Defined Literals](#x-user-defined-literals)
-  - [:interrobang: Compound Data Types](#interrobang-compound-data-types)
-    - [:x: Enums](#x-enums)
-    - [:interrobang: Arrays](#interrobang-arrays)
-    - [:interrobang: Tuples and Structs](#interrobang-tuples-and-structs)
-  - [:bangbang: Constness and Mutability](#bangbang-constness-and-mutability)
-  - [:bangbang: `auto` vs. inferred](#bangbang-auto-vs-inferred)
-  - [:bangbang: Casting](#bangbang-casting)
-  - [:x: Copy and Move Semantics](#x-copy-and-move-semantics)
-    - [:interrobang: Copying and Moving Primitive Types](#interrobang-copying-and-moving-primitive-types)
-    - [:x: Copying and Moving Compound Types](#x-copying-and-moving-compound-types)
-    - [:x: References vs Borrowing](#x-references-vs-borrowing)
-- [:interrobang: Procedural Programming](#interrobang-procedural-programming)
-  - [:interrobang: Flow Control](#interrobang-flow-control)
-    - [:interrobang: If/Else](#interrobang-ifelse)
-    - [:x: switch vs match](#x-switch-vs-match)
-      - [:bangbang: While Loops](#bangbang-while-loops)
-    - [:bangbang: Ternary Operator](#bangbang-ternary-operator)
-  - [Functions](#functions)
-    - [Default Arguments](#default-arguments)
-    - [Function Signatures](#function-signatures)
-  - [Lamba's](#lambas)
-    - [Immediately called Lambda](#immediately-called-lambda)
+  - [:x: Naming Conventions](#-naming-conventions)
+  - [:bangbang: Primitive Types](#-primitive-types)
+    - [:bangbang: Literals](#-literals)
+    - [:x: User Defined Literals](#-user-defined-literals)
+  - [:interrobang: Compound Data Types](#-compound-data-types)
+    - [:x: Enums](#-enums)
+    - [:interrobang: Arrays](#-arrays)
+    - [:interrobang: Tuples and Structs](#-tuples-and-structs)
+  - [:bangbang: Constness and Mutability](#-constness-and-mutability)
+  - [:bangbang: `auto` vs. inferred](#-auto-vs-inferred)
+  - [:bangbang: Casting](#-casting)
+  - [:x: Copy and Move Semantics](#-copy-and-move-semantics)
+    - [:interrobang: Copying and Moving Primitive Types](#-copying-and-moving-primitive-types)
+    - [:x: Copying and Moving Compound Types](#-copying-and-moving-compound-types)
+    - [:x: References vs Borrowing](#-references-vs-borrowing)
+- [Procedural Programming](#procedural-programming)
+  - [:interrobang: Flow Control](#-flow-control)
+    - [:interrobang: If/Else](#-ifelse)
+    - [:bangbang: Ternary Operator](#-ternary-operator)
+    - [:x: switch vs match](#-switch-vs-match)
+    - [:interrobang: Loops](#-loops)
+      - [:interrobang: For Loops](#-for-loops)
+      - [:interrobang: While Loops](#-while-loops)
+      - [:x: Loops](#-loops)
+  - [:bangbang: Functions](#-functions)
+    - [:x: Default Arguments](#-default-arguments)
+  - [:interrobang: Lamba's](#-lambas)
+    - [:interrobang: Immediately called Lambda](#-immediately-called-lambda)
 - [Object Orient Programming](#object-orient-programming)
-- [Classes and Structs](#classes-and-structs)
-  - [Constructors](#constructors)
-- [Destructors](#destructors)
-- [Polymorphism](#polymorphism)
-- [Template Meta-Programming](#template-meta-programming)
-  - [](#)
-- [Standard Library](#standard-library)
-
-Notes
-- #includes and modules and crates
-- Rust case
-  - UpperCamelCase: types
-  - snake_case: variables/functions
-
+  - [:x: Classes and Structs](#-classes-and-structs)
+    - [:interrobang: Member Functions/Methods](#-member-functionsmethods)
+    - [:x: Constructors](#-constructors)
+    - [:interrobang: Destructors](#-destructors)
+    - [:interrobang: Access Modifiers](#-access-modifiers)
+    - [:x: Inheritance](#-inheritance)
+    - [:interrobang: Virtual Functions](#-virtual-functions)
+- [Overriding and Overloading](#overriding-and-overloading)
+  - [:x: Function Overloading](#-function-overloading)
+  - [:bangbang: Operator Overloading](#-operator-overloading)
+  - [:interrobang: Function Overriding](#-function-overriding)
+- [Meta-Programming: Generics, Templates, and Macros](#meta-programming-generics-templates-and-macros)
+  - [:interrobang: Generics](#-generics)
+  - [:interrobang: C++20 Concepts vs Bounds](#-c20-concepts-vs-bounds)
+  - [:x: Meta-Programming and Macros](#-meta-programming-and-macros)
 
 ## Variables
 
+### :x: Naming Conventions
 
-
-Rust specifies `snake_case` for variable (and function) names. Compiler will warn if you don't use it. C++ does not specify a case.
+Rust specifies `snake_case` for variable and function names. It specifies `UpperCamelCase` for custom types and `UPPER_CASE` for constant values. The Rust compiler issues warnings if the case conventions are not followed. C++ does not specify case-conventions.
 
 ### :bangbang: Primitive Types
 
@@ -101,14 +107,14 @@ Rust specifies `snake_case` for variable (and function) names. Compiler will war
 | `O777` | `0o777` | Octal |
 | `0b1111'0000` | `0b1111_0000` | Binary |
 | `'A'` | `'A'` | Byte |
-| `1.0f` | `1.0_f32` | floating point (single-precision) |
-| `1.0` | `1.0` | floating point (double-precision) |
+| `1.0f` | `1.0_f32` | single-precision floating point |
+| `1.0` | `1.0` | double-precision floating point |
 
 With Rust you can suffix a literal with a underscore-primitive type:
 
 ```rust
 //rust
-let x = 5.0_f32;
+let x = 5_u64;
 ```
 
 #### :x: User Defined Literals
@@ -119,11 +125,18 @@ auto operator"" _milliseconds(unsigned long long int value) -> long long int {
   return value;
 }
 
-//
 const auto value = 5_milliseconds;
 ```
 
-In Rust, you can have user-defined literals only within macros. Doing so is non-trivial.
+In Rust, you can have user-defined literals only within macros. Doing so is non-trivial but the call-site could look something like this:
+
+```rust
+//rust
+//can do this
+let duration = chrono!(5milliseconds);
+//can't do this
+let other_duration = 5milliseconds;
+```
 
 ### :interrobang: Compound Data Types
 
@@ -157,6 +170,8 @@ let option = Option::Some(5);
 let nothing = Option::None;
 ```
 
+> Rust `Option` is similar to C++ `std::optional`. Some aspects of Rust `Option` are built into the language to streamline error handling.
+
 #### :interrobang: Arrays
 
 ```c++
@@ -182,6 +197,19 @@ let ub = x[5]; //won't compile if a dynamic value is used will panic at runtime
 
 In Rust, tuples are a native type. In C++, they are part of `std::tuple`.
 
+```c++
+//c++
+auto get_tuple() -> std::tuple<int, int>{
+  return std::tuple<int, int>{1, -1};
+}
+```
+
+```rust
+//rust
+fn get_tuple() -> (i32, i32) {
+    (1, -1)
+}
+```
 
 ### :bangbang: Constness and Mutability
 
@@ -205,12 +233,12 @@ In Rust, variables are dropped after last use. This means a variable can be re-d
 //rust
 //this compiles and is valid rust
 let x = 10;
-let mut x = x; //x is not mutalbe
+let mut x = x; //x is now mutable
 ```
 
 ### :bangbang: `auto` vs. inferred
 
-The `auto` keyword in C++ was introduced to enable backwards compatible type inferrence. Rust comes with type inferrence by default.
+The `auto` keyword in C++ was introduced to enable backwards compatible type inferrence. Rust comes with built-in type inferrence.
 
 ```c++
 //c++
@@ -226,7 +254,7 @@ let mut y = 10;
 
 ### :bangbang: Casting
 
-C++ includes many built-in implicit type casting (and conversions). In Rust, type casting must be explicit.
+C++ includes many implicit type-casts. In Rust, type-casting is always explicit.
 
 ```c++
 //c++
@@ -246,8 +274,9 @@ let y = 5 as f64; //cast using as
 
 The philisophical differences between C++ and Rust involing copy and move semantics are very different. To summarize:
 
-- C++ copies variables by default. If a class/struct has implemented move semantics, the value will be moved if possible
+- C++ copies variables by default. If a class/struct has implemented move semantics, the value will be moved if possible.
 - Rust moves (transfers ownership) by default. Custom types can implement `Copy` (implicit) and `Clone` (explicit) copy semantics.
+  - Rust primitive types implement `Copy` and `Clone`
 
 > See Also [References vs Borrowing](#references-vs-borrowing).
 
@@ -289,13 +318,13 @@ printf("y%d\n", y);
 ```rust
 struct X(i32);
 let x = X(5);
-let y = x; //y now owns '5' and x is now invalid (dropped)
+let y = x; //y now owns '5' and x is now invalid
 //for these we assume `impl fmt::Display for X`
 println!("x{}", x); // This is a compiler error because x is moved
 println!("y{}", y);
 ```
 
-In Rust, you can override the default behavior implemented `Clone` or `Copy` for a custom-type. The mechanics are similar to custom move/copy assign/construct operators in C++.
+In Rust, you can override the default behavior by implementing `Clone` or `Copy` for a custom-type. The mechanics are similar to custom move/copy assign/construct operators in C++.
 
 ```c++
 struct X {
@@ -365,9 +394,11 @@ println!("y{}", y);
 x = 20; //will compile, borrow ends after last use
 ```
 
-In Rust, `&` is a borrow. The assigned borrows the ownership and limits what can happen with the value while borrowed.
+In Rust, `&` is a borrow. The borrower takes ownership of the underlying data and limits what the original variable can do.
 
-## :interrobang: Procedural Programming
+## Procedural Programming
+
+Most procedural programming concepts are in Rust are similar to C++. There are a few that differ substantially such as Rust's `match` keyword.
 
 ### :interrobang: Flow Control
 
@@ -411,7 +442,7 @@ let x = true;
 let y = if x {5} else {10};
 ```
 
-In Rust, `if` is an expression and evaluates to the value. Notice there are no `;`'s in the branches. Both branches must resolve to the same type (just like C++ ternary).
+In Rust, `if` is an expression and evaluates to a value. Notice there are no `;`'s in the branches. Both branches must resolve to the same type (just like C++ ternary).
 
 #### :x: switch vs match
 
@@ -443,10 +474,11 @@ match x {
   1 => y = 1;
   _ => y = 2; //_ is a catch-all value
 };
+```
 
 #### :interrobang: Loops
 
-##### :bangbang: For Loops
+##### :interrobang: For Loops
 
 ```c++
 //c++
@@ -478,7 +510,7 @@ for value in list { //consume list
 //at this point list has been consumed and cannot be used
 ```
 
-##### :bangbang: While Loops
+##### :interrobang: While Loops
 
 ```c++
 //c++
@@ -494,7 +526,8 @@ while(dont_stop){
 
 ```rust
 //rust
-loop {
+//this is a warning in rust - use a `loop`
+while true {
   //forever
 }
 
@@ -504,12 +537,18 @@ while dont_stop == true {
 }
 ```
 
-> :interrobang: Rust, `loop` can be used as an expression where `break` returns a value. Rust also supports named `break`'s with nested loops.
+##### :x: Loops
 
+Rust has a `loop` keyword that is used for forever loops and explicit `break`s. Rust also supports named `break`'s with nested loops.
 
-### Functions
+```rust
+//rust
+loop {
+  //forever loop
+}
+```
 
-Functions in C++ and Rust are almost identical conceptually and vary only syntacically.
+### :bangbang: Functions
 
 ```c++
 //c++
@@ -540,7 +579,7 @@ fn function(x: i32) -> i32 {
 function(5);
 ```
 
-#### Default Arguments
+#### :x: Default Arguments
 
 ```c++
 //c++
@@ -589,7 +628,7 @@ In C++, I like to declare and immediately call a lambda to do complex logic in a
 
 ```c++
 //c++
-auto list = [&](){
+const auto list = [&](){
   auto result = std::vector<std::string>{};
   for(int i=0; i < 10; i++){
     result.push_back(std::string{"hello"});
@@ -614,7 +653,7 @@ let list = {
 
 ## Object Orient Programming
 
-## :x: Classes and Structs
+### :x: Classes and Structs
 
 > The primary difference between a C++ `class` and a `struct` is the `class` members are `private` by default and `struct` members are `public`. When comparing to Rust, we will just consider the C++ `struct`.
 
@@ -637,10 +676,10 @@ struct X {
 } //no trailing ;
 
 //struct can be a tuple
-struct T{ i32, i64 }
+struct T(i32, i64)
 ```
 
-### :interrobang: Member Functions/Methods
+#### :interrobang: Member Functions/Methods
 
 ```c++
 //c++
@@ -650,6 +689,9 @@ struct Foo {
     value = num;
   }
 };
+
+auto foo = Foo{10};
+foo.set_value(5);
 ```
 
 ```rust
@@ -659,15 +701,18 @@ struct Foo {
 }
 
 impl Foo {
-  fn set_value(&self, num: i32){
+  fn set_value(&mut self, num: i32){
     self.value = num;
   }
 }
+
+let mut foo = Foo{value: 10};
+foo.set_value(5);
 ```
 
-### Constructors
+#### :x: Constructors
 
-C++ gives a ton a flexibility in how to construct objects. Rust has exactly one way to construct an object. However, both languages support factory functions for combining logic with instantiation.
+C++ gives a ton of flexibility in how to construct objects. Rust has exactly one way to construct an object. However, both languages support factory functions for combining logic with instantiation.
 
 ```c++
 //c++
@@ -675,10 +720,11 @@ struct X {
   int width; //could assign defaults
   int height;
   X(int w, int h){ //could do an init-list here
-    //do the magic
+    //do some magic
   }
   //or with a factory fucntion
   static X create_x(int w, int h){
+    //do some magic
     return X(w,h);
   }
 };
@@ -693,10 +739,8 @@ struct X {
 
 impl X {
   fn create(w: i32, h: i64) -> Self {
-    //do the magic
-
+    //do some magic
     //this is the ONLY way to officially construct X
-    //provides the values for all members
     return X{width: w, height: h};
   }
 }
@@ -706,7 +750,7 @@ let x0 = X{width:10, height:20};
 let x1 = X::create(5,10);
 ```
 
-### :interrobang: Destructors
+#### :interrobang: Destructors
 
 > :interrobang: C++ destructors have a lot more to worry about than Rust because of the way inheritance and copy/move semantics are implemented in C++.
 
@@ -739,19 +783,141 @@ impl Drop for X {
 }
 ```
 
-### :interrobang: Access Modifiers
+#### :interrobang: Access Modifiers
 
-- Encapsulation
-  - public, private, protected
+```c++
+//c++
+struct Foo {
+public: //this is the default for struct
+  int public_value;
+protected:
+  int protected_value;
+private:
+  int private_value;
+}
+```
+
+```rust
+//rust
+struct Foo {
+  pub public_value: i32,
+  //no equivalent for protected
+  private_value: i32
+}
+```
+
+> In Rust, everything in the same module of the same crate can access private values. In C++, only the members of the same type can access private values.
+
+#### :x: Inheritance
+
+```c++
+struct Foo {
+  int foo;
+  int get_foo() const {
+    return foo;
+  }
+};
+
+struct Bar : public Foo {
+  int bar;
+  int get_bar() const {
+    return bar;
+  }
+};
+
+auto bar = Bar{};
+bar.get_foo();
+bar.get_bar();
+```
+
+Rust uses "Traits" to define interfaces. A `struct` can implement multiple traits. "Traits" allow
+- constants
+- functions
+- types
+
+They do not allow data members. To do approximately the above in Rust:
+
+```rust
+//rust
+trait Foo {
+  fn get_foo() -> i32;
+}
+
+trait Bar {
+  fn get_bar() -> i32;
+}
+
+struct FooBar {
+  foo: i32,
+  bar: i32
+}
+
+impl Foo for FooBar {
+  fn get_foo(&self) -> i32 {
+    return self.foo;
+  }
+}
+
+impl Bar for FooBar {
+  fn get_bar(&self) -> i32 {
+    return self.bar;
+  }
+}
+
+let foobar = FooBar{foo: 5, bar: 10};
+let _foo = foobar.get_foo();
+let _bar = foobar.get_bar();
+```
+
+#### :interrobang: Virtual Functions
+
+```c++
+//c++
+struct Foo {
+  virtual int pure_vitual() = 0;
+  virtual int virtual_with_default(){
+    return 0;
+  }
+}
+
+struct Bar: public Foo {
+  int pure_virtual() override (){
+    return 1;
+  }
+  int virtual_with_default() override (){
+    return 1;
+  }
+}
+```
 
 
-## :x: Polymorphism
+```rust
+//rust
+trait Foo {
+  fn pure_virtual() -> i32;
+  fn virtual_with_default() -> i32 {
+    return 0;
+  }
+}
 
-Generally, C++ uses polymorphism more liberally than Rust.
+struct Bar;
+
+impl Foo for Bar {
+  fn pure_virtual() -> i32 {
+    return 1;
+  }
+  //omit to use Foo's default implementation
+  fn virtual_with_default() -> i32 {
+    return 1;
+  }
+}
+```
+
+## Overriding and Overloading
+
+C++ uses polymorphism more liberally than Rust.
 
 ### :x: Function Overloading
-
-#### :x: Function Signatures
 
 ```c++
 //c++
@@ -767,30 +933,145 @@ struct Foo {
 ```rust
 //rust
 impl Foo {
-  //functions need unique names
-  fn bar();
-  fn bar_const();
-  fn bar_int(value: i32);
+  //functions can't be overloaded (need unique names)
+  fn bar(){}
+  fn bar_const(){}
+  fn bar_int(value: i32){}
 }
 ```
 
-### :interrobang: Operator Overloading
+### :bangbang: Operator Overloading
 
-### Function Overriding
-- Virtual Funtions
+```c++
+//c++
+struct X {
+  int width; //could assign defaults
+  int height;
+  X operator+(const X & rhs) const {
+    return X{width+rhs.width, height+rhs.height};
+  }
 
-- Interfaces and Traits
-- Concepts and Bounds
+};
 
-## :x: Meta-Programming: Templates and Macros
+//callsite
+const auto x = X{5,5} + X{10,10};
+```
 
-- generics
-  - functions
-  - types
-- concepts as Bounds
-- Rust Macros
+```rust
+//rust
+struct X {
+  width: i32,
+  height: i32
+}
 
-### 
+impl std::ops::Add for X {
+  fn add(&self, rhs: &X) -> Self {
+    return X{ width: self.width + rhs.width,
+      height: self.height + rhs.height};
+  }
+}
 
-## Standard Library
+//callsite
+let x = X{width:5, height:5} + X{width:10, height:10};
+```
+
+### :interrobang: Function Overriding
+
+```c++
+//c++
+struct Foo {
+  void do_something(){
+    printf("foo something\n");
+  }
+}
+
+struct Bar: public Foo {
+  //overrides Foo's default implementation
+  void do_something(){
+    printf("bar something\n");
+  }
+}
+```
+
+```rust
+//rust
+trait Foo {
+  fn do_something(&self){
+    println!("foo something");
+  }
+}
+struct Bar;
+
+impl Foo for Bar {
+  //overrides Foo's default implementation
+  fn do_something(&self){
+      println!("bar something");
+  }
+}
+```
+
+## Meta-Programming: Generics, Templates, and Macros
+
+### :interrobang: Generics
+
+```c++
+template<typename Type> struct Foo {
+  Type member_of_type;
+};
+
+struct Bar {
+  template<typename Type> auto do_something(Type a) -> Type {
+    return a;
+  }
+};
+```
+
+```rust
+//rust
+struct<Type> Foo {
+  member_of_type: Type
+}
+
+
+
+```
+
+### :interrobang: C++20 Concepts vs Bounds
+
+
+```c++
+//c++
+template <typename Type> 
+requires std::integral<Type> //ensure T matches %d formatting
+auto printer(Type t) -> void {
+  printf("%d", t);
+}
+```
+
+
+```rust
+//rust
+
+//T must implement the Display trait
+fn printer<Type: Display>(t: Type) {
+    println!("{}", t);
+}
+```
+
+### :x: Meta-Programming and Macros
+
+It is hard to draw parallels for meta-programming (code that generates code) in C++ and Rust. Rust macros are used for meta-programming. They are used more like C++ template `consteval`/`constexpr` meta-programming than C++ preprocessor macros. While C++ pre-processor macros are discouraged, Rust macros are an integral part of the language.
+
+Rust macros use rust code (compiled and executed at compile-time) that parses macro tokens and generate rust code which is then compiled and run at run-time.
+
+```rust
+//rust
+
+fn main(){
+  println!("{} {}", "hello", "world");
+}
+```
+
+In rust, the `println!()` macro has rust code that parses everything inside the `()` and then generates the rust implementation to acheive the desired operation. The code that parses and generates is also fully-fledged rust code that is compiled and executed at compile time.
+
 
