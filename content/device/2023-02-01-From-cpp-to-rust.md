@@ -1,7 +1,7 @@
 ---
 categories:
 - Device Tips
-date: "2022-12-14"
+date: "2023-01-20"
 layout: post
 tags:
 - cpp
@@ -13,7 +13,7 @@ tags:
 title: From C++ to Rust
 ---
 
-As a long-time C++ programmer, I recently started learning Rust. As I was digging in, I wanted to understand how the C++ concepts I have applied for years worked in Rust. This is a side-by-side comparison of how many programming concepts and implementation details of C++ are accomplished in Rust.
+I recently started learning Rust. As a long-time C++ programmer, I wanted to understand how C++ concepts worked in Rust. This is a comparison of various concepts and implementation details of C++ and Rust.
 
 I rate each aspect of the language as:
 
