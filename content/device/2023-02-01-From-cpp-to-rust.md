@@ -19,64 +19,64 @@ I rate each aspect of the language as:
 
 | Indicator | Concept | Implementation |
 |--|--|--|
-| :bangbang: | Highly Similar | Minor Differences|
-| :interrobang: | Somewhat Similar | Substantial Differences|
+| :white_check_mark: | Highly Similar | Minor Differences|
+| :question: | Somewhat Similar | Substantial Differences|
 | :x: | Vaguely Similar | Major Differences|
 
 > This is not an exhaustive comparison.
 - [Variables](#variables)
   - [:x: Naming Conventions](#-naming-conventions)
-  - [:bangbang: Primitive Types](#-primitive-types)
-    - [:bangbang: Literals](#-literals)
+  - [:white_check_mark: Primitive Types](#-primitive-types)
+    - [:white_check_mark: Literals](#-literals)
     - [:x: User Defined Literals](#-user-defined-literals)
-  - [:interrobang: Compound Data Types](#-compound-data-types)
+  - [:question: Compound Data Types](#-compound-data-types)
     - [:x: Enums](#-enums)
-    - [:interrobang: Arrays](#-arrays)
-    - [:interrobang: Tuples and Structs](#-tuples-and-structs)
-  - [:bangbang: Constness and Mutability](#-constness-and-mutability)
-  - [:bangbang: `auto` vs. inferred](#-auto-vs-inferred)
-  - [:bangbang: Casting](#-casting)
+    - [:question: Arrays](#-arrays)
+    - [:question: Tuples and Structs](#-tuples-and-structs)
+  - [:white_check_mark: Constness and Mutability](#-constness-and-mutability)
+  - [:white_check_mark: `auto` vs. inferred](#-auto-vs-inferred)
+  - [:white_check_mark: Casting](#-casting)
   - [:x: Copy and Move Semantics](#-copy-and-move-semantics)
-    - [:interrobang: Copying and Moving Primitive Types](#-copying-and-moving-primitive-types)
+    - [:question: Copying and Moving Primitive Types](#-copying-and-moving-primitive-types)
     - [:x: Copying and Moving Compound Types](#-copying-and-moving-compound-types)
     - [:x: References vs Borrowing](#-references-vs-borrowing)
 - [Procedural Programming](#procedural-programming)
-  - [:interrobang: Flow Control](#-flow-control)
-    - [:interrobang: If/Else](#-ifelse)
-    - [:bangbang: Ternary Operator](#-ternary-operator)
+  - [:question: Flow Control](#-flow-control)
+    - [:question: If/Else](#-ifelse)
+    - [:white_check_mark: Ternary Operator](#-ternary-operator)
     - [:x: switch vs match](#-switch-vs-match)
-    - [:interrobang: Loops](#-loops)
-      - [:interrobang: For Loops](#-for-loops)
-      - [:interrobang: While Loops](#-while-loops)
+    - [:question: Loops](#-loops)
+      - [:question: For Loops](#-for-loops)
+      - [:question: While Loops](#-while-loops)
       - [:x: Loops](#-loops)
-  - [:bangbang: Functions](#-functions)
+  - [:white_check_mark: Functions](#-functions)
     - [:x: Default Arguments](#-default-arguments)
-  - [:interrobang: Lamba's](#-lambas)
-    - [:interrobang: Immediately called Lambda](#-immediately-called-lambda)
+  - [:question: Lamba's](#-lambas)
+    - [:question: Immediately called Lambda](#-immediately-called-lambda)
 - [Object Orient Programming](#object-orient-programming)
   - [:x: Classes and Structs](#-classes-and-structs)
-    - [:interrobang: Member Functions/Methods](#-member-functionsmethods)
+    - [:question: Member Functions/Methods](#-member-functionsmethods)
     - [:x: Constructors](#-constructors)
-    - [:interrobang: Destructors](#-destructors)
-    - [:interrobang: Access Modifiers](#-access-modifiers)
+    - [:question: Destructors](#-destructors)
+    - [:question: Access Modifiers](#-access-modifiers)
     - [:x: Inheritance](#-inheritance)
-    - [:interrobang: Virtual Functions](#-virtual-functions)
+    - [:question: Virtual Functions](#-virtual-functions)
 - [Overriding and Overloading](#overriding-and-overloading)
   - [:x: Function Overloading](#-function-overloading)
-  - [:bangbang: Operator Overloading](#-operator-overloading)
-  - [:interrobang: Function Overriding](#-function-overriding)
+  - [:white_check_mark: Operator Overloading](#-operator-overloading)
+  - [:question: Function Overriding](#-function-overriding)
 - [Meta-Programming: Generics, Templates, and Macros](#meta-programming-generics-templates-and-macros)
-  - [:interrobang: Generics](#-generics)
-  - [:interrobang: C++20 Concepts vs Bounds](#-c20-concepts-vs-bounds)
+  - [:question: Generics](#-generics)
+  - [:question: C++20 Concepts vs Bounds](#-c20-concepts-vs-bounds)
   - [:x: Meta-Programming and Macros](#-meta-programming-and-macros)
 
 ## Variables
 
 ### :x: Naming Conventions
 
-Rust specifies `snake_case` for variable and function names. It specifies `UpperCamelCase` for custom types and `UPPER_CASE` for constant values. The Rust compiler issues warnings if the case conventions are not followed. C++ does not specify case-conventions.
+Rust specifies `snake_case` for variable and function names. It specifies `UpperCamelCase` for custom types and `UPPER_CASE` for constant values. The Rust compiler issues warnings if the case conventions are not followed. While most projects follow similar conventions, C++ does not specify case-conventions.
 
-### :bangbang: Primitive Types
+### :white_check_mark: Primitive Types
 
 | C++ | Rust | Size (C++/Rust) | 
 |-----|------|------|
@@ -98,7 +98,7 @@ Rust specifies `snake_case` for variable and function names. It specifies `Upper
 | `bool` | `bool` | varies/1 Byte |
 | `char` | `char` | 8-bit/32-bit |
 
-#### :bangbang: Literals
+#### :white_check_mark: Literals
 
 | C++ | Rust | Type | 
 |-----|------|------|
@@ -138,7 +138,7 @@ let duration = chrono!(5milliseconds);
 let other_duration = 5milliseconds;
 ```
 
-### :interrobang: Compound Data Types
+### :question: Compound Data Types
 
 #### :x: Enums
 
@@ -156,7 +156,14 @@ enum Color {
 }
 ```
 
-An `enum` in Rust can also be used similar to a `std::variant`.
+An `enum` in Rust can also be used similar to `std::variant`.
+
+```c++
+using Option = std::variant<bool, int>;
+
+const auto option = Option{5};
+const auto nothing = Option{false};
+```
 
 ```rust
 //rust
@@ -170,9 +177,9 @@ let option = Option::Some(5);
 let nothing = Option::None;
 ```
 
-> Rust `Option` is similar to C++ `std::optional`. Some aspects of Rust `Option` are built into the language to streamline error handling.
+> Rust `std::Option` is used like C++'s `std::optional`. Some aspects of Rust `std::Option` are built into the language to streamline error handling using the `?` operator.
 
-#### :interrobang: Arrays
+#### :question: Arrays
 
 ```c++
 //c++
@@ -190,10 +197,11 @@ let y = [3; 5]; //y is [3,3,3,3,3];
 
 //access
 let z = x[0] + x[4];
-let ub = x[5]; //won't compile if a dynamic value is used will panic at runtime
+let ub = x[5]; //won't compile 
+//if a dynamic out-of-range value is used, rust will panic at runtime
 ```
 
-#### :interrobang: Tuples and Structs
+#### :question: Tuples and Structs
 
 In Rust, tuples are a native type. In C++, they are part of `std::tuple`.
 
@@ -211,7 +219,7 @@ fn get_tuple() -> (i32, i32) {
 }
 ```
 
-### :bangbang: Constness and Mutability
+### :white_check_mark: Constness and Mutability
 
 C++ variables are mutable by default while Rust variables are constant by default.
 
@@ -236,23 +244,27 @@ let x = 10;
 let mut x = x; //x is now mutable
 ```
 
-### :bangbang: `auto` vs. inferred
+### :white_check_mark: `auto` vs. inference
 
-The `auto` keyword in C++ was introduced to enable backwards compatible type inferrence. Rust comes with built-in type inferrence.
+The `auto` keyword in C++ was introduced to enable backwards compatible type inference. Rust comes with built-in type inference.
 
 ```c++
 //c++
+const int w = 5;
 const auto x = 5;
-auto y = 10;
+int y = 10;
+auto z = 10;
 ```
 
 ```rust
 //rust
+let w: i32 = 5;
 let x = 5;
-let mut y = 10;
+let mut y: i32 = 10;
+let mut z = 10;
 ```
 
-### :bangbang: Casting
+### :white_check_mark: Casting
 
 C++ includes many implicit type-casts. In Rust, type-casting is always explicit.
 
@@ -272,17 +284,12 @@ let y = 5 as f64; //cast using as
 
 ### :x: Copy and Move Semantics
 
-The philisophical differences between C++ and Rust involing copy and move semantics are very different. To summarize:
+Copy and move semantics between C++ and Rust concerning are very different. To summarize:
 
-- C++ copies variables by default. If a class/struct has implemented move semantics, the value will be moved if possible.
+- C++ copies variables by default. If a `class`/`struct` has implemented move semantics, the value is sometimes moved.
 - Rust moves (transfers ownership) by default. Custom types can implement `Copy` (implicit) and `Clone` (explicit) copy semantics.
-  - Rust primitive types implement `Copy` and `Clone`
 
-> See Also [References vs Borrowing](#references-vs-borrowing).
-
-#### :interrobang: Copying and Moving Primitive Types
-
-For primitive types like `int` and `bool`, both C++ and Rust make copies when assigning values.
+Rust primitive types implement `Copy` and `Clone` such that primitives are copied by default (just like in C++).
 
 ```c++
 //c++
@@ -300,6 +307,8 @@ println!("x{}", x);
 println!("y{}", y);
 ```
 
+> See Also [References vs Borrowing](#references-vs-borrowing).
+
 #### :x: Copying and Moving Compound Types
 
 For non-primitives, C++'s default mode is to copy variables where Rust's default is to move (or transfer ownership).  For example:
@@ -310,7 +319,7 @@ struct X {
   int value;
 };
 auto x = X{5};
-auto y = std::move(x); //y holds a copy of x
+auto y = std::move(x); //y holds a copy of x (default move is to copy)
 printf("x%d\n", x); //C++ specifies a valid but unspecified state for x
 printf("y%d\n", y);
 ```
@@ -374,7 +383,7 @@ println!("y{}", y);
 
 #### :x: References vs Borrowing
 
-C++ references and Rust borrows are very different but use the similar syntax.
+C++ references and Rust borrows are very different but use similar syntax.
 
 ```c++
 //c++
@@ -396,13 +405,15 @@ x = 20; //will compile, borrow ends after last use
 
 In Rust, `&` is a borrow. The borrower takes ownership of the underlying data and limits what the original variable can do.
 
+> The above is a simplification of Rust ownership. [Read more in the Rust book](https://doc.rust-lang.org/book/ch04-01-what-is-ownership.html)
+
 ## Procedural Programming
 
-Most procedural programming concepts are in Rust are similar to C++. There are a few that differ substantially such as Rust's `match` keyword.
+Most procedural programming concepts in Rust are similar to C++. A few concepts differ substantially such as Rust's `match` keyword.
 
-### :interrobang: Flow Control
+### :question: Flow Control
 
-#### :interrobang: If/Else
+#### :question: If/Else
 
 ```c++
 //c++
@@ -426,9 +437,7 @@ if is_true { //parentheses are optional but discouraged
 
 `else if` basically works the same way in C++ and Rust.
 
-> :interrobang:  The big different between `if`/`else` statements in Rust and C++ is that Rust `if`/`else` statements are expresssions that can be used directly to assign a value.
-
-#### :bangbang: Ternary Operator
+#### :white_check_mark: Ternary Operator
 
 ```c++
 //c++
@@ -442,11 +451,11 @@ let x = true;
 let y = if x {5} else {10};
 ```
 
-In Rust, `if` is an expression and evaluates to a value. Notice there are no `;`'s in the branches. Both branches must resolve to the same type (just like C++ ternary).
+In Rust, `if` is an expression that evaluates to a value. Notice there are no `;`'s in the branches. Both branches must resolve to the same type (just like C++ ternary).
 
 #### :x: switch vs match
 
-C++ `switch` and Rust `match` similar conceptually but have distinct implementations.
+C++ `switch` and Rust `match` are similar conceptually but have distinct implementations.
 
 ```c++
 //c++
@@ -476,9 +485,19 @@ match x {
 };
 ```
 
-#### :interrobang: Loops
+In Rust, the `match` statement can pattern match enums in a way that is unparalleled in C++.
 
-##### :interrobang: For Loops
+```rust
+let x = Some(5); //is a std::Option
+match x {
+  Some(value) => println!("Has value {}", value),
+  None => println!("doesn't have a value")
+};
+```
+
+#### :question: Loops
+
+##### :question: For Loops
 
 ```c++
 //c++
@@ -510,7 +529,7 @@ for value in list { //consume list
 //at this point list has been consumed and cannot be used
 ```
 
-##### :interrobang: While Loops
+##### :question: While Loops
 
 ```c++
 //c++
@@ -539,7 +558,7 @@ while dont_stop == true {
 
 ##### :x: Loops
 
-Rust has a `loop` keyword that is used for forever loops and explicit `break`s. Rust also supports named `break`'s with nested loops.
+Rust has a `loop` keyword that loops forever without an explicit `break`s. Rust also supports named `break`'s with nested loops.
 
 ```rust
 //rust
@@ -548,7 +567,7 @@ loop {
 }
 ```
 
-### :bangbang: Functions
+### :white_check_mark: Functions
 
 ```c++
 //c++
@@ -596,7 +615,7 @@ Rust does not support default arguments.
 
 > There are techiques using `Option` or `impl Default` that acheive similar behavior.
 
-### :interrobang: Lamba's
+### :question: Lamba's
 
 C++ lambda's are called closures in Rust.
 
@@ -622,7 +641,7 @@ let closure = |y: i32| -> i32 { x + y };
 let sum = closure(5);
 ```
 
-#### :interrobang: Immediately called Lambda
+#### :question: Immediately called Lambda
 
 In C++, I like to declare and immediately call a lambda to do complex logic in an isolated scope and return a `const` value from it.
 
@@ -679,7 +698,7 @@ struct X {
 struct T(i32, i64)
 ```
 
-#### :interrobang: Member Functions/Methods
+#### :question: Member Functions/Methods
 
 ```c++
 //c++
@@ -750,9 +769,9 @@ let x0 = X{width:10, height:20};
 let x1 = X::create(5,10);
 ```
 
-#### :interrobang: Destructors
+#### :question: Destructors
 
-> :interrobang: C++ destructors have a lot more to worry about than Rust because of the way inheritance and copy/move semantics are implemented in C++.
+> :question: C++ destructors have a lot more to worry about than Rust because of the way inheritance and copy/move semantics are implemented in C++.
 
 ```c++
 //c++
@@ -783,7 +802,7 @@ impl Drop for X {
 }
 ```
 
-#### :interrobang: Access Modifiers
+#### :question: Access Modifiers
 
 ```c++
 //c++
@@ -869,7 +888,7 @@ let _foo = foobar.get_foo();
 let _bar = foobar.get_bar();
 ```
 
-#### :interrobang: Virtual Functions
+#### :question: Virtual Functions
 
 ```c++
 //c++
@@ -940,7 +959,7 @@ impl Foo {
 }
 ```
 
-### :bangbang: Operator Overloading
+### :white_check_mark: Operator Overloading
 
 ```c++
 //c++
@@ -975,7 +994,7 @@ impl std::ops::Add for X {
 let x = X{width:5, height:5} + X{width:10, height:10};
 ```
 
-### :interrobang: Function Overriding
+### :question: Function Overriding
 
 ```c++
 //c++
@@ -1012,7 +1031,7 @@ impl Foo for Bar {
 
 ## Meta-Programming: Generics, Templates, and Macros
 
-### :interrobang: Generics
+### :question: Generics
 
 ```c++
 template<typename Type> struct Foo {
@@ -1036,7 +1055,7 @@ struct<Type> Foo {
 
 ```
 
-### :interrobang: C++20 Concepts vs Bounds
+### :question: C++20 Concepts vs Bounds
 
 
 ```c++
