@@ -1,7 +1,7 @@
 ---
 categories:
 - Device Tips
-date: "2023-01-20"
+date: "2023-01-28"
 layout: post
 tags:
 - cpp
@@ -74,7 +74,7 @@ I rate each aspect of the language as:
 
 ### :x: Naming Conventions
 
-Rust specifies `snake_case` for variable and function names. It specifies `UpperCamelCase` for custom types and `UPPER_CASE` for constant values. The Rust compiler issues warnings if the case conventions are not followed. While most projects follow similar conventions, C++ does not specify case-conventions.
+Rust specifies `snake_case` for variable and function names. It specifies `UpperCamelCase` for custom types and `UPPER_CASE` for constant values. The Rust compiler issues warnings if the case conventions are not followed. While most projects follow similar conventions, C++ does not specify case conventions.
 
 ### :white_check_mark: Primitive Types
 
@@ -110,14 +110,14 @@ Rust specifies `snake_case` for variable and function names. It specifies `Upper
 | `1.0f` | `1.0_f32` | single-precision floating point |
 | `1.0` | `1.0` | double-precision floating point |
 
-With Rust you can suffix a literal with a underscore-primitive type:
+With Rust you can suffix a literal with an underscore-primitive type:
 
 ```rust
 //rust
 let x = 5_u64;
 ```
 
-#### :x: User Defined Literals
+#### :x: User-Defined Literals
 
 ```c++
 //c++
@@ -128,7 +128,7 @@ auto operator"" _milliseconds(unsigned long long int value) -> long long int {
 const auto value = 5_milliseconds;
 ```
 
-In Rust, you can have user-defined literals only within macros. Doing so is non-trivial but the call-site could look something like this:
+In Rust, you can have user-defined literals only within macros. Doing so is non-trivial but the call site could look something like this:
 
 ```rust
 //rust
@@ -156,7 +156,7 @@ enum Color {
 }
 ```
 
-An `enum` in Rust can also be used similar to `std::variant`.
+An `enum` in Rust can also be used similarly to `std::variant`.
 
 ```c++
 using Option = std::variant<bool, int>;
@@ -235,7 +235,7 @@ let x: i32 = 5;
 let mut y: i32 = 10;
 ```
 
-In Rust, variables are dropped after last use. This means a variable can be re-declared in the same scope. 
+In Rust, variables are dropped after the last use. This means a variable can be re-declared in the same scope. 
 
 ```rust
 //rust
@@ -246,7 +246,7 @@ let mut x = x; //x is now mutable
 
 ### :white_check_mark: `auto` vs. inference
 
-The `auto` keyword in C++ was introduced to enable backwards compatible type inference. Rust comes with built-in type inference.
+The `auto` keyword in C++ was introduced to enable backward compatible type inference. Rust comes with built-in type inference.
 
 ```c++
 //c++
@@ -311,7 +311,7 @@ println!("y{}", y);
 
 #### :x: Copying and Moving Compound Types
 
-For non-primitives, C++'s default mode is to copy variables where Rust's default is to move (or transfer ownership).  For example:
+For non-primitives, C++'s default mode is to copy variables whereas Rust's default is to move (or transfer ownership).  For example:
 
 ```c++
 //c++
@@ -333,7 +333,7 @@ println!("x{}", x); // This is a compiler error because x is moved
 println!("y{}", y);
 ```
 
-In Rust, you can override the default behavior by implementing `Clone` or `Copy` for a custom-type. The mechanics are similar to custom move/copy assign/construct operators in C++.
+In Rust, you can override the default behavior by implementing `Clone` or `Copy` for a custom type. The mechanics are similar to custom move/copy assign/construct operators in C++.
 
 ```c++
 struct X {
@@ -369,7 +369,7 @@ impl Copy for X {
 > - `mut self`: mutating
 > - `self`: consuming
 
-Or you can use default `Copy`:
+Or you can use the default `Copy`:
 
 ```rust
 #[derive(Copy)]
@@ -391,7 +391,7 @@ auto x = 5;
 auto & y = x; //y refers to x
 ```
 
-In C++, `y` is basically a pointer to `x`. If `x` changes, `y` will reflect that change. If `x` goes out of scope, `y` will be a dangling reference (undefined behavior).
+In C++, `y` is a pointer to `x`. If `x` changes, `y` will reflect that change. If `x` goes out of scope, `y` will be a dangling reference (undefined behavior).
 
 
 ```rust
@@ -435,7 +435,7 @@ if is_true { //parentheses are optional but discouraged
 }
 ```
 
-`else if` basically works the same way in C++ and Rust.
+`else if` works the same way in C++ and Rust.
 
 #### :white_check_mark: Ternary Operator
 
@@ -613,11 +613,11 @@ do_something();
 
 Rust does not support default arguments. 
 
-> There are techiques using `Option` or `impl Default` that acheive similar behavior.
+> There are techniques using `Option` or `impl Default` that achieve similar behavior.
 
-### :question: Lamba's
+### :question: Lambas
 
-C++ lambda's are called closures in Rust.
+C++ lambdas are called closures in Rust.
 
 ```c++
 //c++
@@ -634,7 +634,8 @@ const auto sum = lamdba(5);
 ```rust
 //rust
 let x = 5;
-//captured values (x) automatically borrowed until closure's last use
+//captured values, `x` in this case, are automatically 
+//borrowed until closure's last use
 let closure = |y: i32| -> i32 { x + y };
 
 //callsite
@@ -719,6 +720,8 @@ struct Foo {
   value: i32
 }
 
+//implementation is always separate from the data
+//with no forward declarations required
 impl Foo {
   fn set_value(&mut self, num: i32){
     self.value = num;
@@ -741,7 +744,7 @@ struct X {
   X(int w, int h){ //could do an init-list here
     //do some magic
   }
-  //or with a factory fucntion
+  //or with a factory function
   static X create_x(int w, int h){
     //do some magic
     return X(w,h);
@@ -779,7 +782,7 @@ struct X {
   int width; //could assign defaults
   int height;
   ~X(){
-    //called when instance goes out of scope
+    //called when the instance goes out of scope
     //take care to properly handle copy/move semantics and inheritance
   }
 
@@ -795,7 +798,7 @@ struct X {
 
 impl Drop for X {
   fn drop(&self){
-    //called when instance is dropped
+    //called when the instance is dropped
     //only called once per value
     //not called on borrow or ownership transfer
   }
@@ -1034,11 +1037,14 @@ impl Foo for Bar {
 ### :question: Generics
 
 ```c++
+//c++
+//generic struct
 template<typename Type> struct Foo {
   Type member_of_type;
 };
 
 struct Bar {
+  //generic function
   template<typename Type> auto do_something(Type a) -> Type {
     return a;
   }
@@ -1047,15 +1053,18 @@ struct Bar {
 
 ```rust
 //rust
+//generic struct
 struct<Type> Foo {
   member_of_type: Type
 }
 
-
-
+//generic function
+fn do_something<Type>(Type a) -> Type {
+  return a;
+}
 ```
 
-### :question: C++20 Concepts vs Bounds
+### :question: C++20 Concepts vs Rust Bounds
 
 
 ```c++
@@ -1066,7 +1075,6 @@ auto printer(Type t) -> void {
   printf("%d", t);
 }
 ```
-
 
 ```rust
 //rust
@@ -1079,9 +1087,9 @@ fn printer<Type: Display>(t: Type) {
 
 ### :x: Meta-Programming and Macros
 
-It is hard to draw parallels for meta-programming (code that generates code) in C++ and Rust. Rust macros are used for meta-programming. They are used more like C++ template `consteval`/`constexpr` meta-programming than C++ preprocessor macros. While C++ pre-processor macros are discouraged, Rust macros are an integral part of the language.
+It is hard to draw parallels between meta-programming (code that generates code) in C++ and Rust. Rust macros are used for meta-programming. They are used more like C++ template `consteval`/`constexpr` meta-programming than C++ preprocessor macros. While C++ pre-processor macros are discouraged, Rust macros are an integral part of the language.
 
-Rust macros use rust code (compiled and executed at compile-time) that parses macro tokens and generate rust code which is then compiled and run at run-time.
+Rust macros use rust code (compiled and executed at compile-time) that parses macro tokens and generate rust code which is then compiled and executed at run-time.
 
 ```rust
 //rust
@@ -1091,6 +1099,20 @@ fn main(){
 }
 ```
 
-In rust, the `println!()` macro has rust code that parses everything inside the `()` and then generates the rust implementation to acheive the desired operation. The code that parses and generates is also fully-fledged rust code that is compiled and executed at compile time.
+In rust, the `println!()` macro has rust code that parses everything inside the `()` and then generates the rust implementation to achieve the desired operation. The code that parses and generates is also fully-fledged rust code that is compiled and executed at compile time.
 
+## The End
 
+After spending a couple of months investigating Rust, I found many things about the language to be delightful compared to C++.
+
+- Better defaults: const vs mutable, implicit vs explicit conversions, copy vs move
+- More cohesive ecosystem: Rust has a built-in build system, formatter, language server, documentation generator, unit testing, and package manager
+- Simpler, more expressive syntax.
+
+Rust has benefitted from several decades of lessons learned from C++. Herb Sutter recently introduced [cppfront](https://github.com/hsutter/cppfront) as a way to make C++ 10 times simpler and safer. Rust might have beaten him to it.
+
+You can learn more about Rust here:
+
+- [Rust Book](https://doc.rust-lang.org/stable/book/)
+- [Rust by Example](https://doc.rust-lang.org/stable/rust-by-example/)
+- [Comprehensive Rust in 4 Days](https://google.github.io/comprehensive-rust/welcome.html) (by Google)
